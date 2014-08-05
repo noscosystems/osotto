@@ -1,0 +1,34 @@
+{
+    "name":                 "noscosystems/name-of-project",
+    "description":          "A quick description of the project.",
+    "keywords":             [],
+    "type":                 "project",
+    "homepage":             "https://github.com/noscosystems/name-of-project",
+    "license":              "MIT",
+    "version":              "1.1.0",
+
+    "authors": [
+        {
+            "name":         "Zander Baldwin",
+            "email":        "mynameis@zande.rs",
+            "homepage":     "http://mynameis.zande.rs/",
+            "role":         "Developer"
+        }
+    ],
+
+    "minimum-stability":    "dev",
+
+    "config": {
+        "vendor-dir":       "application/vendor"
+    },
+
+    "require": {
+		"intervention/image": "2.*",
+        "yiisoft/yii":      "1.1.14",
+        "twbs/bootstrap":   "3.1.*",
+        "php":              ">=5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit":  "4.1.*"
+    }
+}

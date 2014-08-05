@@ -57,60 +57,32 @@
             font-family: 'Raleway', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
+        .links{
+            color: #363635;
+            float: right;
+            font-family: 'Raleway',sans-serif;
+            margin-right: 20px;
+            margin-top: 13px;
+            text-transform: uppercase;
+        }
         </style>
     </head>
 
     <body>
-
-
-        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Smart Properties</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a  href='#' id="goBack" >Go Back</a></li>
-                        <li><?php echo CHtml::link('Home', array('/home'), array()); ?></li><!-- 
-                        <li><?php //echo CHtml::link('Houses', array('/asset', 'type' => 1), array()); ?></li>
-                        <li><?php //echo CHtml::link('Apartments', array('/asset', 'type' => 2), array()); ?></li>
-                        <li><?php// echo CHtml::link('Land', array('/asset', 'type' => 3), array()); ?></li> -->
-                        <!--<li><?php //echo CHtml::link('Sell', array('/sell')); ?></li> -->
-                        <?php if (Yii::app()->user->priv >=50){ ?>
-                        <li><?php echo CHtml::link('Create user', array('/admin/user/createuser') ); ?><li>
-                        <li><?php echo CHtml::link('Create Asset', array('/admin/asset/index') ); ?></li>
-                        <li><?php echo CHtml::link('List users', array('/admin/user/listusers') ); ?></li>
-                        <li><?php echo CHtml::link('List Assets', array('/admin/asset/listassets') ); ?></li>
-                        <?php }  ?>
-                        <li class="dropdown">
-                        <?php if( Yii::app()->user->isGuest){ ?>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Guest <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><?php echo CHtml::link('Home', array('/home'), array()); ?></li>
-                                <li><?php echo CHtml::link('Login', array('/login'), array()); ?></li>
-                            </ul>
-                        <?php } else {?>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo Yii::app()->user->model()->username; ?> <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><?php echo CHtml::link('Index', array('/admin'), array()); ?></li>
-                                <li><?php echo CHtml::link('List Assets', array('/account/listassets'), array()); ?></li>
-                                <li><?php echo CHtml::link('Logout', array('/account/logout'), array()); ?></li>
-                            </ul>
-                        <?php } ?>
-                        </li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="pull-left">
+        <!-- <div class="logo"> -->
+            <img src="<?php echo $assetUrl; ?>/images/osotto.png" height="45" width="60">
+        <!-- </div> -->
+    </div>
+    <div class="pull-right links">
+        <?php if (Yii::app()->user->isGuest):?>
+        <?php echo CHtml::link('Register', array('/account/register'), array('class'=>'btn btn-xs btn-danger')); ?>
+        <?php endif; ?>
+    </div>
+  </div>
+</nav>
 
         <div class="container">
             <?php if(Yii::app()->user->hasFlash('success')): ?>

@@ -9,6 +9,7 @@
 	use \application\components\UserIdentity;
 	use \application\models\db\Users;
 	use \application\models\db\CustomerContactDetails;
+	use \application\models\db\CustomerAddress;
 	use \application\models\form\Register;
 
 
@@ -17,19 +18,44 @@
 		function actionRegister(){
 			if (Yii::app()->user->isGuest){
             $form = new Form('application.forms.register', new Register);
-
+            if ($form->validate()){
+            	echo 'Validated!';
+            }
             if($form->submitted() && $form->validate()) {
-                $user = Users::model()->findAllByAttributes(array('username' => $form->model->username));
+                $frm = $form->model;
+                $user = Users::model()->findAllByAttributes(array('username' => $frm->username));
                 if($user){
-                    $form->model->addError('username', 'The username specified is already taken! Please choose another.');
+                    $frm->addError('username', 'The username specified is already taken! Please choose another.');
                 } else {
                     $user = new Users;
-
-                    $user->attributes = $form->model->attributes;
-                    $user_details = new CustomerContactDetails;
-                    echo '<pre>';
-                    var_dump ( $user );
-                    echo '</pre>';
+                    $userDetails = new CustomerContactDetails;
+                    $userAddress = new CustomerAddress;
+                    $user->attributes = $frm->attributes;
+                    $email = CustomerContactDetails::model()->findAllByAttributes(array('email' => $frm->email));
+                    $mobile = CustomerContactDetails::model()->findAllByAttributes(array('mobile' => $frm->mobile));
+                    var_dump ($email);
+                    var_dump ($mobile);
+                    // $other = Users::model()->findAllByAttributes(array('other_number' => $frm->other_number));
+                    ($email)?
+                    	($frm->addError('email','Email already taken by another user'))
+                    	:($userDetails->email = $frm->email);
+                    ($mobile)?
+                    	($frm->addError('mobile','Mobile number already taken by another user'))
+                    	:($userDetails->mobile = $frm->mobile);
+                    // $userDetails->attributes = $form->model->attributes;
+                    //$userAddress->attributes = $form->model->attributes;
+                    //($user->save())?($userDetails->customerId = $user->id,$userAddress->customerId = $user->id,$userDetails->save())?:'';
+                    // (empty($user->errors) && empty($userDetails->errors) && empty($userAddress->errors))?
+                    // 	(($user->save())?
+                    // 		($userDetails->customerId=$userAddress->customerId=$user->id,$userDetails->save(),$userAddress->save()):''):'';
+                    	var_dump( $userAddress->errors );
+                    if (empty($user->errors) && empty($userDetails->errors) && empty($userAddress->errors)){
+                    	if ($user->save()){
+                    		$userDetails->customerId=$userAddress->customerId=$user->id;
+                    		$userDetails->save();
+                    		$userAddress->save();
+                    	}
+                    }
       //               $sql = 'SELECT *
 						// 	    FROM `users`
 						// 	    WHERE `id`!=:id AND `email`=:email';

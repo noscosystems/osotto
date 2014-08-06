@@ -9,6 +9,11 @@
                 'maxlength' => 64,
                 'hint' => Yii::t('application', 'Please enter your username; it is case-insensitive.'),
             ),
+            'password' => array(
+                'type' => 'password',
+                'maxlength' => 64,
+                'hint' => Yii::t('application', 'Please enter your password; it is case-sensitive.'),
+            ),
             'firstname' => array(
                 'type' => 'text',
                 'maxlength' => 36,
@@ -24,10 +29,6 @@
                 'maxlength' => 36,
                 'hint' => Yii::t('application', 'Please enter your lastname; it is case-insensitive.'),
             ),
-            'password' => array(
-                'type' => 'password',
-                'hint' => Yii::t('application', 'Please enter your password; it is case-sensitive.'),
-            ),
             'email' => array(
                 'type' => 'text',
                 'maxlength' => 128,
@@ -40,7 +41,37 @@
             ),
             'other_number' => array(
                 'type' => 'text',
-                'maxlength' => 20,
+                'maxlength' => 25,
+                'hint' => Yii::t('application', 'Please enter your date of birth; it is case-sensitive.'),
+            ),
+            'country' => array(
+                'type' => 'text',
+                'maxlength' => 64,
+                'hint' => Yii::t('application', 'Please enter your date of birth; it is case-sensitive.'),
+            ),
+            'county' => array(
+                'type' => 'text',
+                'maxlength' => 64,
+                'hint' => Yii::t('application', 'Please enter your date of birth; it is case-sensitive.'),
+            ),
+            'town' => array(
+                'type' => 'text',
+                'maxlength' => 64,
+                'hint' => Yii::t('application', 'Please enter your date of birth; it is case-sensitive.'),
+            ),
+            'postcode' => array(
+                'type' => 'text',
+                'maxlength' => 10,
+                'hint' => Yii::t('application', 'Please enter your date of birth; it is case-sensitive.'),
+            ),
+            'address1' => array(
+                'type' => 'text',
+                'maxlength' => 255,
+                'hint' => Yii::t('application', 'Please enter your date of birth; it is case-sensitive.'),
+            ),
+            'address2' => array(
+                'type' => 'text',
+                'maxlength' => 255,
                 'hint' => Yii::t('application', 'Please enter your date of birth; it is case-sensitive.'),
             )
         ),

@@ -32,7 +32,7 @@
         <link href="<?php echo $assetUrl; ?>/css/form.css" rel="stylesheet" type="text/css" media="all" />
         <!-- Document Meta Title. -->
         <title>
-            Smart Properties
+            Osotto - Your High Tech Solutions
         </title>
 
         <style>
@@ -73,7 +73,7 @@
   <div class="container">
     <div class="pull-left">
         <!-- <div class="logo"> -->
-            <img src="<?php echo $assetUrl; ?>/images/osotto.png" height="45" width="60">
+            <img src="<?php echo $assetUrl; ?>/images/logo.png" height="50" width="80">
         <!-- </div> -->
     </div>
     <div class="pull-right links">

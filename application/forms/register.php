@@ -1,5 +1,12 @@
 <?php
 
+    use \application\models\db\Option;
+
+    $options = Option::model()->findAllByAttributes(array ('column' => 'ageGroup'));
+
+    foreach ($options as $option)
+        $ageGroup[$option->id] = $option->name;
+
     return array(
         'title' => Yii::t('application', 'Please provide your login credentials.'),
 
@@ -28,6 +35,12 @@
                 'type' => 'text',
                 'maxlength' => 36,
                 'hint' => Yii::t('application', 'Please enter your lastname; it is case-insensitive.'),
+            ),
+            'ageGroup' => array(
+                'type' => 'dropdownlist',
+                'items' => $ageGroup,
+                'prompt' => 'Please Select'
+                // 'hint' => Yii::t('application', 'Please enter your password; it is case-sensitive.'),
             ),
             'email' => array(
                 'type' => 'text',

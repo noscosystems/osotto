@@ -5,7 +5,7 @@ namespace application\models\db;
 use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
-use \application\models\db\User;
+use \application\models\db\Users;
 /**
  * This is the model class for table "customer_address".
  *
@@ -40,10 +40,9 @@ class CustomerAddress extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('customerId, country, county, town, postcode, address1', 'required'),
+			array('customerId, country, county, postcode, address1', 'required'),
 			array('customerId', 'numerical', 'integerOnly'=>true),
-			array('country, county', 'length', 'max'=>30),
-			array('town', 'length', 'max'=>25),
+			array('country, county, town', 'length', 'max'=>64),
 			array('postcode', 'length', 'max'=>10),
 			array('address1, address2', 'length', 'max'=>255),
 			// The following rule is used by search().
@@ -60,7 +59,7 @@ class CustomerAddress extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'customer' => array(self::BELONGS_TO, 'User', 'customerId'),
+			'customer' => array(self::BELONGS_TO, 'Users', 'customerId'),
 		);
 	}
 

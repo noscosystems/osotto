@@ -49,7 +49,8 @@ class Users extends ActiveRecord
 		return array(
 			array('title, firstname, lastname, ageGroup, username, password', 'required'),
 			array('ageGroup', 'numerical', 'integerOnly'=>true),
-			array('title, firstname, middlename, lastname, username', 'length', 'max'=>255),
+			array('title', 'length', 'max'=>255),
+			array('firstname, middlename, lastname, username', 'length', 'max'=>36),
 			array('password', 'length', 'max'=>64),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

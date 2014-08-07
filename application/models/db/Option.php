@@ -5,7 +5,7 @@ namespace application\models\db;
 use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
-use \application\models\db\User;
+use \application\models\db\Users;
 /**
  * This is the model class for table "option".
  *
@@ -55,7 +55,7 @@ class Option extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'users' => array(self::HAS_MANY, 'User', 'ageGroup'),
+			'users' => array(self::HAS_MANY, 'Users', 'ageGroup'),
 		);
 	}
 

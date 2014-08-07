@@ -65,6 +65,9 @@
             margin-top: 13px;
             text-transform: uppercase;
         }
+        .btns{
+            margin-left:15px;
+        }
         </style>
     </head>
 
@@ -77,9 +80,12 @@
         <!-- </div> -->
     </div>
     <div class="pull-right links">
-        <?php if (Yii::app()->user->isGuest):?>
-        <?php echo CHtml::link('Register', array('/account/register'), array('class'=>'btn btn-xs btn-danger')); ?>
-        <?php endif; ?>
+        <?php
+            if (Yii::app()->user->isGuest){
+                echo CHtml::link('Login', array('/login'), array('class'=>'btn btn-xs btn-success btns'));
+                echo CHtml::link('Register', array('/account/register'), array('class'=>'btn btn-xs btn-danger btns'));
+            } 
+        ?>
     </div>
   </div>
 </nav>

@@ -9,10 +9,10 @@ $widget = $form->activeFormWidget;
     <h1>Register <small>Please enter your information</small></h1>
 </div>
 
-<?php if(Yii::app()->user->hasFlash('success')): ?>
+<?php if(Yii::app()->user->hasFlash('registerSuccess')): ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo Yii::app()->user->getFlash('success'); ?>
+        <?php echo Yii::app()->user->getFlash('registerSuccess'); ?>
     </div>
 <?php endif; ?>
 
@@ -54,6 +54,13 @@ if($widget->errorSummary($form)){
     <div class="col-sm-3 control-label">Enter your lastname here:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'lastname', array('class' => 'form-control') ); ?>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-3 control-label">Select Age Group:</div>
+    <div class="col-sm-6">
+        <?php echo $widget->input($form, 'ageGroup', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <br>
@@ -126,4 +133,4 @@ if($widget->errorSummary($form)){
     </div>
 </div>
 <?php echo $form->renderEnd(); ?>
-</div><!-- form -->
+<!-- form -->

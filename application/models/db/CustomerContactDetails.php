@@ -5,7 +5,7 @@ namespace application\models\db;
 use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
-use \application\models\db\User;
+use \application\models\db\Users;
 /**
  * This is the model class for table "customer_contact_details".
  *
@@ -14,7 +14,7 @@ use \application\models\db\User;
  * @property integer $customerId
  * @property string $email
  * @property string $mobile
- * @property integer $other_number
+ * @property string $other_number
  *
  * The followings are the available model relations:
  * @property User $customer
@@ -37,10 +37,11 @@ class CustomerContactDetails extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('customerId, email, other_number', 'required'),
-			array('customerId, other_number', 'numerical', 'integerOnly'=>true),
-			array('email', 'length', 'max'=>255),
+			array('customerId, email', 'required'),
+			array('customerId', 'numerical', 'integerOnly'=>true),
+			array('email', 'length', 'max'=>128),
 			array('mobile', 'length', 'max'=>20),
+			array('other_number', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, customerId, email, mobile, other_number', 'safe', 'on'=>'search'),
@@ -55,7 +56,7 @@ class CustomerContactDetails extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'customer' => array(self::BELONGS_TO, 'User', 'customerId'),
+			'customer' => array(self::BELONGS_TO, 'Users', 'customerId'),
 		);
 	}
 
@@ -95,7 +96,7 @@ class CustomerContactDetails extends ActiveRecord
 		$criteria->compare('customerId',$this->customerId);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('mobile',$this->mobile,true);
-		$criteria->compare('other_number',$this->other_number);
+		$criteria->compare('other_number',$this->other_number,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

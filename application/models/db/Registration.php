@@ -6,7 +6,7 @@ use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
 use \application\models\db\Product;
-use \application\models\db\User;
+use \application\models\db\Users;
 /**
  * This is the model class for table "registration".
  *
@@ -62,7 +62,7 @@ class Registration extends ActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'product' => array(self::BELONGS_TO, 'Product', 'productId'),
-			'customer' => array(self::BELONGS_TO, 'User', 'customerId'),
+			'customer' => array(self::BELONGS_TO, 'Users', 'customerId'),
 		);
 	}
 

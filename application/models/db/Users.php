@@ -22,6 +22,8 @@ use \application\models\db\Option;
  * @property integer $ageGroup
  * @property string $username
  * @property string $password
+ * @property integer $created
+ * @property integer $active
  *
  * The followings are the available model relations:
  * @property CustomerAddress[] $customerAddresses
@@ -39,6 +41,11 @@ class Users extends ActiveRecord
 		return 'user';
 	}
 
+	public function password($password)
+    {
+        return \CPasswordHelper::verifyPassword($password, $this->password);
+    }
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -47,14 +54,14 @@ class Users extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, firstname, lastname, ageGroup, username, password', 'required'),
-			array('ageGroup', 'numerical', 'integerOnly'=>true),
+			array('title, firstname, lastname, ageGroup, username, password, created', 'required'),
+			array('ageGroup, created, active', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>255),
 			array('firstname, middlename, lastname, username', 'length', 'max'=>36),
 			array('password', 'length', 'max'=>64),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, firstname, middlename, lastname, ageGroup, username, password', 'safe', 'on'=>'search'),
+			array('id, title, firstname, middlename, lastname, ageGroup, username, password, created, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,6 +94,8 @@ class Users extends ActiveRecord
 			'ageGroup' => 'Age Group',
 			'username' => 'Username',
 			'password' => 'Password',
+			'created' => 'Created',
+			'active' => 'Active',
 		);
 	}
 
@@ -116,6 +125,8 @@ class Users extends ActiveRecord
 		$criteria->compare('ageGroup',$this->ageGroup);
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('password',$this->password,true);
+		$criteria->compare('created',$this->created);
+		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -126,7 +137,7 @@ class Users extends ActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * @return Users the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

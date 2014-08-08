@@ -72,6 +72,7 @@
     </head>
 
     <body>
+
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="pull-left">
@@ -81,15 +82,20 @@
     </div>
     <div class="pull-right links">
         <?php
+            echo CHtml::link('Register a device', array('/registerDevice'), array('class'=>'btn btn-xs btn-danger btns'));   
             if (Yii::app()->user->isGuest){
                 echo CHtml::link('Login', array('/login'), array('class'=>'btn btn-xs btn-success btns'));
                 echo CHtml::link('Register', array('/account/register'), array('class'=>'btn btn-xs btn-danger btns'));
-            } 
+            }
+            else {
+                echo CHtml::link('Logout', array('/account/logout'), array('class'=>'btn btn-xs btn-danger btns'));   
+            }
         ?>
+
     </div>
   </div>
 </nav>
-
+<br><br><br>
         <div class="container">
             <?php if(Yii::app()->user->hasFlash('success')): ?>
                 <br />

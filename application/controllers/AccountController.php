@@ -64,4 +64,10 @@
         }
 			$this->render('register',array('form'=>$form));
 		}
+
+        function actionLogout(){
+            Yii::app()->user->logout();
+            Yii::app()->user->setFlash('account.logout.success', 'Successfully logged out. Hope to see you soon, again.');
+            $this->render('logout');
+        }
 	}

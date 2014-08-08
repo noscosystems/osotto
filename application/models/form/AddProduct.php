@@ -6,7 +6,7 @@
     use \CException;
     use \application\components\FormModel;
 
-    class Login extends FormModel
+    class AddProduct extends FormModel
     {
 
         public $model_number,$short_desc,$long_desc,$spec_brief,$spec_full;

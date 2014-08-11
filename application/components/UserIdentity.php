@@ -181,7 +181,7 @@
                 // original user.
                 'loginIP' => $_SERVER['REMOTE_ADDR'],
                 'userAgent' => $_SERVER['HTTP_USER_AGENT'],
-				// 'priv' => (int)$user->priv
+				'priv' => (int)$user->priv
             ));
 
             // Raise the "onStatesPersisted" event; specifying that the variables to be saved in the user-specific

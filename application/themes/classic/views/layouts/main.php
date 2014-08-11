@@ -82,7 +82,7 @@
     </div>
     <div class="pull-right links">
         <?php
-            echo CHtml::link('Register a device', array('/registerDevice'), array('class'=>'btn btn-xs btn-danger btns'));   
+            echo CHtml::link('Register a device', array('/device/regDevice'), array('class'=>'btn btn-xs btn-danger btns'));   
             if (Yii::app()->user->isGuest){
                 echo CHtml::link('Login', array('/login'), array('class'=>'btn btn-xs btn-success btns'));
                 echo CHtml::link('Register', array('/account/register'), array('class'=>'btn btn-xs btn-danger btns'));

@@ -20,10 +20,10 @@ use \application\models\db\Users;
  * @property string $purchased_from
  *
  * The followings are the available model relations:
- * @property Product $product
  * @property User $customer
+ * @property Product $product
  */
-class Registration extends ActiveRecord
+class Registration extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -41,7 +41,7 @@ class Registration extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('customerId, productId', 'required'),
+			array('customerId, productId, serial_number', 'required'),
 			array('customerId, productId', 'numerical', 'integerOnly'=>true),
 			array('serial_number', 'length', 'max'=>50),
 			array('MAC', 'length', 'max'=>12),
@@ -61,8 +61,8 @@ class Registration extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'customer' => array(self::BELONGS_TO, 'User', 'customerId'),
 			'product' => array(self::BELONGS_TO, 'Product', 'productId'),
-			'customer' => array(self::BELONGS_TO, 'Users', 'customerId'),
 		);
 	}
 

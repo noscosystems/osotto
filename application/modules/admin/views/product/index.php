@@ -21,23 +21,29 @@ if($widget->errorSummary($form)){
     echo '<div class="alert alert-danger">' . $widget->errorSummary($form) . '</div>';
 }
 ?>
-
 <div class="row">
-    <div class="col-sm-3 control-label">Enter your devie's model number:</div>
+    <div class="col-sm-3 control-label">Enter device's name:</div>
+    <div class="col-sm-6">
+        <?php echo $widget->input($form, 'name', array('class' => 'form-control') ); ?>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-3 control-label">Enter device's model number:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'model_number', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-3 control-label">Enter short description for your device:</div>
+    <div class="col-sm-3 control-label">Enter short description for device:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'short_desc', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-3 control-label">Enter description for your device:</div>
+    <div class="col-sm-3 control-label">Enter description for device:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'long_desc', array('class' => 'form-control') ); ?>
     </div>

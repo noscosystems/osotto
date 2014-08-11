@@ -9,7 +9,6 @@ use \application\models\db\CustomerAddress;
 use \application\models\db\CustomerContactDetails;
 use \application\models\db\Registration;
 use \application\models\db\Option;
-
 /**
  * This is the model class for table "user".
  *
@@ -24,6 +23,7 @@ use \application\models\db\Option;
  * @property string $password
  * @property integer $created
  * @property integer $active
+ * @property integer $priv
  *
  * The followings are the available model relations:
  * @property CustomerAddress[] $customerAddresses
@@ -54,14 +54,14 @@ class Users extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, firstname, lastname, ageGroup, username, password, created', 'required'),
-			array('ageGroup, created, active', 'numerical', 'integerOnly'=>true),
+			array('title, firstname, lastname, ageGroup, username, password, created, priv', 'required'),
+			array('ageGroup, created, active, priv', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>255),
 			array('firstname, middlename, lastname, username', 'length', 'max'=>36),
 			array('password', 'length', 'max'=>64),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, firstname, middlename, lastname, ageGroup, username, password, created, active', 'safe', 'on'=>'search'),
+			array('id, title, firstname, middlename, lastname, ageGroup, username, password, created, active, priv', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -96,6 +96,7 @@ class Users extends ActiveRecord
 			'password' => 'Password',
 			'created' => 'Created',
 			'active' => 'Active',
+			'priv' => 'Priv',
 		);
 	}
 
@@ -127,6 +128,7 @@ class Users extends ActiveRecord
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('created',$this->created);
 		$criteria->compare('active',$this->active);
+		$criteria->compare('priv',$this->priv);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

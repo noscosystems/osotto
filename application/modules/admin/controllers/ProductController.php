@@ -13,23 +13,24 @@
 
 		public function actionIndex()
 		{
-			// if(Yii::app()->user->isGuest){
-   //              $this->redirect(array('/login'));
-   //          }
-   //          else if (Yii::app()->user->priv >=50){
-   //              $form = new Form('application.forms.addProduct', new AddProduct);
-   //          }
-   //          else {
-   //              $this->redirect(array('/home'));
-   //          }
+			if(Yii::app()->user->isGuest){
+                $this->redirect(array('/login'));
+            }
+            else if (Yii::app()->user->priv >=50){
+                $form = new Form('application.forms.addProduct', new AddProduct);
+            }
+            else {
+                $this->redirect(array('/home'));
+            }
 
 			$form = new Form('application.forms.addProduct', new AddProduct);
 
             if($form->submitted() && $form->validate()) {
-            	'Chyeaaaaaaaaaa, form submitted and validated';
             	$product = New Product;
             	$product->attributes = $form->model->attributes;
-            	$product->save();
+            	($product->save())?
+            		(Yii::app()->user->setFlash('additionSuccessfull','Device added successfully into the database.'))
+            	:'';
             }
 			$this->render('index', array ('form' => $form));
 		}

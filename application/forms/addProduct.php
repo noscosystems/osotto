@@ -11,6 +11,11 @@
         // 'title' => Yii::t('application', 'Please provide your login credentials.'),
 
         'elements' => array(
+            'name' => array(
+                'type' => 'text',
+                'maxlength' => 64,
+                'hint' => Yii::t('application', 'Please fill in your device\'s model number.'),
+            ),
             'model_number' => array(
                 'type' => 'text',
                 'maxlength' => 255,

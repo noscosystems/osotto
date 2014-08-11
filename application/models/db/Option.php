@@ -17,6 +17,7 @@ use \application\models\db\Users;
  * @property string $data
  *
  * The followings are the available model relations:
+ * @property Product[] $products
  * @property User[] $users
  */
 class Option extends ActiveRecord
@@ -55,7 +56,8 @@ class Option extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'users' => array(self::HAS_MANY, 'Users', 'ageGroup'),
+			'products' => array(self::HAS_MANY, 'Product', 'type'),
+			'users' => array(self::HAS_MANY, 'User', 'ageGroup'),
 		);
 	}
 

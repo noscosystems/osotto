@@ -9,7 +9,7 @@
     class RegDev extends FormModel
     {
 
-        public $serial_number,$productId,$MAC,$purchased_from,$date_purchased ;
+        public $serial_number,$productId,$MAC,$purchased_from,$date_purchased,$type ;
 
         public function rules()
         {

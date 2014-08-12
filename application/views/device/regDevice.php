@@ -21,7 +21,13 @@ if($widget->errorSummary($form)){
     echo '<div class="alert alert-danger">' . $widget->errorSummary($form) . '</div>';
 }
 ?>
-
+<div class="row">
+    <div class="col-sm-3 control-label">Select device type:</div>
+    <div class="col-sm-6">
+        <?php echo $widget->input($form, 'type', array('class' => 'form-control') ); ?>
+    </div>
+</div>
+<br>
 <div class="row">
     <div class="col-sm-3 control-label">Enter your device's serial number:</div>
     <div class="col-sm-6">
@@ -57,3 +63,32 @@ if($widget->errorSummary($form)){
 </div>
 <?php echo $form->renderEnd(); ?>
 <!-- form -->
+
+<script>
+    var myButton = document.getElementById('application_models_form_RegDev_type');    
+    var mySelect = document.getElementById('mySelect');
+    
+    myButton.onchange = function (){
+        var xmlhttp = createXMLHttpObj();
+
+        xmlhttp.open('POST','<?php echo Yii::app()->baseUrl; ?>'+'/device/sendArray',false);
+        xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+
+        do {
+            xmlhttp.send('send='+myButton.value);
+        }while(xmlhttp.readyState!=4 && xmlhttp.status!=200);
+        
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            var cars=[];
+            cars = jQuery.parseJSON(xmlhttp.responseText);
+
+            for (var i=0; i<cars.length; i++)
+                mySelect.innerHTML += '<option value='+cars[i]+'>'+cars[i]+'</option>';
+        }
+        // return false;
+    }
+    function createXMLHttpObj(){
+        return (window.XMLHttpRequest)?(new XMLHttpRequest()):(new ActiveXObject('Microsoft.XMLHTTP'));
+    }
+
+</script>

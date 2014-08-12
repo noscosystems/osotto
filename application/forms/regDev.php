@@ -4,6 +4,7 @@
 
     $options = Option::model()->findAllByAttributes(array ('column' => 'type'));
     $type =[];
+    
     foreach ($options as $option)
         $type[$option->id] = $option->name;
 

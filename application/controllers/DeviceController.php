@@ -19,4 +19,7 @@ class DeviceController extends Controller
 		}
 		$this->render('regDevice',array ('form'=>$form));
 	}
+	public function actionsendArray($send){
+		$this->renderPartial('sendArray', array('send' => $send));
+	}
 }

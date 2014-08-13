@@ -6,7 +6,7 @@ $widget = $form->activeFormWidget;
 ?>
 
 <div class="page-header">
-    <h1>Product addition <small>Please enter your product's details</small></h1>
+    <h1>Product registration <small>Please enter your product's details</small></h1>
 </div>
 
 <?php if(Yii::app()->user->hasFlash('regDevSuccess')): ?>
@@ -29,6 +29,13 @@ if($widget->errorSummary($form)){
 </div>
 <br>
 <div class="row">
+    <div class="col-sm-3 control-label">Select your device:</div>
+    <div class="col-sm-6">
+        <?php echo $widget->input($form, 'productId', array('class' => 'form-control') ); ?>
+    </div>
+</div>
+<br>
+<div class="row">
     <div class="col-sm-3 control-label">Enter your device's serial number:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'serial_number', array('class' => 'form-control') ); ?>
@@ -43,14 +50,14 @@ if($widget->errorSummary($form)){
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-3 control-label">Enter description for your device:</div>
+    <div class="col-sm-3 control-label">Device purchased from:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'purchased_from', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-3 control-label">Enter device specs:</div>
+    <div class="col-sm-3 control-label">Date of purchase:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'date_purchased', array('class' => 'form-control') ); ?>
     </div>
@@ -63,29 +70,45 @@ if($widget->errorSummary($form)){
 </div>
 <?php echo $form->renderEnd(); ?>
 <!-- form -->
-
+<?php
+    $path = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twbs.bootstrap.dist'));
+?>
+<script type="text/javascript" src="<?php echo $path;?>/js/jquery-ui.js"></script>
+<link href="<?php echo $path; ?>/js/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script>
-    var myButton = document.getElementById('application_models_form_RegDev_type');    
-    var mySelect = document.getElementById('mySelect');
-    
+
+    $(function() {
+        $( "#application_models_form_RegDev_date_purchased" ).datepicker();
+    });
+
+    var myButton = document.getElementById('application_models_form_RegDev_type');
+    var mySelect = document.getElementById('application_models_form_RegDev_productId');
+    //var body = document.getElementsByTagName('body');
+
     myButton.onchange = function (){
+
         var xmlhttp = createXMLHttpObj();
-
-        xmlhttp.open('POST','<?php echo Yii::app()->baseUrl; ?>'+'/device/sendArray',false);
-        xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-
+        // if(xmlhttp.readyState==4 && xmlhttp.status==200){
+        //     body.innerHTML='<div style="top:0; left:0; background:#000;"><img src=\'\' style=\'top: 50%; left: 50%; margin-top: -10px; margin-left: -10px; z-index:100;\' ></div>'
+        // }
         do {
+            xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>'+'/device/sendArray',false);
+            xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
             xmlhttp.send('send='+myButton.value);
         }while(xmlhttp.readyState!=4 && xmlhttp.status!=200);
         
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
             var cars=[];
-            cars = jQuery.parseJSON(xmlhttp.responseText);
-
-            for (var i=0; i<cars.length; i++)
-                mySelect.innerHTML += '<option value='+cars[i]+'>'+cars[i]+'</option>';
+            // console.log(xmlhttp.responseText);
+            cars =  JSON.parse(xmlhttp.responseText);
+            //console.log(cars);
+            
+            for (var i=0; i<cars.length; i++){
+                console.log(cars[i]['id']);
+                mySelect.innerHTML += '<option value='+cars[i]['id']+'>'+cars[i]['name']+'</option>';
+            }
         }
-        // return false;
+        return false;
     }
     function createXMLHttpObj(){
         return (window.XMLHttpRequest)?(new XMLHttpRequest()):(new ActiveXObject('Microsoft.XMLHTTP'));

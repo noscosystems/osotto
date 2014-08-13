@@ -23,7 +23,7 @@ use \application\models\db\Users;
  * @property User $customer
  * @property Product $product
  */
-class Registration extends CActiveRecord
+class Registration extends ActiveRecord
 {
 	/**
 	 * @return string the associated database table name

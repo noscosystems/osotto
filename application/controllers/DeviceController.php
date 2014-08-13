@@ -15,11 +15,20 @@ class DeviceController extends Controller
 	{
 		$form = new Form('application.forms.regDev', new RegDev);
 		if ($form->submitted() && $form->validate()){
-			$registration = New Registration;
+			$frm = $form->model;
+			$reg = New Registration;
+			$reg->attributes = $form->model->attributes;
+			$reg->customerId=Yii::app()->user->id;
+			if($reg->date_purchased>time("Now")){
+				$frm->addError('dateInvalid','Invalid date!');
+			}
+			if (empty($reg->errors)){
+				($reg->save())?(Yii::app()->user->setFlash('regDevSuccess','Registered device successfully')):'';
+			}
 		}
 		$this->render('regDevice',array ('form'=>$form));
 	}
-	public function actionsendArray($send){
-		$this->renderPartial('sendArray', array('send' => $send));
+	public function actionsendArray(/*$send*/){
+		$this->renderPartial('sendArray'/*, array('send' => $send)*/);
 	}
 }

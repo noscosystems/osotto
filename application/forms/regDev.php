@@ -18,7 +18,8 @@
                 'prompt' => 'Please Select'
             ),
             'productId' =>array(
-            	'type' => 'dropdwonlist',
+            	'type' => 'dropdownlist',
+                /*'items' => array('' => ''),*/
             	'prompt' => 'Please Select'
             ),
             'serial_number' => array(
@@ -30,8 +31,7 @@
                 'maxlength' => 12
             ),
             'date_purchased' => array(
-            	'type' => 'text',
-            	'maxlength' => 11
+            	'type' => 'text'
             ),
             'purchased_from' => array(
             	'type' => 'text',

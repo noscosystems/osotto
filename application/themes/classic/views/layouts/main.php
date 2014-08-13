@@ -141,14 +141,6 @@
                 </div>
             </div>
         </div>
-        <script>
-            var goBack = document.getElementById('goBack');
-
-            goBack.onclick = function (){
-                window.history.back()
-            }
-
-        </script>
     </body>
 
 </html>

@@ -29,6 +29,13 @@ if($widget->errorSummary($form)){
 </div>
 <br>
 <div class="row">
+    <div class="col-sm-3 control-label">Choose device type:</div>
+    <div class="col-sm-6">
+        <?php echo $widget->input($form, 'type', array('class' => 'form-control') ); ?>
+    </div>
+</div>
+<br>
+<div class="row">
     <div class="col-sm-3 control-label">Enter device's model number:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'model_number', array('class' => 'form-control') ); ?>

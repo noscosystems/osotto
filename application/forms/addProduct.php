@@ -1,11 +1,12 @@
 <?php
-
+    
     use \application\models\db\Option;
 
-    $options = Option::model()->findAllByAttributes(array ('column' => 'ageGroup'));
+    $optType = Option::model()->findAllByAttributes(array('column' => 'type'));
+    $types = [];
 
-    foreach ($options as $option)
-        $ageGroup[$option->id] = $option->name;
+    foreach ($optType as $opt)
+        $types[$opt->id] = $opt->name;
 
     return array(
         // 'title' => Yii::t('application', 'Please provide your login credentials.'),
@@ -15,6 +16,11 @@
                 'type' => 'text',
                 'maxlength' => 64,
                 'hint' => Yii::t('application', 'Please fill in your device\'s model number.'),
+            ),
+            'type' => array(
+                'type' => 'dropdownlist',
+                'items' => $types,
+                'prompt' => 'Please Select'
             ),
             'model_number' => array(
                 'type' => 'text',

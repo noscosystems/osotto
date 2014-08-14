@@ -11,11 +11,11 @@
 	use \application\models\db\CustomerContactDetails;
 	use \application\models\db\CustomerAddress;
 	use \application\models\form\Register;
-
+    use \application\models\form\ChangePass;
 
 	class AccountController extends Controller{
 
-		function actionRegister(){
+		public function actionRegister(){
 			if (Yii::app()->user->isGuest){
             $form = new Form('application.forms.register', new Register);
 
@@ -65,8 +65,21 @@
         }
 			$this->render('register',array('form'=>$form));
 		}
+        public function actionchangePass(){
+             // $form = new Form('application.forms.register', new Register);
+            $form = new Form ('application.forms.changePass', new ChangePass);
+            $user = Users::model()->findByPk(Yii::app()->user->id);
+            if ($user)
+                if ($form->submitted() && $form->validate()){
+                    $frm = $form->model;
+                    if ($user->password($frm->old_password) && $frm->password == $frm->rep_password)
+                        $user->password = $frm->password;
+                }
 
-        function actionLogout(){
+            $this->render('changePass',array('form'=> $form));
+        }
+
+        public function actionLogout(){
             Yii::app()->user->logout();
             Yii::app()->user->setFlash('account.logout.success', 'Successfully logged out. Hope to see you soon, again.');
             $this->render('logout');

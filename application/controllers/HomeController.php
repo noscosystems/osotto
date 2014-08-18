@@ -7,6 +7,7 @@
     use \application\components\Controller;
     use \application\components\UserIdentity;
     use \application\components\Form;
+    use \application\models\form\Enquiry;
     
 class HomeController extends Controller
 {
@@ -22,7 +23,12 @@ class HomeController extends Controller
 
     public function actionContactUs()
     {
-        $this->render('ContactUs');
+    	$form = new Form('application.forms.enquiry',new Enquiry);
+
+    	if ($form->submitted() && $form->validate()){
+
+    	}
+        $this->render('ContactUs', array('form' => $form));
     }
 
 	// Uncomment the following methods and override them if needed

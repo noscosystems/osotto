@@ -15,8 +15,19 @@ class HomeController extends Controller
 		$this->render('index');
 	}
 
+	public function actionAboutUs()
+    {
+        $this->render('AboutUs');
+    }
+
+    public function actionContactUs()
+    {
+        $this->render('ContactUs');
+    }
+
 	// Uncomment the following methods and override them if needed
 	/*
+
 	public function filters()
 	{
 		// return the filter configuration for this controller, e.g.:

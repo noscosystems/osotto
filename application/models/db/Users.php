@@ -145,4 +145,21 @@ class Users extends ActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function __set($property, $value)
+    {
+        // If an override method exists for a certain property, call it to alter the value before passing it to the
+        // model to be saved to the database.
+        $method = 'set' . ucwords($property);
+        if(method_exists($this, $method)) {
+            $value = $this->{$method}($value);
+        }
+        // Carry on setting it to the model as normal.
+        parent::__set($property, $value);
+    }
+	
+	public function setpassword($password)
+    {
+        return \CPasswordHelper::hashPassword($password);
+    }
 }

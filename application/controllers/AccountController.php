@@ -30,7 +30,7 @@
                     $userAddress = new CustomerAddress;
                     $user->attributes = $frm->attributes;
                     $user->priv = 10;
-                    $user->password = \CPasswordHelper::hashPassword($user->password);
+                    //$user->password = \CPasswordHelper::hashPassword($user->password);
                     $user->middlename=($frm->middlename=='')?(null):($frm->middlename);
                     $user->title = 1;
                     $email = CustomerContactDetails::model()->findAllByAttributes(array('email' => $frm->email));
@@ -69,12 +69,16 @@
              // $form = new Form('application.forms.register', new Register);
             $form = new Form ('application.forms.changePass', new ChangePass);
             $user = Users::model()->findByPk(Yii::app()->user->id);
-            if ($user)
+            if ($user){
                 if ($form->submitted() && $form->validate()){
                     $frm = $form->model;
-                    if ($user->password($frm->old_password) && $frm->password == $frm->rep_password)
+                    if ($user->password($frm->old_pass) && $frm->password == $frm->rep_pass){
                         $user->password = $frm->password;
+                        // $user->password = \CPasswordHelper::hashPassword($frm->password);
+                        ($user->save())?(Yii::app()->user->setFlash('changePassSuccess','Successfully changed password.')):('');
+                    }
                 }
+            }
 
             $this->render('changePass',array('form'=> $form));
         }

@@ -20,7 +20,7 @@ $this->breadcrumbs=array(
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="<?php echo $assetUrl; ?>/images/carousel3.png" alt="...">
+      <img src="<?php echo $assetUrl; ?>/images/android1.png" alt="...">
       <div class="carousel-caption">
         ...
       </div>

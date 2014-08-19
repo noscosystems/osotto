@@ -86,6 +86,7 @@
             echo CHtml::link('Contact', array('/home/ContactUs'), array('class'=>'btn btn-xs btn-danger btns'));
             echo CHtml::link('ABOUT US', array('/home/AboutUs'), array('class'=>'btn btn-xs btn-danger btns'));
             if (Yii::app()->user->isGuest){
+                echo CHtml::link('Home', array('/'), array('class'=>'btn btn-xs btn-success btns'));
                 echo CHtml::link('Login', array('/login'), array('class'=>'btn btn-xs btn-success btns'));
                 // echo CHtml::link('Register', array('/account/register'), array('class'=>'btn btn-xs btn-danger btns'));
                 echo CHtml::link('Register', array('/account/register'), array('class'=>'btn btn-xs btn-danger btns'));

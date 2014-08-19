@@ -26,19 +26,19 @@ $this->breadcrumbs=array(
       </div>
     </div>
     <div class="item">
-      <img src="<?php echo $assetUrl; ?>/images/carousel4.png" alt="...">
+      <img src="<?php echo $assetUrl; ?>/images/carousel2.png" alt="...">
       <div class="carousel-caption">
         ...
       </div>
     </div>
     <div class="item">
-      <img src="<?php echo $assetUrl; ?>/images/Osotto1.jpg" alt="...">
+      <img src="<?php echo $assetUrl; ?>/images/hifi1.png" alt="...">
       <div class="carousel-caption">
         ...
       </div>
     </div>
     <div class="item">
-      <img src="<?php echo $assetUrl; ?>/images/Osotto2.jpg" alt="...">
+      <img src="<?php echo $assetUrl; ?>/images/soundbar1.png" alt="...">
       <div class="carousel-caption">
         ...
       </div>

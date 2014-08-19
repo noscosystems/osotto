@@ -83,7 +83,7 @@
     <div class="pull-right links">
         <?php
             echo CHtml::link('Home', array('/home/'), array('class'=>'btn btn-xs btn-danger btns'));
-            echo CHtml::link('Contact', array('/home/ContactUs'), array('class'=>'btn btn-xs btn-danger btns'));
+            echo CHtml::link('Contact', array('#ContactUs'), array('class'=>'btn btn-xs btn-danger btns'));
             echo CHtml::link('ABOUT US', array('/home/AboutUs'), array('class'=>'btn btn-xs btn-danger btns'));
             if (Yii::app()->user->isGuest){
                 echo CHtml::link('Home', array('/'), array('class'=>'btn btn-xs btn-success btns'));

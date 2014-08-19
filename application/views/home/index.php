@@ -98,6 +98,24 @@ $this->breadcrumbs=array(
     <?php echo CHtml::image($assetUrl.'/images/soundbar.png', 'alt', array ('height' => '320', 'width' => '420')); ?>
   </div>
   </div>
+
+  <div class="col-md-12">
+    <div class="row" name="#    ContactUs">
+      <h1 style="font-size: 4em;" class="font-ubuntu text-dark text-center text-shadow-light">Contact Us</h1>
+    </div>
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
+</div>
 <?php
 /*
 <h1><?php echo $this->id . '/' . $this->action->id; ?></h1>

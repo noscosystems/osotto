@@ -66,7 +66,6 @@
 			$this->render('register',array('form'=>$form));
 		}
         public function actionchangePass(){
-             // $form = new Form('application.forms.register', new Register);
             $form = new Form ('application.forms.changePass', new ChangePass);
             $user = Users::model()->findByPk(Yii::app()->user->id);
             if ($user){

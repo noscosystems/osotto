@@ -98,16 +98,26 @@ $this->breadcrumbs=array(
     <?php echo CHtml::image($assetUrl.'/images/soundbar.png', 'alt', array ('height' => '320', 'width' => '420')); ?>
   </div>
   </div>
-
   <div class="col-md-12">
-    <div class="row" name="#    ContactUs">
+     <div class="row text-center" id="AboutUs">
+      <h1 style="font-size: 4em;" class="font-ubuntu text-dark text-center text-shadow-light">About Us</h1>
+      <br>
+      Lorem Ipsum е елементарен примерен текст, използван в печатарската и типографската индустрия. Lorem Ipsum е индустриален стандарт от около 1500 година, когато неизвестен печатар взема няколко печатарски букви и ги разбърква, за да напечата с тях книга с примерни шрифтове. Този начин не само е оцелял повече от 5 века, но е навлязъл и в публикуването на електронни издания като е запазен почти без промяна. Популяризиран е през 60те години на 20ти век със издаването на Letraset листи, съдържащи Lorem Ipsum пасажи, популярен е и в наши дни във софтуер за печатни издания като Aldus PageMaker, който включва различни версии на Lorem Ipsum.
+
+Известен факт е, че читателя обръща внимание на съдържанието, което чете, а не на оформлението му. Свойството на Lorem Ipsum е, че до голяма степен има нормално разпределение на буквите и се чете по-лесно, за разлика от нормален текст на английски език като "Това е съдържание, това е съдържание". Много системи за публикуване и редактори на Уеб страници използват Lorem Ipsum като примерен текстов модел "по подразбиране", поради което при търсене на фразата "lorem ipsum" в Интернет ще бъдат открити много сайтове в процес на разработка. Някой от тези сайтове биват променяни с времето, а други по случайност или нарочно(за забавление и пр.) биват оставяни в този си незавършен вид.
+    </div>
+  </div>
+  <div class="col-md-12">
+     <div class="row" id="ContactUs">
       <h1 style="font-size: 4em;" class="font-ubuntu text-dark text-center text-shadow-light">Contact Us</h1>
     </div>
-    <div class="col-md-3">
-
+    <div class="col-md-3 text-center">
+      <h3 style="font-size: 1.5em" class="font-raleway text-dark">Telephone</h3>
+      02920 400998
     </div>
-    <div class="col-md-3">
-
+    <div class="col-md-3 text-center">
+      <h3 style="font-size: 1.5em" class="font-raleway text-dark">Email</h3>
+      sales@osotto.co.uk
     </div>
     <div class="col-md-3">
 

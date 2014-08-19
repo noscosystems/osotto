@@ -87,6 +87,7 @@
             echo CHtml::link('Contact', array('#ContactUs'), array('class'=>'btn btn-xs btn-danger btns'));
             echo CHtml::link('ABOUT US', array('#AboutUs'), array('class'=>'btn btn-xs btn-danger btns'));
 =======
+            echo CHtml::link('Products', array('/product/'), array('class'=>'btn btn-xs btn-danger btns'));
             echo CHtml::link('Contact', array('/home/ContactUs'), array('class'=>'btn btn-xs btn-danger btns'));
             echo CHtml::link('ABOUT US', array('/home/AboutUs'), array('class'=>'btn btn-xs btn-danger btns'));
             echo CHtml::link('Products', array('/product/'), array('class'=>'btn btn-xs btn-danger btns'));

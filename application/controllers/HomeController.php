@@ -16,21 +16,6 @@ class HomeController extends Controller
 		$this->render('index');
 	}
 
-	public function actionAboutUs()
-    {
-        $this->render('AboutUs');
-    }
-
-											    // public function actionContactUs()
-											    // {
-											    // 	$form = new Form('application.forms.enquiry',new Enquiry);
-
-											    // 	if ($form->submitted() && $form->validate()){
-
-											    // 	}
-											    //     $this->render('ContactUs', array('form' => $form));
-											    // }
-
 	// Uncomment the following methods and override them if needed
 	/*
 

@@ -1,12 +1,16 @@
 <?php
     
-    use \application\models\db\Option;
+    use \application\models\db\ProductCategories;
 
-    $optType = Option::model()->findAllByAttributes(array('column' => 'type'));
-    $types = [];
+    $categories = ProductCategories::model()->findAll();//ByAttributes(array('column' => 'type'));
+    echo '<pre>';
+    var_dump($categories);
+    echo '</pre>';
+    exit;
+    $productCategories = [];
 
-    foreach ($optType as $opt)
-        $types[$opt->id] = $opt->name;
+    foreach ($categories as $cat)
+        $productCategories[$cat->id] = $cat->name;
 
     return array(
         // 'title' => Yii::t('application', 'Please provide your login credentials.'),
@@ -19,7 +23,7 @@
             ),
             'type' => array(
                 'type' => 'dropdownlist',
-                'items' => $types,
+                'items' => $productCategories,
                 'prompt' => 'Please Select'
             ),
             'model_number' => array(

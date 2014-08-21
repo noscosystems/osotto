@@ -5,7 +5,7 @@
     use \CException;
     use \application\components\FormModel;
 
-    class AddProductType extends FormModel
+    class AddProductCategorie extends FormModel
     {
 
         public $name;

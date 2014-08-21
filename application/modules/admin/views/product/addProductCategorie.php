@@ -1,6 +1,6 @@
 <?php
 
-$form->attributes = array('class' => 'form-horizontal');
+$form->attributes = array('class' => 'form-horizontal', 'enctype'=>'multipart/form-data');
 echo $form->renderBegin();
 $widget = $form->activeFormWidget;
 ?>
@@ -28,7 +28,12 @@ if($widget->errorSummary($form)){
     </div>
 </div>
 <br>
-
+<div class="row">
+    <div class="col-sm-offset-3 col-sm-2">
+        <input name="image1" type="file">
+    </div>
+</div>
+<br>
 <div class="row">
     <div class="col-sm-2 col-sm-offset-3">
         <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-lg btn-success') ); ?>

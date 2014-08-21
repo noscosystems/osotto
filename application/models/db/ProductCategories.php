@@ -51,6 +51,7 @@ class ProductCategories extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'products' => array(self::HAS_MANY, 'Product', 'catId')
 		);
 	}
 
@@ -103,4 +104,56 @@ class ProductCategories extends ActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function image_upload($form){
+        //2 097 152 = 2MegaBytes;
+        $allowed_img_types = Array('image/jpeg','image/png');	//allowed image types, stored in an array
+        //$mime_type = image_type_to_mime_type(exif_imagetype($_FILES['image1']['tmp_name']));
+        $size = [];
+		if ($_FILES['image1']['size']>0 && $_FILES['image1']['type']!='' && $_FILES['image1']['tmp_name']!=''){
+			$size = getimagesize($_FILES['image1']['tmp_name']);
+			// if (count($asset->Images)>0){
+			// 		array_push($this->errors,'Maximum number of images reached for this asset.');
+			// }
+			if (!in_array($size['mime'],$allowed_img_types)){ // Checking wether the image is of the allowed image types
+				array_push($this->errors, 'Image not of allowed type. Allowed image types are jpeg, bmp and png!');
+			}
+			else{
+				$ext = strstr($_FILES['image1']['name'], '.');
+				$_FILES['image1']['name'] = substr(md5(time()), 0, 7).$ext;	//sets a name based on crrent time
+				//then md5's it :D and get's a part of the string as the name
+				$this->name = $_FILES['image1']['name'];
+				$folder = Yii::getPathOfAlias('application.views.Uploads').'\\';/*Yii::getPathOfAlias("application.themes.classic.assets.images")*/
+				//( !file_exists($folder) )?(mkdir ($folder, true) ):'';
+				$this->url = $folder.$_FILES['image1']['name'];
+				$this->created = time();
+				$asset = Assets::model()->findByPk ($id);
+				if (count($asset->Images)>2){
+						array_push($this->errors,'Maximum number of images reached for this asset.');
+				}
+				else {
+					if ( !move_uploaded_file($_FILES['image1']['tmp_name'], $folder.'/'.$_FILES['image1']['name']) ){
+						array_push($this->errors, 'Unable to upload image, please try again!');
+					}
+				}
+			}
+			if (empty($this->errors)){
+				if ($this->save()){
+					Yii::app()->user->setFlash( 'success', 'Success!');
+				}
+				else if (!$this->save()){
+					Yii::app()->user->setFlash( 'warning', 'Something went wrong, save unsuccessfull.' );
+				}
+			}
+			else {
+				foreach ( $this->errors as $k => $error ){
+					$form->model->addError($k , $error);
+				}
+				return false;
+			}
+		}else{
+			Yii::app()->user->setFlash('empty', 'Can not upload an empty image!');
+		}
+    }
+
 }

@@ -5,6 +5,8 @@ namespace application\models\db;
 use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
+use \application\models\db\ProductCategories;
+use \application\models\db\ProductImages;
 use \application\models\db\Registration;
 /**
  * This is the model class for table "product".
@@ -16,11 +18,11 @@ use \application\models\db\Registration;
  * @property string $long_desc
  * @property string $spec_brief
  * @property string $spec_full
- * @property integer $type
  * @property string $name
+ * @property integer $catId
  *
  * The followings are the available model relations:
- * @property Option $type0
+ * @property ProductImages[] $productImages
  * @property Registration[] $registrations
  */
 class Product extends ActiveRecord
@@ -41,15 +43,15 @@ class Product extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('model_number, type, name', 'required'),
-			array('type', 'numerical', 'integerOnly'=>true),
+			array('model_number, name, catId', 'required'),
+			array('catId', 'numerical', 'integerOnly'=>true),
 			array('model_number', 'length', 'max'=>255),
 			array('short_desc, spec_brief', 'length', 'max'=>128),
 			array('name', 'length', 'max'=>64),
 			array('long_desc, spec_full', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, type, name', 'safe', 'on'=>'search'),
+			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, name, catId', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,7 +63,8 @@ class Product extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'type0' => array(self::BELONGS_TO, 'Option', 'type'),
+			'type' => array(self::BELONGS_TO, 'ProductCategories', 'id'),
+			'productImages' => array(self::HAS_MANY, 'ProductImages', 'productId'),
 			'registrations' => array(self::HAS_MANY, 'Registration', 'productId'),
 		);
 	}
@@ -78,8 +81,8 @@ class Product extends ActiveRecord
 			'long_desc' => 'Long Desc',
 			'spec_brief' => 'Spec Brief',
 			'spec_full' => 'Spec Full',
-			'type' => 'Type',
 			'name' => 'Name',
+			'catId' => 'Cat',
 		);
 	}
 
@@ -107,8 +110,8 @@ class Product extends ActiveRecord
 		$criteria->compare('long_desc',$this->long_desc,true);
 		$criteria->compare('spec_brief',$this->spec_brief,true);
 		$criteria->compare('spec_full',$this->spec_full,true);
-		$criteria->compare('type',$this->type);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('catId',$this->catId);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

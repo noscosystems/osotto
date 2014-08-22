@@ -85,13 +85,9 @@
             echo CHtml::link('Home', array('/home/'), array('class'=>'btn btn-xs btn-danger btns'));
 //<<<<<<< 951b549bf13e2ec7745582c46569c892a5dcdb21
             echo CHtml::link('Contact', array('#ContactUs'), array('class'=>'btn btn-xs btn-danger btns'));
-            echo CHtml::link('ABOUT US', array('#AboutUs'), array('class'=>'btn btn-xs btn-danger btns'));
-//=======
             echo CHtml::link('Products', array('/product/'), array('class'=>'btn btn-xs btn-danger btns'));
             echo CHtml::link('Contact', array('/home/ContactUs'), array('class'=>'btn btn-xs btn-danger btns'));
             echo CHtml::link('ABOUT US', array('/home/AboutUs'), array('class'=>'btn btn-xs btn-danger btns'));
-            echo CHtml::link('Products', array('/product/'), array('class'=>'btn btn-xs btn-danger btns'));
-//>>>>>>> 32b517dffa9e83ed241d9c22ee48b537d0fcc939
             if (Yii::app()->user->isGuest){
                 echo CHtml::link('Home', array('/'), array('class'=>'btn btn-xs btn-success btns'));
                 echo CHtml::link('Login', array('/login'), array('class'=>'btn btn-xs btn-success btns'));

@@ -9,10 +9,10 @@ $widget = $form->activeFormWidget;
     <h1>Product addition <small>Please enter your product's details</small></h1>
 </div>
 
-<?php if(Yii::app()->user->hasFlash('typeSuccessfullyAdded')): ?>
+<?php if(Yii::app()->user->hasFlash('catSuccessfullyAdded')): ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo Yii::app()->user->getFlash('typeSuccessfullyAdded'); ?>
+        <?php echo Yii::app()->user->getFlash('catSuccessfullyAdded'); ?>
     </div>
 <?php endif; ?>
 

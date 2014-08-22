@@ -52,15 +52,22 @@
                 $this->redirect(array('/home'));
 
             if ($form->submitted() && $form->validate()){
-                $cat = New ProductCategories;
-                $cat->attributes = $form->model->attributes;
-                $ext = strstr($_FILES['image1']['name'], '.');
-                $_FILES['image1']['name'] = substr(md5(time()), 0, 7).$ext;
-                $folder = Yii::getPathOfAlias('application.views.Uploads').'\\';
-                $cat->catImg = $folder.$_FILES['image1']['name'];
-                if(move_uploaded_file($_FILES['image1']['tmp_name'], $folder.$_FILES['image1']['name'])){
-                    ($cat->save())
-                        ?(Yii::app()->user->setFlash('catSuccessfullyAdded','Successfully added new category.')):'';
+                $frm = $form->model;
+                $catExists = ProductCategories::model()->findAllByAttributes(array('name' => $frm->name));
+                if($catExists){
+                    $frm->addError('username', 'The username specified is already taken! Please choose another.');
+                }
+                else{
+                    $cat = New ProductCategories;
+                    $cat->attributes = $form->model->attributes;
+                    $ext = strstr($_FILES['image1']['name'], '.');
+                    $_FILES['image1']['name'] = substr(md5(time()), 0, 7).$ext;
+                    $folder = Yii::getPathOfAlias('application.views.Uploads').'\\';
+                    $cat->catImg = $folder.$_FILES['image1']['name'];
+                    if(move_uploaded_file($_FILES['image1']['tmp_name'], $folder.$_FILES['image1']['name'])){
+                        ($cat->save())
+                            ?(Yii::app()->user->setFlash('catSuccessfullyAdded','Successfully added new category.')):'';
+                    }
                 }
             }
             $this->render('AddProductCategorie', array('form'=>$form));

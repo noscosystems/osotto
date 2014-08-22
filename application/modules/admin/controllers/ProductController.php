@@ -32,11 +32,20 @@
 
             if($form->submitted() && $form->validate()) {
             	$product = New Product;
-                $productImgs = New ProductImages;
+                $productImg = New ProductImages;
             	$product->attributes = $form->model->attributes;
-            	($product->save())?
-            		($productImgs->id = $product->id)
-            	:'';
+                if (!$product->save()){
+                    $form->model->addError('productNotSaved','Something went wrong, product not saved.');
+                }
+                else {
+                    $productImg->productId = $product->id;
+                    if ($productImg->image_upload($form)){
+                        Yii::app()->user->setFlash('additionSuccessfull','Adding product success.');
+                    }
+                }
+            	// ($product->save()
+            	// 	($productImg->productId = $product->id)
+            	// :'';
 
             }
 			$this->render('index', array ('form' => $form));
@@ -60,10 +69,12 @@
                 else{
                     $cat = New ProductCategories;
                     $cat->attributes = $form->model->attributes;
+
                     $ext = strstr($_FILES['image1']['name'], '.');
                     $_FILES['image1']['name'] = substr(md5(time()), 0, 7).$ext;
                     $folder = Yii::getPathOfAlias('application.views.Uploads').'\\';
                     $cat->catImg = $folder.$_FILES['image1']['name'];
+
                     if(move_uploaded_file($_FILES['image1']['tmp_name'], $folder.$_FILES['image1']['name'])){
                         ($cat->save())
                             ?(Yii::app()->user->setFlash('catSuccessfullyAdded','Successfully added new category.')):'';

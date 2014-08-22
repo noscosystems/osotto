@@ -1,6 +1,6 @@
 <?php
 
-$form->attributes = array('class' => 'form-horizontal');
+$form->attributes = array('class' => 'form-horizontal', 'enctype'=>'multipart/form-data');
 echo $form->renderBegin();
 $widget = $form->activeFormWidget;
 ?>
@@ -31,7 +31,7 @@ if($widget->errorSummary($form)){
 <div class="row">
     <div class="col-sm-3 control-label">Choose device type:</div>
     <div class="col-sm-6">
-        <?php echo $widget->input($form, 'type', array('class' => 'form-control') ); ?>
+        <?php echo $widget->input($form, 'catId', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <br>
@@ -67,6 +67,12 @@ if($widget->errorSummary($form)){
     <div class="col-sm-3 control-label">Enter your device's specs or a link to pdf/device page:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'spec_full', array('class' => 'form-control') ); ?>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-offset-3 col-sm-2">
+        <input name="image1" type="file">
     </div>
 </div>
 <br>

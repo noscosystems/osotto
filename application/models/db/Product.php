@@ -54,16 +54,13 @@ class Product extends ActiveRecord
 			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, name, catId', 'safe', 'on'=>'search'),
 		);
 	}
-
-	/**
-	 * @return array relational rules.
-	 */
+	
 	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'type' => array(self::BELONGS_TO, 'ProductCategories', 'id'),
+			'categorie' => array(self::BELONGS_TO, 'ProductCategories', 'id'),
 			'productImages' => array(self::HAS_MANY, 'ProductImages', 'productId'),
 			'registrations' => array(self::HAS_MANY, 'Registration', 'productId'),
 		);

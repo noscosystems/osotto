@@ -19,9 +19,9 @@ use \application\models\db\Product;
  */
 class ProductImages extends ActiveRecord
 {
-	/**
-	 * @return string the associated database table name
-	 */
+	
+	public $errors='';
+
 	public function tableName()
 	{
 		return 'product_images';
@@ -106,7 +106,7 @@ class ProductImages extends ActiveRecord
 		return parent::model($className);
 	}
 
-	public function image_upload($id,$form){
+	public function image_upload($form){
         //2 097 152 = 2MegaBytes;
         $allowed_img_types = Array('image/jpeg','image/png');	//allowed image types, stored in an array
         //$mime_type = image_type_to_mime_type(exif_imagetype($_FILES['image1']['tmp_name']));
@@ -114,20 +114,14 @@ class ProductImages extends ActiveRecord
 		if ($_FILES['image1']['size']>0 && $_FILES['image1']['type']!='' && $_FILES['image1']['tmp_name']!=''){
 			$size = getimagesize($_FILES['image1']['tmp_name']);
 
-			$asset = Assets::model()->findByPk ($id);
-			if (count($asset->Images)>4){
-					array_push($this->errors,'Maximum number of images reached for this asset.');
-			}
-			else if (!in_array($size['mime'],$allowed_img_types)){ // Checking wether the image is of the allowed image types
+			if (!in_array($size['mime'],$allowed_img_types)){ // Checking wether the image is of the allowed image types
 				array_push($this->errors, 'Image not of allowed type. Allowed image types are jpeg, bmp and png!');
 			}
-			else if ($size[0]>3072 || $size[1]>2304 || $_FILES['image1']['size']>3145728){
+			else if ($size[0]>400 || $size[1]>300 || $_FILES['image1']['size']>3145728){
 
 				$folder = Yii::getPathOfAlias('application.views.Uploads').'\\';
 				$ext = strstr($_FILES['image1']['name'], '.');
-				//$new_h = 2304;
-				//$new_w = 3072;
-				//$image_p = imagecreatetruecolor($new_w, $new_h);
+				$src='';
 
 				switch ($size['mime']){
 					case 'image/jpeg':{
@@ -136,8 +130,8 @@ class ProductImages extends ActiveRecord
 						$sw = imagesx($src); // Source image Width
 						$sh = imagesy($src); // Source image Height
 
-						$dw = 3072; // Destination image Width 
-						$dh = 2304; // Destination image Height
+						$dw = 400; // Destination image Width 
+						$dh = 300; // Destination image Height
 						
 						$wr = $sw / $dw; // Width Ratio (source:destination)
 						$hr = $sh / $dh; // Height Ratio (source:destination)
@@ -163,27 +157,18 @@ class ProductImages extends ActiveRecord
 						
 						$dst = imagecreatetruecolor($dw, $dh); // Destination image
 						imagecopyresampled($dst, $src, 0, 0, $cx, $cy, $dw, $dh, $sw, $sh); // Previews the resized image (not saved)
-						$this->name = substr(md5(time()), 0, 7).$ext;
-						$this->url = $folder.$this->name;
-						imagejpeg($dst, $folder.$this->name , 95);
-						$this->created = time();
+						$name = substr(md5(time()), 0, 7).$ext;
+						$this->url = $folder.$name;
+						imagejpeg($dst, $folder.$name , 95);
 						break;
-
-						// $image	 = imagecreatefromjpeg($_FILES['image1']['tmp_name']);
-						// imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_w, $new_h, $size[0], $size[1]);
-						// $this->name = substr(md5(time()), 0, 7).$ext;
-						// $this->url = $folder.$this->name;
-						// imagejpeg($image_p, $folder.$this->name , 95);
-						// $this->created = time();
-						// break;
 					}
 					case 'image/png':{
 						$src = imagecreatefrompng($_FILES['image1']['tmp_name']); // Source image 
 						$sw = imagesx($src); // Source image Width
 						$sh = imagesy($src); // Source image Height
 
-						$dw = 3072; // Destination image Width 
-						$dh = 2304; // Destination image Height
+						$dw = 400; // Destination image Width 
+						$dh = 300; // Destination image Height
 						
 						$wr = $sw / $dw; // Width Ratio (source:destination)
 						$hr = $sh / $dh; // Height Ratio (source:destination)
@@ -209,10 +194,10 @@ class ProductImages extends ActiveRecord
 						
 						$dst = imagecreatetruecolor($dw, $dh); // Destination image
 						imagecopyresampled($dst, $src, 0, 0, $cx, $cy, $dw, $dh, $sw, $sh); // Previews the resized image (not saved)
-						$this->name = substr(md5(time()), 0, 7).$ext;
-						$this->url = $folder.$this->name;
-						imagepng($dst, $folder.$this->name , 95);
-						$this->created = time();
+						$name = substr(md5(time()), 0, 7).$ext;
+						$this->url = $folder.$name;
+						imagepng($dst, $folder.$name , 9);
+						$this->save();
 						break;
 					}
 					 default:
@@ -224,33 +209,20 @@ class ProductImages extends ActiveRecord
 				$ext = strstr($_FILES['image1']['name'], '.');
 				$_FILES['image1']['name'] = substr(md5(time()), 0, 7).$ext;	//sets a name based on crrent time
 				//then md5's it :D and get's a part of the string as the name
-				$this->name = $_FILES['image1']['name'];
-				$folder = Yii::getPathOfAlias('application.views.Uploads').'\\';/*Yii::getPathOfAlias("application.themes.classic.assets.images")*/
-				//( !file_exists($folder) )?(mkdir ($folder, true) ):'';
+				$folder = Yii::getPathOfAlias('application.views.Uploads').'\\';
 				$this->url = $folder.$_FILES['image1']['name'];
-				$this->created = time();
-				$asset = Assets::model()->findByPk ($id);
-				if (count($asset->Images)>2){
-						array_push($this->errors,'Maximum number of images reached for this asset.');
-				}
-				else {
-					if ( !move_uploaded_file($_FILES['image1']['tmp_name'], $folder.'/'.$_FILES['image1']['name']) ){
+					if ( !move_uploaded_file($_FILES['image1']['tmp_name'], $this->url) )
 						array_push($this->errors, 'Unable to upload image, please try again!');
-					}
-				}
 			}
 			if (empty($this->errors)){
-				if ($this->save()){
+				if ($this->save())
 					Yii::app()->user->setFlash( 'success', 'Success!');
-				}
-				else if (!$this->save()){
+				else if (!$this->save())
 					Yii::app()->user->setFlash( 'warning', 'Something went wrong, save unsuccessfull.' );
-				}
 			}
 			else {
-				foreach ( $this->errors as $k => $error ){
+				foreach ( $this->errors as $k => $error )
 					$form->model->addError($k , $error);
-				}
 				return false;
 			}
 		}else{

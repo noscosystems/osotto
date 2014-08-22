@@ -2,11 +2,7 @@
     
     use \application\models\db\ProductCategories;
 
-    $categories = ProductCategories::model()->findAll();//ByAttributes(array('column' => 'type'));
-    echo '<pre>';
-    var_dump($categories);
-    echo '</pre>';
-    exit;
+    $categories = ProductCategories::model()->findAll();
     $productCategories = [];
 
     foreach ($categories as $cat)
@@ -21,14 +17,14 @@
                 'maxlength' => 64,
                 'hint' => Yii::t('application', 'Please fill in your device\'s model number.'),
             ),
-            'type' => array(
+            'catId' => array(
                 'type' => 'dropdownlist',
                 'items' => $productCategories,
                 'prompt' => 'Please Select'
             ),
             'model_number' => array(
                 'type' => 'text',
-                'maxlength' => 255,
+                'maxlength' => 20,
                 'hint' => Yii::t('application', 'Please fill in your device\'s model number.'),
             ),
             'short_desc' => array(

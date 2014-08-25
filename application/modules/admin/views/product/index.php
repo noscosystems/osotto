@@ -74,6 +74,9 @@ if($widget->errorSummary($form)){
     <div class="col-sm-offset-3 col-sm-2">
         <input name="image1" type="file">
     </div>
+    <div class=" col-sm-offset-3 col-sm-12 help-block">
+        Allowed image types are: jpeg and png.
+    </div>
 </div>
 <br>
 <div class="row">

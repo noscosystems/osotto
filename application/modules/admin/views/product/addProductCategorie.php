@@ -11,8 +11,8 @@ $widget = $form->activeFormWidget;
 
 <?php if(Yii::app()->user->hasFlash('catSuccessfullyAdded')): ?>
     <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <?php echo Yii::app()->user->getFlash('catSuccessfullyAdded'); ?>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     </div>
 <?php endif; ?>
 

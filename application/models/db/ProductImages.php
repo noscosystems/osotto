@@ -19,9 +19,9 @@ use \application\models\db\Product;
  */
 class ProductImages extends ActiveRecord
 {
-	
-	public $errors='';
-
+	/**
+	 * @return string the associated database table name
+	 */
 	public function tableName()
 	{
 		return 'product_images';
@@ -35,8 +35,8 @@ class ProductImages extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, productId, url', 'required'),
-			array('id, productId', 'numerical', 'integerOnly'=>true),
+			array('productId, url', 'required'),
+			array('productId', 'numerical', 'integerOnly'=>true),
 			array('url', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -106,7 +106,7 @@ class ProductImages extends ActiveRecord
 		return parent::model($className);
 	}
 
-	public function image_upload($form){
+	public function image_upload(){
         //2 097 152 = 2MegaBytes;
         $allowed_img_types = Array('image/jpeg','image/png');	//allowed image types, stored in an array
         //$mime_type = image_type_to_mime_type(exif_imagetype($_FILES['image1']['tmp_name']));
@@ -160,6 +160,7 @@ class ProductImages extends ActiveRecord
 						$name = substr(md5(time()), 0, 7).$ext;
 						$this->url = $folder.$name;
 						imagejpeg($dst, $folder.$name , 95);
+						return true;
 						break;
 					}
 					case 'image/png':{
@@ -197,7 +198,7 @@ class ProductImages extends ActiveRecord
 						$name = substr(md5(time()), 0, 7).$ext;
 						$this->url = $folder.$name;
 						imagepng($dst, $folder.$name , 9);
-						$this->save();
+						return true;
 						break;
 					}
 					 default:
@@ -213,20 +214,11 @@ class ProductImages extends ActiveRecord
 				$this->url = $folder.$_FILES['image1']['name'];
 					if ( !move_uploaded_file($_FILES['image1']['tmp_name'], $this->url) )
 						array_push($this->errors, 'Unable to upload image, please try again!');
-			}
-			if (empty($this->errors)){
-				if ($this->save())
-					Yii::app()->user->setFlash( 'success', 'Success!');
-				else if (!$this->save())
-					Yii::app()->user->setFlash( 'warning', 'Something went wrong, save unsuccessfull.' );
-			}
-			else {
-				foreach ( $this->errors as $k => $error )
-					$form->model->addError($k , $error);
-				return false;
+				return true;
 			}
 		}else{
 			Yii::app()->user->setFlash('empty', 'Can not upload an empty image!');
 		}
     }
+
 }

@@ -1,11 +1,3 @@
-<?php
-/* @var $this DefaultController */
-
-$this->breadcrumbs=array(
-	$this->module->id,
-);
-?>
-<h1><?php echo $this->uniqueId . '/' . $this->action->id; ?></h1>
 
 <div class="jumbotron">
 	<div class="container">
@@ -15,4 +7,9 @@ $this->breadcrumbs=array(
 			<!-- <a class="btn btn-primary btn-lg">Learn more</a> -->
 		</p>
 	</div>
+</div>
+
+<div class="row col-md-12">
+	<div class="col-sm-2"><?php echo CHtml::link('AddCategorie', array('/admin/product/AddProductCategorie'), array('class'=> 'btn btn-sm btn-primary')); ?></div>
+	<div class="col-sm-2"><?php echo CHtml::link('AddProduct', array('/admin/product/index'), array('class'=> 'btn btn-sm btn-primary')); ?></div>
 </div>

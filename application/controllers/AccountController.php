@@ -36,15 +36,19 @@
                     //$user->password = \CPasswordHelper::hashPassword($user->password);
                     $user->middlename=($frm->middlename=='')?(null):($frm->middlename);
                     $user->title = 1;
-                    $email = CustomerContactDetails::model()->findAllByAttributes(array('email' => $frm->email));
-                    ($email)?
-                        ($frm->addError('email','Email already taken by another user'))
-                        :($userDetails->email = $frm->email);
+                    $userDetails->attributes = $frm->attributes;
 
-                    $mobileExists = CustomerContactDetails::model()->findAllByAttributes(array('mobile' => $frm->mobile));
-                        ($mobileExists)?
-                            ($frm->addError('mobile','Mobile number already taken by another user'))
-                            :'';
+                    $emailExists = CustomerContactDetails::model()->findAllByAttributes(array('email' => $frm->email));
+
+                    if ($emailExists){
+                        ($frm->addError('email','Email already taken by another user');
+                    }
+
+                    $mobileExists = CustomerContactDetails::model()->findAllByAttributes(array('mobile' => $userDetails->mobile));
+
+                    if ($mobileExists){
+                        $frm->addError('mobile','Mobile number already taken by another user');
+                    }
 
                     $userAddress->attributes = $form->model->attributes;
 

@@ -41,7 +41,7 @@
                     $emailExists = CustomerContactDetails::model()->findAllByAttributes(array('email' => $frm->email));
 
                     if ($emailExists){
-                        ($frm->addError('email','Email already taken by another user');
+                        $frm->addError('email','Email already taken by another user');
                     }
 
                     $mobileExists = CustomerContactDetails::model()->findAllByAttributes(array('mobile' => $userDetails->mobile));

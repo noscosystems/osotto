@@ -156,5 +156,5 @@ class Users extends ActiveRecord
     {
         return \CPasswordHelper::hashPassword($password);
     }
-    
+    	
 }

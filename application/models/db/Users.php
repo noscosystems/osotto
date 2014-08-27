@@ -140,6 +140,7 @@ class Users extends ActiveRecord
 		return parent::model($className);
 	}
 
+
 	public function __set($property, $value)
     {
         // If an override method exists for a certain property, call it to alter the value before passing it to the
@@ -152,9 +153,14 @@ class Users extends ActiveRecord
         parent::__set($property, $value);
     }
 	
+	public function password($password)
+    {
+        return \CPasswordHelper::verifyPassword($password, $this->password);
+    }
+    
 	public function setpassword($password)
     {
         return \CPasswordHelper::hashPassword($password);
     }
-    	
+
 }

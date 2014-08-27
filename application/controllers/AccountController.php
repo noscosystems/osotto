@@ -31,7 +31,7 @@
                     $user->attributes = $frm->attributes;
                     $user->title = 1;
                     $user->priv = 10;
-                    $user->active = 1;
+                    // $user->active = 1;
                     $user->created = time();
                     //$user->password = \CPasswordHelper::hashPassword($user->password);
                     $user->middlename=($frm->middlename=='')?(null):($frm->middlename);

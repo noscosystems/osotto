@@ -120,7 +120,7 @@ $this->breadcrumbs=array(
                 }
 
                 do {
-                    xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>'+'/product/sendArray1',false);
+                    xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>'+'/product/sendArray',false);
                     xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
                     xmlhttp.send('send='+this.name);
                 }while(xmlhttp.readyState!=4 && xmlhttp.status!=200);

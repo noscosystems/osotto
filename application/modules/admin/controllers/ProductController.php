@@ -127,6 +127,6 @@
                     }
                 }
             }
-            $this->render('AddProductCategorie', array('form'=>$form));
+            $this->render('addProductCategorie', array('form'=>$form));
         }
 	}

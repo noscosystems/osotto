@@ -29,6 +29,7 @@
                     $userDetails = new CustomerContactDetails;
                     $userAddress = new CustomerAddress;
                     $user->attributes = $frm->attributes;
+                    $user->title = 1;
                     $user->priv = 10;
                     $user->active = 1;
                     //$user->password = \CPasswordHelper::hashPassword($user->password);

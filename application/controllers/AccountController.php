@@ -41,15 +41,11 @@
                         ($frm->addError('email','Email already taken by another user'))
                         :($userDetails->email = $frm->email);
 
-                    if ($frm->mobile==''){
-                        $userDetails->mobile = null;
-                    }
-                    else {
-                        $mobile = CustomerContactDetails::model()->findAllByAttributes(array('mobile' => $frm->mobile));
-                        ($mobile)?
+                    $mobileExists = CustomerContactDetails::model()->findAllByAttributes(array('mobile' => $frm->mobile));
+                        ($mobileExists)?
                             ($frm->addError('mobile','Mobile number already taken by another user'))
                             :'';
-                    }
+
                     $userAddress->attributes = $form->model->attributes;
 
                     if (empty($frm->errors)){

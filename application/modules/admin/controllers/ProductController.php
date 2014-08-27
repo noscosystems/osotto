@@ -118,7 +118,7 @@
 
                     $ext = strstr($_FILES['image1']['name'], '.');
                     $_FILES['image1']['name'] = substr(md5(time()), 0, 7).$ext;
-                    $folder = Yii::getPathOfAlias('application.views.Uploads').'\\';
+                    $folder = Yii::getPathOfAlias('application.views.Uploads').'/';
                     $cat->catImg = $folder.$_FILES['image1']['name'];
 
                     if(move_uploaded_file($_FILES['image1']['tmp_name'], $folder.$_FILES['image1']['name'])){

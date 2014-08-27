@@ -113,7 +113,7 @@ $this->breadcrumbs=array(
         for (var j=0; j<clicked.length; j++){
             clicked[j].onclick = function (){
 
-                var xmlhttp = xmlhttp = createXMLHttpObj()
+                var xmlhttp = createXMLHttpObj();
 
                 if ( xmlhttp.readyState!=4 && xmlhttp.status!=200 ){
                     myDiv.style.display = 'inline';

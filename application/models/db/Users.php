@@ -14,7 +14,7 @@ use \application\models\db\Option;
  *
  * The followings are the available columns in table 'user':
  * @property integer $id
- * @property string $title
+ * @property integer $title
  * @property string $firstname
  * @property string $middlename
  * @property string $lastname
@@ -41,11 +41,6 @@ class Users extends ActiveRecord
 		return 'user';
 	}
 
-	public function password($password)
-    {
-        return \CPasswordHelper::verifyPassword($password, $this->password);
-    }
-
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -54,9 +49,8 @@ class Users extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, firstname, lastname, ageGroup, username, password, created, priv', 'required'),
-			array('ageGroup, created, active, priv', 'numerical', 'integerOnly'=>true),
-			array('title', 'length', 'max'=>255),
+			array('firstname, lastname, ageGroup, username, password, created, priv, active', 'required'),
+			array('title, ageGroup, created, active, priv', 'numerical', 'integerOnly'=>true),
 			array('firstname, middlename, lastname, username', 'length', 'max'=>36),
 			array('password', 'length', 'max'=>64),
 			// The following rule is used by search().
@@ -119,7 +113,7 @@ class Users extends ActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('title',$this->title,true);
+		$criteria->compare('title',$this->title);
 		$criteria->compare('firstname',$this->firstname,true);
 		$criteria->compare('middlename',$this->middlename,true);
 		$criteria->compare('lastname',$this->lastname,true);
@@ -162,4 +156,5 @@ class Users extends ActiveRecord
     {
         return \CPasswordHelper::hashPassword($password);
     }
+    
 }

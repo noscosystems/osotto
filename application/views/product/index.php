@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 ?>
 
 <?php 
-    //$assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/assets');
+    $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/assets/images');
     //This is not needed anymore as images are stored in another folder.
 ?>
 <?php
@@ -41,7 +41,7 @@ $this->breadcrumbs=array(
 <div class="row">
     <?php foreach ($categories as $categorie): ?>
         <div class="col-md-4" >
-            <img src="<?php echo $assetMgr->publish($categorie->catImg); ?>" class="MyClickable img-responsive img-rounded" alt="Responsive image" title="<?php echo $categorie->id; ?>">
+            <img src="<?php echo $assetMgr->publish($categorie->catImg); ?>" class="MyClickable img-responsive img-rounded" alt="Responsive image" name="<?php echo $categorie->id; ?> "title="<?php echo $categorie->name; ?>">
             <div class="center"><center><h2><?php echo $categorie->name; ?></h2></center></div>
         </div>
     <?php endforeach; ?>
@@ -72,12 +72,7 @@ $this->breadcrumbs=array(
                         </thead>
                         <tbody>
 
-                                <tr>
-                                    <td><?php // echo CHtml::encode(substr_replace($customer->Contact->mobile," ", 5, -strlen($contact->mobile))); ?></td>
-                                    <td><?php // echo  CHtml::encode(substr_replace($customer->Contact->home," ", 5, -strlen($contact->home))); ?></td>
-                                    <td><span class="badge badge-primary pull-right"><?php echo 'View details'; ?></span></td>
-        
-                                </tr>
+                                
 
                         </tbody>
                     </table>
@@ -88,7 +83,7 @@ $this->breadcrumbs=array(
         </div>
     </div>
     <div id="myDiv">
-        <img src='<?php echo Yii::getPathOfAlias('application.views.product');?>\ajax.gif' alt='Your browseer does not support images' id="ajax">
+        <img src='<?php echo $assetUrl; ?>/ajax.gif' alt='Your browseer does not support images' id="ajax">
     </div>
     <style>
         #ajax{
@@ -112,37 +107,62 @@ $this->breadcrumbs=array(
     <script>
         var clicked = document.getElementsByClassName('MyClickable');
         var myDiv = document.getElementById('myDiv');
+        var tbody = document.getElementsByTagName('tbody');
 
-
+///***************************************************************************************************************
         for (var j=0; j<clicked.length; j++){
             clicked[j].onclick = function (){
 
-                var xmlhttp = createXMLHttpObj();
+                var xmlhttp = xmlhttp = createXMLHttpObj()
+
+                if ( xmlhttp.readyState!=4 && xmlhttp.status!=200 ){
+                    myDiv.style.display = 'inline';
+                }
 
                 do {
                     xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>'+'/product/sendArray',false);
                     xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-                    xmlhttp.send('send='+this.title);
+                    xmlhttp.send('send='+this.name);
                 }while(xmlhttp.readyState!=4 && xmlhttp.status!=200);
-
-                if (xmlhttp.readyState!=4 && xmlhttp.status!=200){
-                    myDiv.style.display = 'inline';
-                }
                 
                 if(xmlhttp.readyState==4 && xmlhttp.status==200){
                     myDiv.style.display = 'none';
                     var products=[];
+                    tr = [];
+                    td = [];
+                    txt = [];
+
                     products =  JSON.parse(xmlhttp.responseText);
                     
+
+
                     for (var i=0; i<products.length; i++){
-                        console.log(products[i]['id']);
+                            tr[i] = document.createElement('TR');
+                        for (var j=0; j<products[i].length; j++){
+                                                        
+                            console.log(products[i][j]);
+
+                            td[j] = document.createElement('TD');
+                            txt[j] = document.createTextNode(products[i][j]);
+                            txt1 = document.createTextNode(products[i]['short_desc']);
+                            tbody[0].appendChild(tr[i]);
+                            tr[i].appendChild(td[j]);
+                            td[j].appendChild(txt[j]);
+                            // tbody[0].appendChild(tr);
+                            // tr.appendChild(td);
+                            // td.appendChild(txt1);
+                            // tr.innerHTML = td;
+                            // td.innerHTML = products[i]['model_number'];
+
+                        }
                     }
                 }
                 return false;
                 // alert(this.title);
             };
-        }
 
+        }
+//***************************************************************************************************************/
         function createXMLHttpObj(){
             return (window.XMLHttpRequest)?(new XMLHttpRequest()):(new ActiveXObject('Microsoft.XMLHTTP'));
         }

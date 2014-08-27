@@ -30,6 +30,7 @@
                     $userAddress = new CustomerAddress;
                     $user->attributes = $frm->attributes;
                     $user->priv = 10;
+                    $user->active = 1;
                     //$user->password = \CPasswordHelper::hashPassword($user->password);
                     $user->middlename=($frm->middlename=='')?(null):($frm->middlename);
                     $user->title = 1;

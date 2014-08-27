@@ -102,7 +102,7 @@
             if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
             else if (Yii::app()->user->priv >=50)
-                $form = new Form('application.forms.AddProductCategorie', new AddProductCategorie);
+                $form = new Form('application.forms.addProductCategorie', new AddProductCategorie);
             else
                 $this->redirect(array('/home'));
 

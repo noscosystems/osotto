@@ -102,7 +102,7 @@ if($widget->errorSummary($form)){
             // console.log(xmlhttp.responseText);
             cars =  JSON.parse(xmlhttp.responseText);
             //console.log(cars);
-            
+            mySelect.innerHTML = '';
             for (var i=0; i<cars.length; i++){
                 console.log(cars[i]['id']);
                 mySelect.innerHTML += '<option value='+cars[i]['id']+'>'+cars[i]['name']+'</option>';

@@ -61,13 +61,11 @@ $this->breadcrumbs=array(
             <div class="panel-body">
                 <?php $x= '1'; if($x > 0): ?>
                     <!--<div class="alert alert-info">Contact records are displayed from <strong>newest</strong> to <strong>oldest</strong>.</div> -->
-                    <table class="table table-condensed">
+                    <table class="table table-striped table-condensed">
                         <thead>
                             <tr>
                                 <th>Modle Number</th>
-                                <th>Brief Description</th>
-                                <th></th>
-       
+                                <th>Brief Description</th>       
                             </tr>
                         </thead>
                         <tbody>
@@ -134,28 +132,38 @@ $this->breadcrumbs=array(
 
                     products =  JSON.parse(xmlhttp.responseText);
                     
+                    tbody[0].innerHTML = '';
 
+                    for (var i=0; i<products.length; i++){ //Loop that rotates overall number of products.
+                        for (var j=0; j<products[i].length; j++){ // Loop for creating table rows
+                                tr[j] = document.createElement('TR');
+                            if (j==0){ //If row is first  add accordion href
+                                tr[j].setAttribute('data-toggle','collapse');
+                                tr[j].setAttribute('data-parent','#accordion');
+                                tr[j].setAttribute('href','.collapse'+i);
+                                tr[j].setAttribute('title','Click for additional info.');
+                                tr[j].setAttribute('style','z-index:1;');
+                            }
+                            else {
+                                tr[j].setAttribute('class','collapse'+i+' panel-collapse collapse');
+                            }
+                            for (var k=0; k<products[i][j].length; k++){ // Loop for creating table columns ( tds ) and adding info to them.
+                                // console.log(products[i][j]);
 
-                    for (var i=0; i<products.length; i++){
-                            tr[i] = document.createElement('TR');
-                        for (var j=0; j<products[i].length; j++){
-                                                        
-                            console.log(products[i][j]);
+                                //data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class=""
 
-                            td[j] = document.createElement('TD');
-                            txt[j] = document.createTextNode(products[i][j]);
-                            txt1 = document.createTextNode(products[i]['short_desc']);
-                            tbody[0].appendChild(tr[i]);
-                            tr[i].appendChild(td[j]);
-                            td[j].appendChild(txt[j]);
-                            // tbody[0].appendChild(tr);
-                            // tr.appendChild(td);
-                            // td.appendChild(txt1);
-                            // tr.innerHTML = td;
-                            // td.innerHTML = products[i]['model_number'];
+                                //tr[j] = document.createElement('TR');
+                                td[k] = document.createElement('TD');
+                                txt[k] = document.createTextNode(products[i][j][k]);
+                                // txt1 = document.createTextNode(products[i]['short_desc']);
+                                tbody[0].appendChild(tr[j]);
+                                tr[j].appendChild(td[k]);
+                                td[k].appendChild(txt[k]);
+                            }
 
                         }
                     }
+
                 }
                 return false;
                 // alert(this.title);

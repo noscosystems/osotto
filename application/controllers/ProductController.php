@@ -8,6 +8,8 @@
     use \application\components\UserIdentity;
     use \application\components\Form;
     use \application\models\db\ProductCategories;
+    use \application\models\db\Product;
+    use \application\models\db\ProductImages;
     
 class ProductController extends Controller
 {
@@ -19,6 +21,12 @@ class ProductController extends Controller
 
     public function actionsendArray(/*$send*/){
         $this->renderPartial('sendArray'/*, array('send' => $send)*/);
+    }
+
+    public function actionviewProduct($id){
+        $product = Product::model()->findByPk($id);
+        $imgs = $product->productImages;
+        $this->render('viewProduct', array('imgs' => $imgs) );//($product)?(array('product' => $product)):(null));
     }
 }
 ?>

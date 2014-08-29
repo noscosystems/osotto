@@ -61,7 +61,7 @@ $this->breadcrumbs=array(
             <div class="panel-body">
                 <?php $x= '1'; if($x > 0): ?>
                     <!--<div class="alert alert-info">Contact records are displayed from <strong>newest</strong> to <strong>oldest</strong>.</div> -->
-                    <table class="table table-striped table-condensed">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Modle Number</th>
@@ -129,6 +129,7 @@ $this->breadcrumbs=array(
                     tr = [];
                     td = [];
                     txt = [];
+                    a = [];
 
                     products =  JSON.parse(xmlhttp.responseText);
                     
@@ -142,10 +143,11 @@ $this->breadcrumbs=array(
                                 tr[j].setAttribute('data-parent','#accordion');
                                 tr[j].setAttribute('href','.collapse'+i);
                                 tr[j].setAttribute('title','Click for additional info.');
-                                tr[j].setAttribute('style','z-index:1;');
+                                tr[j].setAttribute('style','z-index:2;');
                             }
                             else {
                                 tr[j].setAttribute('class','collapse'+i+' panel-collapse collapse');
+                                tr[j].setAttribute('style','z-index:1;');
                             }
                             for (var k=0; k<products[i][j].length; k++){ // Loop for creating table columns ( tds ) and adding info to them.
                                 // console.log(products[i][j]);
@@ -154,11 +156,21 @@ $this->breadcrumbs=array(
 
                                 //tr[j] = document.createElement('TR');
                                 td[k] = document.createElement('TD');
-                                txt[k] = document.createTextNode(products[i][j][k]);
-                                // txt1 = document.createTextNode(products[i]['short_desc']);
                                 tbody[0].appendChild(tr[j]);
                                 tr[j].appendChild(td[k]);
-                                td[k].appendChild(txt[k]);
+                                if (k!=2){
+                                    txt[k] = document.createTextNode(products[i][j][k]);
+                                    td[k].appendChild(txt[k]);
+                                }
+                                else {
+                                    a[k] = document.createElement('A');
+                                    a[k].setAttribute('href', products[i][j][k]);
+                                    a[k].setAttribute('target','_blank');
+                                    var anch = document.createTextNode('View');
+                                    a[k].appendChild(anch);
+                                    td[k].appendChild(a[k]);   
+                                }
+                                // txt1 = document.createTextNode(products[i]['short_desc']);
                             }
 
                         }

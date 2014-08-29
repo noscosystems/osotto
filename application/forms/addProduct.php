@@ -33,7 +33,7 @@
                 'hint' => Yii::t('application', 'Please enter your password; it is case-sensitive.'),
             ),
             'long_desc' => array(
-                'type' => 'text',
+                'type' => 'textarea',
                 'maxlength' => 65535,
                 'hint' => Yii::t('application', 'Please enter a description for your device'),
             ),
@@ -41,12 +41,7 @@
                 'type' => 'text',
                 'maxlength' => 36,
                 'hint' => Yii::t('application', 'Please enter brief spec of your device.'),
-            ),
-            'spec_full' => array(
-                'type' => 'text',
-                'maxlength' => 65535,
-                'hint' => Yii::t('application', 'Please enter specs of your device or give a link to a page.'),
-            ),
+            )
             
         ),
 

@@ -43,6 +43,13 @@ if($widget->errorSummary($form)){
 </div>
 <br>
 <div class="row">
+    <div class="col-sm-3 control-label">Enter device specs:</div>
+    <div class="col-sm-6">
+        <?php echo $widget->input($form, 'spec_brief', array('class' => 'form-control') ); ?>
+    </div>
+</div>
+<br>
+<div class="row">
     <div class="col-sm-3 control-label">Enter short description for device:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'short_desc', array('class' => 'form-control') ); ?>
@@ -57,21 +64,15 @@ if($widget->errorSummary($form)){
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-3 control-label">Enter device specs:</div>
+    <div class="col-sm-3 control-label">Upload pdf with device specs:</div>
     <div class="col-sm-6">
-        <?php echo $widget->input($form, 'spec_brief', array('class' => 'form-control') ); ?>
+        <input name="pdf" type="file">
     </div>
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-3 control-label">Enter your device's specs or a link to pdf/device page:</div>
-    <div class="col-sm-6">
-        <?php echo $widget->input($form, 'spec_full', array('class' => 'form-control') ); ?>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-offset-3 col-sm-2">
+    <div class="col-sm-3 control-label">Upload your image here:</div>
+    <div class="col-sm-2">
         <input name="image1" type="file">
     </div>
     <div class=" col-sm-offset-3 col-sm-12 help-block">

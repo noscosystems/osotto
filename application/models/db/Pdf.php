@@ -6,30 +6,24 @@ use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
 /**
- * This is the model class for table "product".
+ * This is the model class for table "pdf".
  *
- * The followings are the available columns in table 'product':
+ * The followings are the available columns in table 'pdf':
  * @property integer $id
- * @property string $model_number
- * @property string $short_desc
- * @property string $long_desc
- * @property string $spec_brief
- * @property string $spec_full
- * @property string $name
- * @property integer $catId
+ * @property integer $productId
+ * @property string $url
  *
  * The followings are the available model relations:
- * @property ProductImages[] $productImages
- * @property Registration[] $registrations
+ * @property Product $product
  */
-class Product extends ActiveRecord
+class Pdf extends ActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'product';
+		return 'pdf';
 	}
 
 	/**
@@ -40,26 +34,24 @@ class Product extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('model_number, name, catId', 'required'),
-			array('catId', 'numerical', 'integerOnly'=>true),
-			array('model_number', 'length', 'max'=>255),
-			array('short_desc, spec_brief', 'length', 'max'=>128),
-			array('name', 'length', 'max'=>64),
-			array('long_desc, spec_full', 'safe'),
+			array('productId, url', 'required'),
+			array('productId', 'numerical', 'integerOnly'=>true),
+			array('url', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, name, catId', 'safe', 'on'=>'search'),
+			array('id, productId, url', 'safe', 'on'=>'search'),
 		);
 	}
-	
+
+	/**
+	 * @return array relational rules.
+	 */
 	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'categorie' => array(self::BELONGS_TO, '\\application\\models\\db\\ProductCategories', 'id'),
-			'productImages' => array(self::HAS_MANY, '\\application\\models\\db\\ProductImages', 'productId'),
-			'registrations' => array(self::HAS_MANY, '\\application\\models\\db\\Registration', 'productId'),
+			'product' => array(self::BELONGS_TO, '\\aplication\\models\\db\\Product', 'productId'),
 		);
 	}
 
@@ -70,13 +62,8 @@ class Product extends ActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'model_number' => 'Model Number',
-			'short_desc' => 'Short Desc',
-			'long_desc' => 'Long Desc',
-			'spec_brief' => 'Spec Brief',
-			'spec_full' => 'Spec Full',
-			'name' => 'Name',
-			'catId' => 'Cat',
+			'productId' => 'Product',
+			'url' => 'Url',
 		);
 	}
 
@@ -99,13 +86,8 @@ class Product extends ActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('model_number',$this->model_number,true);
-		$criteria->compare('short_desc',$this->short_desc,true);
-		$criteria->compare('long_desc',$this->long_desc,true);
-		$criteria->compare('spec_brief',$this->spec_brief,true);
-		$criteria->compare('spec_full',$this->spec_full,true);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('catId',$this->catId);
+		$criteria->compare('productId',$this->productId);
+		$criteria->compare('url',$this->url,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -116,7 +98,7 @@ class Product extends ActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Product the static model class
+	 * @return Pdf the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

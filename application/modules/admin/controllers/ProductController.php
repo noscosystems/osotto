@@ -9,6 +9,7 @@
     use \application\models\db\Option;
     use \application\models\db\ProductCategories;
     use \application\models\db\ProductImages;
+    use \application\models\db\Pdf;
     use \application\models\form\AddProduct;
     use \application\models\form\AddProductCategorie;
     use \application\models\form\ImgForm;
@@ -34,15 +35,31 @@
                 else{
                 	$product = New Product;
                     $productImg = New ProductImages;
+                    $productPDF = New Pdf;
                 	$product->attributes = $frm->attributes;
-                    if (!$product->save()){
-                        $frm->addError('productNotSaved','Something went wrong, product not saved.');
+                    $pdfMoved = '';
+
+                    if (isset($_FILES['pdf'])){
+                        if ($_FILES['pdf']['size']>0 && $_FILES['pdf']['type'] == 'application/pdf'){
+                            $productPDF->url = $dest = Yii::getPathOfAlias('application.views.Uploads.pdfs').'\\'.$_FILES['pdf']['name'];
+                            $pdfMoved = move_uploaded_file($_FILES['pdf']['tmp_name'], $dest);
+                            var_dump($pdfMoved);
+                            exit;
+                        }
+                        else{
+                            $frm->addError('pdfErro','File uploader empty or file is not a pdf.');
+                        }
                     }
-                    else {
-                        $productImg->productId = $product->id;
-                            if ($productImg->image_upload($form)){
+                    if (empty($frm->errors)){
+                        if (!$product->save()){
+                            $frm->addError('productNotSaved','Something went wrong, product not saved.');
+                        }
+                        else {
+                            $productImg->productId = $productPDF->productId = $product->id;
+
+                            if ($productImg->image_upload($form) && $pdfMoved){
                                 if (empty($productImg->errors)){
-                                    if ($productImg->save()){
+                                    if ($productImg->save() && $productPDF->save()){
                                         Yii::app()->user->setFlash('additionSuccessfull','Adding product success.');
                                         $this->redirect(array('/admin/product/ImgUpl', 'id' => $productImg->productId));
                                     }
@@ -50,10 +67,9 @@
                                         foreach ( $productImg->errors as $k => $error )
                                             $form->model->addError($k , $error);
                                     }
-                                //Yii::app()->user->setFlash('additionSuccessfull','Adding product success.');  s
-                            //$this->redirect(array('/admin/product/ImgUpl'));
                                 }
                             }
+                        }
                     }
 
                 }

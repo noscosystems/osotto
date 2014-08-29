@@ -9,7 +9,7 @@
     class AddProduct extends FormModel
     {
 
-        public $name,$catId,$model_number,$short_desc,$long_desc,$spec_brief,$spec_full;
+        public $name,$catId,$model_number,$short_desc,$long_desc,$spec_brief;
 
         public function rules()
         {
@@ -19,7 +19,7 @@
                 array('catId', 'numerical', 'integerOnly'=>true),
 				array('model_number', 'length', 'max'=>20),
 				array('short_desc, spec_brief', 'length', 'max'=>128),
-				array('long_desc, spec_full', 'safe')
+				array('long_desc', 'safe')
 			);
         }
 

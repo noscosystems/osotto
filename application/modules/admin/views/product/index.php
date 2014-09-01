@@ -59,7 +59,7 @@ if($widget->errorSummary($form)){
 <div class="row">
     <div class="col-sm-3 control-label">Enter description for device:</div>
     <div class="col-sm-6">
-        <?php echo $widget->input($form, 'long_desc', array('class' => 'form-control') ); ?>
+        <?php echo $widget->input($form, 'long_desc', array('class' => 'form-control textarea') ); ?>
     </div>
 </div>
 <br>

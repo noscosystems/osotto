@@ -226,3 +226,8 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+.textarea{
+    resize: none;
+    height: 150px !important;
+}

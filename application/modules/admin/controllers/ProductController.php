@@ -41,34 +41,38 @@
 
                     if (isset($_FILES['pdf'])){
                         if ($_FILES['pdf']['size']>0 && $_FILES['pdf']['type'] == 'application/pdf'){
+                            $ext = strstr($_FILES['pdf']['name'], '.');
+                            $_FILES['pdf']['name'] = substr(md5(time()), 0, 7).$ext;
                             $productPDF->url = $dest = Yii::getPathOfAlias('application.views.Uploads.pdfs').'\\'.$_FILES['pdf']['name'];
                             $pdfMoved = move_uploaded_file($_FILES['pdf']['tmp_name'], $dest);
-                            var_dump($pdfMoved);
-                            exit;
                         }
                         else{
                             $frm->addError('pdfErro','File uploader empty or file is not a pdf.');
                         }
                     }
-                    if (empty($frm->errors)){
+
+                    if (empty($frm->errors) && $productImg->image_upload() && $pdfMoved && empty($productImg->errors)){
                         if (!$product->save()){
                             $frm->addError('productNotSaved','Something went wrong, product not saved.');
                         }
                         else {
                             $productImg->productId = $productPDF->productId = $product->id;
+                            
+                            //if (){
 
-                            if ($productImg->image_upload($form) && $pdfMoved){
                                 if (empty($productImg->errors)){
+
                                     if ($productImg->save() && $productPDF->save()){
                                         Yii::app()->user->setFlash('additionSuccessfull','Adding product success.');
                                         $this->redirect(array('/admin/product/ImgUpl', 'id' => $productImg->productId));
                                     }
                                     else {
                                         foreach ( $productImg->errors as $k => $error )
-                                            $form->model->addError($k , $error);
+
+                                            $frm->addError($k , $error);
                                     }
                                 }
-                            }
+                            //}
                         }
                     }
 

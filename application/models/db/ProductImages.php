@@ -5,7 +5,6 @@ namespace application\models\db;
 use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
-use \application\models\db\Product;
 /**
  * This is the model class for table "product_images".
  *
@@ -19,6 +18,9 @@ use \application\models\db\Product;
  */
 class ProductImages extends ActiveRecord
 {
+
+	public $errors = [];
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -52,7 +54,7 @@ class ProductImages extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'product' => array(self::BELONGS_TO, 'Product', 'productId'),
+			'product' => array(self::BELONGS_TO, '\\application\\models\\db\\Product', 'productId'),
 		);
 	}
 
@@ -117,9 +119,9 @@ class ProductImages extends ActiveRecord
 			if (!in_array($size['mime'],$allowed_img_types)){ // Checking wether the image is of the allowed image types
 				array_push($this->errors, 'Image not of allowed type. Allowed image types are jpeg, bmp and png!');
 			}
-			else if ($size[0]>400 || $size[1]>300 || $_FILES['image1']['size']>3145728){
+			else if ($size[0]>2664 || $size[1]>1998 || $_FILES['image1']['size']>5242880){
 
-				$folder = Yii::getPathOfAlias('application.views.Uploads').'\\';
+				$folder = Yii::getPathOfAlias('application.views.Uploads.images').'\\';
 				$ext = strstr($_FILES['image1']['name'], '.');
 				$src='';
 
@@ -130,8 +132,8 @@ class ProductImages extends ActiveRecord
 						$sw = imagesx($src); // Source image Width
 						$sh = imagesy($src); // Source image Height
 
-						$dw = 400; // Destination image Width 
-						$dh = 300; // Destination image Height
+						$dw = 2664; // Destination image Width 
+						$dh = 1998; // Destination image Height
 						
 						$wr = $sw / $dw; // Width Ratio (source:destination)
 						$hr = $sh / $dh; // Height Ratio (source:destination)
@@ -168,8 +170,8 @@ class ProductImages extends ActiveRecord
 						$sw = imagesx($src); // Source image Width
 						$sh = imagesy($src); // Source image Height
 
-						$dw = 400; // Destination image Width 
-						$dh = 300; // Destination image Height
+						$dw = 2664; // Destination image Width 
+						$dh = 1998; // Destination image Height
 						
 						$wr = $sw / $dw; // Width Ratio (source:destination)
 						$hr = $sh / $dh; // Height Ratio (source:destination)

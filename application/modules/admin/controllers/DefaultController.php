@@ -13,6 +13,11 @@
 
 		public function actionIndex()
 		{
-			$this->render('index');
+			if(Yii::app()->user->isGuest)
+                $this->redirect(array('/login'));
+            else if (Yii::app()->user->priv <= 50)
+                $this->redirect(array('/home'));
+            else if (Yii::app()->user->priv >=50)
+                $this->render('index');
 		}
 	}

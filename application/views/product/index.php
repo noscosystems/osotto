@@ -144,10 +144,12 @@ $this->breadcrumbs=array(
                                 tr[j].setAttribute('href','.collapse'+i);
                                 tr[j].setAttribute('title','Click for additional info.');
                                 tr[j].setAttribute('style','z-index:2;');
+                                //tr[j].setAttribute('onclick','document.getElementById("'+i+'").style.display = "table-row";' );
                             }
                             else {
                                 tr[j].setAttribute('class','collapse'+i+' panel-collapse collapse');
                                 tr[j].setAttribute('style','z-index:1;');
+                                //tr[j].setAttribute('id',i);
                             }
                             for (var k=0; k<products[i][j].length; k++){ // Loop for creating table columns ( tds ) and adding info to them.
                                 // console.log(products[i][j]);
@@ -162,6 +164,12 @@ $this->breadcrumbs=array(
                                     txt[k] = document.createTextNode(products[i][j][k]);
                                     td[k].appendChild(txt[k]);
                                 }
+                                // else if (k==0){
+                                //     txt[k] = document.createTextNode(products[i][j][k]);
+                                //     td[k].appendChild(txt[k]);
+                                //     td[k].setAttribute('style','overflow:hidden;');
+                                //     td[k].setAttribute('onmouseover','this.style.overflow="auto"; this.style.width="auto"; this.style.height = "auto"');
+                                // }
                                 else {
                                     a[k] = document.createElement('A');
                                     a[k].setAttribute('href', products[i][j][k]);

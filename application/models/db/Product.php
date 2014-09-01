@@ -19,6 +19,7 @@ use \application\components\ActiveRecord;
  * @property integer $catId
  *
  * The followings are the available model relations:
+ * @property Pdf[] $pdfs
  * @property ProductImages[] $productImages
  * @property Registration[] $registrations
  */
@@ -51,13 +52,17 @@ class Product extends ActiveRecord
 			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, name, catId', 'safe', 'on'=>'search'),
 		);
 	}
-	
+
+	/**
+	 * @return array relational rules.
+	 */
 	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'categorie' => array(self::BELONGS_TO, '\\application\\models\\db\\ProductCategories', 'id'),
+			'categorie' => 	   array(self::BELONGS_TO, '\\application\\models\\db\\ProductCategories', 'id'),
+			'pdf' => 		   array(self::HAS_ONE, '\\application\\models\\db\\Pdf', 'productId'),
 			'productImages' => array(self::HAS_MANY, '\\application\\models\\db\\ProductImages', 'productId'),
 			'registrations' => array(self::HAS_MANY, '\\application\\models\\db\\Registration', 'productId'),
 		);

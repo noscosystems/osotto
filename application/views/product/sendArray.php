@@ -7,7 +7,7 @@
 		foreach ($products as $product){
 			$prod[] = array(
 							array( 0 => $product->model_number, 1=>$product->short_desc),
-							array( 0 => $product->long_desc, 1 => $product->spec_full, 2 => $baseURL.'/product/viewProduct?id='.$product->id)
+							array( 0 => $product->long_desc, 1 => $product->pdf->url, 2 => $baseURL.'/product/viewProduct?id='.$product->id)
 						);
 		}
 		$productJSON = json_encode($prod);

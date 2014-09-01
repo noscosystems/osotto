@@ -1,4 +1,3 @@
-additionSuccessfull
 <?php if(Yii::app()->user->hasFlash('additionSuccessfull')): ?>
     <div class="alert alert-success">
         <?php echo Yii::app()->user->getFlash('additionSuccessfull'); ?>

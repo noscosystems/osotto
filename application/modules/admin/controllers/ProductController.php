@@ -51,7 +51,7 @@
                         }
                     }
 
-                    if (empty($frm->errors) && $productImg->image_upload() && $pdfMoved && empty($productImg->errors)){
+                    if (empty($frm->errors) && $productImg->image_upload() && $pdfMoved ){
                         if (!$product->save()){
                             $frm->addError('productNotSaved','Something went wrong, product not saved.');
                         }

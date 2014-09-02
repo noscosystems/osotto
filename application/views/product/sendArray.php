@@ -6,7 +6,7 @@
 		$prod = [];
 		foreach ($products as $product){
 			$prod[] = array(
-							array( 0 => $product->model_number, 1=>$product->short_desc),
+							array( 0 => $product->name, 1 => $product->model_number, 2=>$product->short_desc),
 							array( 0 => $product->long_desc, 1 => $product->pdf->url, 2 => $baseURL.'/product/viewProduct?id='.$product->id)
 						);
 		}

@@ -13,17 +13,24 @@ if ($imgs!=null){ ?>
 <?php } ?>
 
 <style>
-    .galleria{ 
-        width: 620px;
-        height: 465px;
+    .galleria{
+    	position:absolute;
+    	top:0;
+    	left:0;
+/***********************************************
+    	margin-left:-320px;
+    	margin-top:-240px;
+        width: 640px;
+        height: 480px;
+***********************************************/
+		width:100%;
+		height:100%;
         background: #000;
     }
-	.textarea{
-		resize: none;
-	}
 </style>
 <?php $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twbs.bootstrap.dist')); ?>
-<script src="plugins/flickr/galleria.flickr.min.js"></script>
+<script type="text/javascript" src="<?php echo $bootstrap; ?>/js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<?php echo $bootstrap; ?>/js/galleria/galleria-1.3.6.min.js"></script>
 <script>
 $(function() {
 //$( document ).ready(function() {
@@ -42,7 +49,7 @@ $(function() {
 
 		            Galleria.log(e) // the event object may contain custom objects, in this case the main image
 		            Galleria.log(e.imageTarget) // the current image
-
+		            
 		            // lets make galleria open a lightbox when clicking the main image:
 		            $(e.imageTarget).click(this.proxy(function() {
 		               this.openLightbox();

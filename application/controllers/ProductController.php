@@ -26,7 +26,7 @@ class ProductController extends Controller
     public function actionviewProduct($id){
         $product = Product::model()->findByPk($id);
         $imgs = $product->productImages;
-        $this->render('viewProduct', array('imgs' => $imgs) );//($product)?(array('product' => $product)):(null));
+        $this->renderPartial('viewProduct', array('imgs' => $imgs) );//($product)?(array('product' => $product)):(null));
     }
 }
 ?>

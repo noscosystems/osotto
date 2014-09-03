@@ -1,5 +1,5 @@
 <?php 
-	php_info();
+	phpinfo();
 	exit;
 ?>
 <div class="jumbotron">

@@ -1,7 +1,3 @@
-<?php 
-	phpinfo();
-	exit;
-?>
 <div class="jumbotron">
 	<div class="container">
 		<h1 class="text-center">Administration</h1>

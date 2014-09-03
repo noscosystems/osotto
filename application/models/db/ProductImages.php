@@ -121,7 +121,7 @@ class ProductImages extends ActiveRecord
 			}
 			else if ($size[0]>2664 || $size[1]>1998 || $_FILES['image1']['size']>5242880){
 
-				$folder = Yii::getPathOfAlias('application.views.Uploads.images').'\\';
+				$folder = Yii::getPathOfAlias('application.views.Uploads.images').'/';
 				$ext = strstr($_FILES['image1']['name'], '.');
 				$src='';
 
@@ -212,7 +212,7 @@ class ProductImages extends ActiveRecord
 				$ext = strstr($_FILES['image1']['name'], '.');
 				$_FILES['image1']['name'] = substr(md5(time()), 0, 7).$ext;	//sets a name based on crrent time
 				//then md5's it :D and get's a part of the string as the name
-				$folder = Yii::getPathOfAlias('application.views.Uploads').'\\';
+				$folder = Yii::getPathOfAlias('application.views.Uploads').'/';
 				$this->url = $folder.$_FILES['image1']['name'];
 					if ( !move_uploaded_file($_FILES['image1']['tmp_name'], $this->url) )
 						array_push($this->errors, 'Unable to upload image, please try again!');

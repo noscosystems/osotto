@@ -17,6 +17,7 @@ use \application\components\ActiveRecord;
  * @property string $spec_full
  * @property string $name
  * @property integer $catId
+ * @property integer $active
  *
  * The followings are the available model relations:
  * @property Pdf[] $pdfs
@@ -41,15 +42,15 @@ class Product extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('model_number, name, catId', 'required'),
-			array('catId', 'numerical', 'integerOnly'=>true),
+			array('model_number, name, catId, active', 'required'),
+			array('catId, active', 'numerical', 'integerOnly'=>true),
 			array('model_number', 'length', 'max'=>255),
 			array('short_desc, spec_brief', 'length', 'max'=>128),
 			array('name', 'length', 'max'=>64),
 			array('long_desc, spec_full', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, name, catId', 'safe', 'on'=>'search'),
+			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, name, catId, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +65,7 @@ class Product extends ActiveRecord
 			'categorie' => 	   array(self::BELONGS_TO, '\\application\\models\\db\\ProductCategories', 'id'),
 			'pdf' => 		   array(self::HAS_ONE, '\\application\\models\\db\\Pdf', 'productId'),
 			'productImages' => array(self::HAS_MANY, '\\application\\models\\db\\ProductImages', 'productId'),
-			'registrations' => array(self::HAS_MANY, '\\application\\models\\db\\Registration', 'productId'),
+			'registrations' => array(self::HAS_MANY, '\\application\\models\\db\\Registration', 'productId')
 		);
 	}
 
@@ -82,6 +83,7 @@ class Product extends ActiveRecord
 			'spec_full' => 'Spec Full',
 			'name' => 'Name',
 			'catId' => 'Cat',
+			'active' => 'Active',
 		);
 	}
 
@@ -111,6 +113,7 @@ class Product extends ActiveRecord
 		$criteria->compare('spec_full',$this->spec_full,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('catId',$this->catId);
+		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

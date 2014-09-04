@@ -52,9 +52,12 @@
             <tr>
                 <td><?php echo $v->username; ?></td>
                 <td><?php echo $v->priv; ?></td>
-                <td class="text-right"><?php echo CHtml::link('Edit User', array('/admin/user/', 'id' => $v->id ),array('class' => 'btn btn-xs btn-warning', 'title' => 'Click to edit a user.')); ?></td>
-                <!-- <td class="text-right"><?php //echo CHtml::link(($v->active == 1)?'Ianctive':'Active', array('/admin/user/deleteuser', 'id' => $v->id ),array('class' => ($v->active == 1)?'btn btn-danger btn-xs':'btn btn-primary btn-xs')); ?></td> -->
-                <td class="text-right"><button value="<?php echo $v->id; ?>" class="btn btn-danger btn-xs" onclick="return send(this)">Inactive</button></td>
+                <td class="text-right">
+                    <?php echo CHtml::link('Edit User', array('/admin/user/', 'id' => $v->id ),array('class' => 'btn btn-xs btn-warning', 'title' => 'Click to edit a user.')); ?>
+                </td>
+                <td class="text-right">
+                    <button value="<?php echo $v->id; ?>" class="btn btn-danger btn-xs" onclick="return send(this)">Inactive</button>
+                </td>
                 
             </tr>
         <?php endforeach; ?>
@@ -74,7 +77,7 @@ function send(button){
             +'</div>';
     var xmlhttp = httpReq();
     do {
-        xmlhttp.open('POST','<?php echo Yii::app()->baseUrl; ?>'+'/admin/user/deleteuser',false);
+        xmlhttp.open('POST','<?php echo Yii::app()->baseUrl; ?>'+'/admin/account/deleteuser',false);
         xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
         xmlhttp.send('id='+button.value+'&butt_value='+button.innerHTML);
     }while (xmlhttp.readyState!=4 && xmlhttp.status!=200);

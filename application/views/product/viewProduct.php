@@ -22,9 +22,9 @@ if ($imgs!=null){ ?>
     	margin-top:-240px;
         width: 640px;
         height: 480px;
-***********************************************/
 		width:100%;
 		height:100%;
+***********************************************/
         background: #000;
     }
 </style>
@@ -33,9 +33,23 @@ if ($imgs!=null){ ?>
 <script type="text/javascript" src="<?php echo $bootstrap; ?>/js/galleria/galleria-1.3.6.min.js"></script>
 <script>
 $(function() {
+	var body = document.getElementsByTagName('body');
+	var galleria = document.getElementsByClassName('galleria');
+///*************************************************************************************************************************
+	var bodyHeight = body[0].offsetHeight;
+	console.log('Body height is: '+body[0].offsetHeight);
+	var y = bodyHeight;
+	var x = Math.round( (y/3)*4);
+
+	galleria[0].style.height = y+'px';
+	galleria[0].style.width = x+'px';
+	galleria[0].style.margin = '0px 0px 0px '+ (Math.round (y/2) )+'px';
+
+
+//*************************************************************************************************************************/	
+
 //$( document ).ready(function() {
 // Handler for .ready() called.
-	var galleria = document.getElementsByClassName('galleria');
 	if (galleria.length>0){
 		Galleria.loadTheme('<?php echo $bootstrap; ?>/js/galleria/themes/classic/galleria.classic.min.js');
 	    Galleria.run('.galleria', {

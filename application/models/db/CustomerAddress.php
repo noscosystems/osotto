@@ -5,7 +5,6 @@ namespace application\models\db;
 use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
-use \application\models\db\Users;
 /**
  * This is the model class for table "customer_address".
  *
@@ -59,7 +58,7 @@ class CustomerAddress extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'customer' => array(self::BELONGS_TO, 'Users', 'customerId'),
+			'customer' => array(self::BELONGS_TO, '\\application\\models\\db\\Users', 'customerId'),
 		);
 	}
 

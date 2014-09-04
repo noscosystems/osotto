@@ -5,10 +5,6 @@ namespace application\models\db;
 use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
-use \application\models\db\CustomerAddress;
-use \application\models\db\CustomerContactDetails;
-use \application\models\db\Registration;
-use \application\models\db\Option;
 /**
  * This is the model class for table "user".
  *
@@ -67,10 +63,10 @@ class Users extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'customerAddresses' => array(self::HAS_MANY, 'CustomerAddress', 'customerId'),
-			'customerContactDetails' => array(self::HAS_MANY, 'CustomerContactDetails', 'customerId'),
-			'registrations' => array(self::HAS_MANY, 'Registration', 'customerId'),
-			'ageGroup0' => array(self::BELONGS_TO, 'Option', 'ageGroup'),
+			'address' => array(self::HAS_ONE, '\\application\\models\\db\\CustomerAddress', 'customerId'),
+			'contactDetails' => array(self::HAS_ONE, '\\application\\models\\db\\CustomerContactDetails', 'customerId'),
+			'registrations' => array(self::HAS_MANY, '\\application\\models\\db\\Registration', 'customerId'),
+			'ageGroup0' => array(self::BELONGS_TO, '\\application\\models\\db\\Option', 'ageGroup'),
 		);
 	}
 

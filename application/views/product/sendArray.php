@@ -4,7 +4,7 @@
 		$baseURL = Yii::app()->baseUrl;
 		$assetMgr = Yii::app()->assetManager;
 
-		$products = Product::model()->findAllByAttributes(array('catId'=>$_POST['send']));
+		$products = Product::model()->findAllByAttributes(array('catId' => $_POST['send'], 'active' => 1));
 		$prod = [];
 		foreach ($products as $product){
 			$prod[] = array(

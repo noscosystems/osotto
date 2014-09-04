@@ -121,7 +121,7 @@ class ProductImages extends ActiveRecord
 			}
 			else if ($size[0]>2664 || $size[1]>1998 || $_FILES['image1']['size']>5242880){
 
-				$folder = Yii::getPathOfAlias('application.views.Uploads.images').'/';
+				$folder = Yii::getPathOfAlias('application.views.Uploads.images').'//';
 				$ext = strstr($_FILES['image1']['name'], '.');
 				$src='';
 

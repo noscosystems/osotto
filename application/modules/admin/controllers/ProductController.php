@@ -146,33 +146,4 @@
             }
             $this->render('addProductCategorie', array('form'=>$form));
         }
-
-        public function actionlistUsers(){
-            if(Yii::app()->user->isGuest){
-                $this->redirect(array('/login'));
-            }
-            else if (Yii::app()->user->priv >=50){
-                $form = New Form('application.forms.listusers', New ListUsers);
-            }
-            else {
-                $this->redirect(array('/home'));
-            }
-            
-            $criteria = new \CDbCriteria;
-            $count = Users::model()->count($criteria);
-            $pages = new \CPagination( $count );
-            $pages->pageSize = 10;
-            $pages->applyLimit($criteria);
-            $users = Users::model()->findAll($criteria);
-
-            if ($form->submitted() && $form->validate()){
-                $found_user = Users::model()->findByAttributes(array('username' => $form->model->search));
-                $this->redirect (array('/admin/user', 'id' => $found_user->id));
-            }
-            $this->render('listusers', array('form'=>$form,
-                                         'pages' => $pages,
-                                         'users' => $users
-                                         )
-            );
-        }
 	}

@@ -6,7 +6,7 @@
     use \CException;
     use \application\components\FormModel;
 
-    class ListUsers extends FormModel{
+    class Search extends FormModel{
         
         public $search;
 

@@ -1,7 +1,7 @@
 <?php
 
     return array(
-        'title' => Yii::t('application', 'Please provide your login credentials.'),
+        //'title' => Yii::t('application', 'Please provide your login credentials.'),
 
         'elements' => array(
             'search' => array(
@@ -15,7 +15,7 @@
             'buttons' => array(
                 'submit' => array(
                     'type' => 'submit',
-                    'label' => Yii::t('application', 'Find user')
+                    'label' => Yii::t('application', 'Search')
                 )
             )
         );

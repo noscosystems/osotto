@@ -6,7 +6,7 @@
     use \application\components\Controller;
     use \application\components\UserIdentity;
 	use \application\models\db\Users;
-	use \application\models\form\ListUsers;
+	use \application\models\form\Search;
     use \application\models\form\EditUser;
 
 	class AccountController extends Controller{
@@ -78,7 +78,7 @@
             if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
             else if (Yii::app()->user->priv >=50)
-                $form = New Form('application.forms.listusers', New ListUsers);
+                $form = New Form('application.forms.search', New Search);
             else
                 $this->redirect(array('/home'));
             

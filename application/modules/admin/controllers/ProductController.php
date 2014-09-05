@@ -152,12 +152,8 @@
         {
             $form = new Form('application.forms.search', new Search );
 
-            $frm = $form->model;
-
-            if ($form->submitted && $form->validate()){
-                // $product = Product::model()->findAllByAttributes(array('name' => $frm->search));
-                $this->redirect(array('/admin/editProduct', 'name' => $frm->search));
-            }
+            if ($form->submitted && $form->validate())
+                $this->redirect(array('/admin/editProduct', 'name' => $form->model->search));
 
             $this->render('listProducts', ($form)?(array('form'=>$form)):null;);
         }

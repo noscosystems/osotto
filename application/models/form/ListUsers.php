@@ -8,7 +8,7 @@
 
     class ListUsers extends FormModel{
         
-        //public $search;
+        public $search;
 
         public function rules(){
             return array(

@@ -21,17 +21,57 @@
             else
                 $this->redirect(array('/home'));
 
-            $user = Users::model()->findByAttributes(array('id' => $id));
+            $frm = $form->model;
+
+            $user = Users::model()->findByAttributes( array('id' => $id) );
             $address = $user->address;
             $details = $user->contactDetails;
-
+            $frm->attributes = $user->attributes;
+            $frm->password = null;
+            $frm->attributes = $address->attributes;
+            $frm->attributes = $details->attributes;
+/******************************************************************************************************            
+            echo '<pre>';
+            var_dump ($address);
+            echo '</pre>';
+            echo '<pre>';
+            var_dump ($details);
+            echo '</pre>';
+            exit;
+******************************************************************************************************/
             if ($form->submitted() && $form->validate()){
-                $frm = $form->model;
-                $user->attributes = $frm->attributes;
-                $address->attributes = $frm->attributes;
-                $details->attributes = $frm->attributes;
+
+                $flash = Yii::app()->user;
+                
+
+                if ($flash->priv > $user->priv){
+
+                    if ($frm->password!='' && $frm->password == $frm->repPass){
+                        var_dump($user->password);
+                        exit;
+                    }
+                    if ($frm->priv!='')
+                        $user->priv = $frm->priv;
+                    // foreach ($address->attrbiutes as $k => $attribute){
+                    //     var_dump($k);
+                    //     var_dump($attribute);
+                    // }
+                    // exit;    
+                    $address->attributes = $frm->attributes;
+                    $details->attributes = $frm->attributes;
+
+                    if (empty($frm->errors)){
+                        if ($address->save() && $details->save() && $user->save())
+                            $flash->setFlash('update','User account updated successfully.');
+                        else
+                            $flash->setFlash('fail','Failed updating user account, please reload the page and try again.');
+                    }
+                }
+                else {
+                    $flash->setFlash('privLevelLow','You do not have the required privilige level to edit this user\'s account.');
+                }
             }
-            $this->render('EditUser', array('form' => $form, 'user' => $user, 'address' => $address, 'details' => $details));
+            $this->render('EditUser', array( 'form' => $form ));
         }
 		public function actionlistUsers(){
 

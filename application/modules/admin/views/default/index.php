@@ -11,4 +11,5 @@
 <div class="row col-md-12">
 	<div class="col-sm-2"><?php echo CHtml::link('AddCategorie', array('/admin/product/AddProductCategorie'), array('class'=> 'btn btn-sm btn-primary')); ?></div>
 	<div class="col-sm-2"><?php echo CHtml::link('AddProduct', array('/admin/product/index'), array('class'=> 'btn btn-sm btn-primary')); ?></div>
+	<div class="col-sm-2"><?php echo CHtml::link('View Users', array('/admin/account/listusers'), array('class'=> 'btn btn-sm btn-primary')); ?></div>
 </div>

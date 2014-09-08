@@ -92,8 +92,10 @@
 
             if ($form->submitted() && $form->validate()){
                 if (isset($_FILES['image1']) && $_FILES['image1']['size']>0){
+
                     $productImg = new ProductImages;
                     $productImg->productId = $id;
+
                         if ($productImg->image_upload()){
                             if (empty($productImg->errors)){
                                 if ($productImg->save()){
@@ -107,9 +109,8 @@
                             }
                         }
                 }
-                else{
+                else
                     Yii::app()->user->setFlash('emptyImg','Can not upload an empty image.');
-                }
             }
 
             $this->render('ImgUpl', array ('form' => $form));
@@ -136,7 +137,7 @@
 
                     $ext = strstr($_FILES['image1']['name'], '.');
                     $_FILES['image1']['name'] = substr(md5(time()), 0, 7).$ext;
-                    $folder = Yii::getPathOfAlias('application.views.Uploads').'/';
+                    $folder = Yii::getPathOfAlias('application.views.Uploads.images').'/';
                     $cat->catImg = $folder.$_FILES['image1']['name'];
 
                     if(move_uploaded_file($_FILES['image1']['tmp_name'], $folder.$_FILES['image1']['name'])){
@@ -152,9 +153,54 @@
         {
             $form = new Form('application.forms.search', new Search );
 
-            if ($form->submitted && $form->validate())
+            $criteria = new \CDbCriteria;
+            $count = Product::model()->count($criteria);
+            $pages = new \CPagination( $count );
+            $pages->pageSize = 10;
+            $pages->applyLimit($criteria);
+            $products = Product::model()->findAll($criteria);
+
+            if ($form->submitted() && $form->validate())
                 $this->redirect(array('/admin/editProduct', 'name' => $form->model->search));
 
-            $this->render('listProducts', ($form)?(array('form'=>$form)):null;);
+            // ($form)?(array('form'=>$form)):null
+
+            $this->render('listProducts',
+                array(
+                    'form' => $form,
+                    'products' => $products,
+                    'pages' => $pages
+                )
+            );
+        }
+
+        public function actiondelProduct(){
+
+            if(Yii::app()->user->isGuest)
+                $this->redirect(array('/login'));
+            else if (Yii::app()->user->priv >=50){
+
+                if (isset($_POST['id']) && !empty($_POST['id'])) {
+                    $user = Product::model()->findByPk($_POST['id']);
+                    if (Yii::app()->user->priv > $user->priv){
+                        if ($_POST['butt_value'] == 'Inactive'){
+                            $user->active = 0;
+                            echo 'Active';
+                        }
+                        else {
+                            $user->active = 1;
+                            echo 'Inactive';
+                        }
+                        $user->save();
+                    }
+                    else
+                        echo 'You do not have the required privilige level for this command.';
+                }
+            }
+            else {
+                $this->redirect(array('/home'));
+            }
+
+            $this->renderPartial('actiondelProduct');
         }
 	}

@@ -64,6 +64,13 @@ if($widget->errorSummary($form)){
 </div>
 <br>
 <div class="row">
+    <div class="col-sm-3 control-label">Select rating for this device:</div>
+    <div class="col-sm-6">
+        <?php echo $widget->input($form, 'rating', array('class' => 'form-control') ); ?>
+    </div>
+</div>
+<br>
+<div class="row">
     <div class="col-sm-3 control-label">Upload pdf with device specs:</div>
     <div class="col-sm-6">
         <input name="pdf" type="file">

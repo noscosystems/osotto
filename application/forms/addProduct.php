@@ -4,9 +4,15 @@
 
     $categories = ProductCategories::model()->findAll();
     $productCategories = [];
+    $rating = [];
 
     foreach ($categories as $cat)
         $productCategories[$cat->id] = $cat->name;
+
+
+
+    for ($i=1; $i<10; $i++)
+        $rating[$i] = $i;
 
     return array(
         // 'title' => Yii::t('application', 'Please provide your login credentials.'),
@@ -20,6 +26,11 @@
             'catId' => array(
                 'type' => 'dropdownlist',
                 'items' => $productCategories,
+                'prompt' => 'Please Select'
+            ),
+            'rating' => array(
+                'type' => 'dropdownlist',
+                'items' => $rating,
                 'prompt' => 'Please Select'
             ),
             'model_number' => array(

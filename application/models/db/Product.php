@@ -18,6 +18,7 @@ use \application\components\ActiveRecord;
  * @property string $name
  * @property integer $catId
  * @property integer $active
+ * @property integer $rating
  *
  * The followings are the available model relations:
  * @property Pdf[] $pdfs
@@ -42,15 +43,15 @@ class Product extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('model_number, name, catId, active', 'required'),
-			array('catId, active', 'numerical', 'integerOnly'=>true),
+			array('model_number, name, catId, rating', 'required'),
+			array('catId, active, rating', 'numerical', 'integerOnly'=>true),
 			array('model_number', 'length', 'max'=>255),
 			array('short_desc, spec_brief', 'length', 'max'=>128),
 			array('name', 'length', 'max'=>64),
 			array('long_desc, spec_full', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, name, catId, active', 'safe', 'on'=>'search'),
+			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, name, catId, active, rating', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -84,6 +85,7 @@ class Product extends ActiveRecord
 			'name' => 'Name',
 			'catId' => 'Cat',
 			'active' => 'Active',
+			'rating' => 'Rating',
 		);
 	}
 
@@ -114,6 +116,7 @@ class Product extends ActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('catId',$this->catId);
 		$criteria->compare('active',$this->active);
+		$criteria->compare('rating',$this->rating);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

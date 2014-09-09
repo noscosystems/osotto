@@ -62,7 +62,7 @@ $this->breadcrumbs=array(
   <div class="col-sm-6 col-xs-12 text-center" >
     Tablets
   <div class="col-sm-12 col-xs-12" style="z-index:999;">
-    <!-- <img src="<?php echo Yii::app()->assetManager->publish('C:\\xampp\\htdocs\\osotto\\application\\views\\Uploads\\03bb346.png');?>" class="img-rounder img-rounded"> -->
+    <!-- <img src="<?php // echo Yii::app()->assetManager->publish('C:\\xampp\\htdocs\\osotto\\application\\views\\Uploads\\03bb346.png');?>" class="img-rounder img-rounded"> -->
   </div>
   </div>
   <div class="col-sm-6 col-xs-12 text-center">Hifi</div>

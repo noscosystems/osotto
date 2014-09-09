@@ -45,7 +45,8 @@
     <thead>
         <tr>
             <th>username</th>
-            <!-- <th>current privilige</th> -->
+            <th>Delete Pdf</th>
+            <th>Add/Delete image</th>
             <th class="text-right">Link to edit page</th>
             <th class="text-right">Delete product</th>
         </tr>
@@ -54,7 +55,8 @@
         <?php foreach($products as $v): ?>
             <tr>
                 <td><?php echo $v->name; ?></td>
-                <!-- <td><?php //echo $v->priv; ?></td> -->
+                <td><?php echo CHtml::link('Delete pdf', array('/admin/product/delPdf', 'id' => $v->id ),array('class' => 'btn btn-xs btn-danger', 'title' => 'Click to delete pdf.')); ?></td>
+                <td><?php echo CHtml::link('Add/Delete images', array('/admin/product/ImgUpl', 'id' => $v->id ),array('class' => 'btn btn-xs btn-primary', 'title' => 'Click to add/delete images.')); ?></td>
                 <td class="text-right">
                     <?php echo CHtml::link('Edit Product', array('/admin/product/', 'id' => $v->id ),array('class' => 'btn btn-xs btn-warning', 'title' => 'Click to edit a product.')); ?>
                 </td>
@@ -101,24 +103,3 @@ function httpReq(){
     return xmlhttp=(window.XMLHttpRequest)?(new XMLHttpRequest()):(new ActiveXObject('Microsoft.XMLHTTP'));
 }
 </script>
-
-
-
- <?php
-//  $this->widget('zii.widgets.CListView', array(
-//     'dataProvider' => $dataProvider,
-//     'itemView' => '_index',
-//     'ajaxUpdate'=>false,
-//     'enablePagination'=>false,
-//     'pagerCssClass' => 'result-list',
-//     'summaryText' => 'Total '. $pagination->itemCount .' Results Found',
-// ));
-// $this->widget('CLinkPager', array(
-//     'header' => '',
-//     'firstPageLabel' => '&lt;&lt;',
-//     'prevPageLabel' => '&lt;',
-//     'nextPageLabel' => '&gt;',
-//     'lastPageLabel' => '&lt;&lt;',
-//     'pagination' => $pagination,
-// ));
-// ?>

@@ -6,7 +6,7 @@ $widget = $form->activeFormWidget;
 ?>
 
 <div class="page-header">
-    <h1>Product addition <small>Please enter your product's details</small></h1>
+    <h1>Edit product <small>Please enter your product's details</small></h1>
 </div>
 
 <?php if(Yii::app()->user->hasFlash('additionSuccessfull')): ?>
@@ -71,22 +71,11 @@ if($widget->errorSummary($form)){
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-3 control-label">Upload pdf with device specs:</div>
+    <div class="col-sm-3 control-label">Select rating for this device:</div>
     <div class="col-sm-6">
-        <input name="pdf" type="file">
+        <?php echo $widget->input($form, 'active', array('class' => 'form-control') ); ?>
     </div>
 </div>
-<br>
-<div class="row">
-    <div class="col-sm-3 control-label">Upload your image here:</div>
-    <div class="col-sm-2">
-        <input name="image1" type="file">
-    </div>
-    <div class=" col-sm-offset-3 col-sm-12 help-block">
-        Allowed image types are: jpeg and png.
-    </div>
-</div>
-<br>
 <div class="row">
     <div class="col-sm-2 col-sm-offset-3">
         <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-lg btn-success') ); ?>

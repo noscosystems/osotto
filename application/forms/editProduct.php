@@ -33,6 +33,11 @@
                 'items' => array(1 => 'Featured', 0 => 'Not Featured' ),
                 'prompt' => 'Please Select'
             ),
+            'active' => array(
+                'type' => 'dropdownlist',
+                'items' => array(1 => 'Active', 0 => 'Inactive' ),
+                'prompt' => 'Please Select'
+            ),
             'model_number' => array(
                 'type' => 'text',
                 'maxlength' => 20,
@@ -59,7 +64,7 @@
         'buttons' => array(
             'submit' => array(
                 'type' => 'submit',
-                'label' => Yii::t('application', 'Add'),
+                'label' => Yii::t('application', 'Update'),
             ),
         ),
     );

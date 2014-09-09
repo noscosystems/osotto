@@ -12,6 +12,7 @@
     use \application\models\db\Pdf;
     use \application\models\form\AddProduct;
     use \application\models\form\AddProductCategorie;
+    use \application\models\form\EditProduct;
     use \application\models\form\ImgForm;
     use \application\models\form\ListUsers;
     use \application\models\form\Search;
@@ -89,6 +90,7 @@
                 $this->redirect(array('/home'));
 
             $form->model->id=$id;
+            $imgs = Productimages::model()->findAllByAttributes(array('productId' => $id));
 
             if ($form->submitted() && $form->validate()){
                 if (isset($_FILES['image1']) && $_FILES['image1']['size']>0){
@@ -113,7 +115,31 @@
                     Yii::app()->user->setFlash('emptyImg','Can not upload an empty image.');
             }
 
-            $this->render('ImgUpl', array ('form' => $form));
+            $this->render('ImgUpl', array ('form' => $form, 'images' => $imgs));
+        }
+
+        public function ActionDeleteImage($id){
+
+            if(Yii::app()->user->isGuest){
+                $this->redirect(array('/login'));
+            }
+            else if (Yii::app()->user->priv >=50){
+            
+                $image = ProductImages::model()->findByPk($id);
+                var_dump($image);
+                exit;
+                
+                ( $image->unlinkPath() &&
+                $image->delete() ) ?
+                    (Yii::app()->user->setFlash('success','Deleted image successfully.'))
+                    :(Yii::app()->user->setFlash('warning','Something went wrong, try deleting again.'));
+            }
+            $this->render('delImg');
+        }
+
+        public function actiondelPdf()
+        {
+            $this->renderPartial('delPdf');
         }
 
         public function actionaddProductCategorie()
@@ -151,7 +177,13 @@
 
         public function actionlistProducts()
         {
-            $form = new Form('application.forms.search', new Search );
+
+            if(Yii::app()->user->isGuest)
+                $this->redirect(array('/login'));
+            else if (Yii::app()->user->priv >=50)
+                $form = New Form('application.forms.search', New Search);
+            else
+                $this->redirect(array('/home'));
 
             $criteria = new \CDbCriteria;
             $count = Product::model()->count($criteria);
@@ -174,33 +206,47 @@
             );
         }
 
+        public function actioneditProduct($id){
+            if(Yii::app()->user->isGuest)
+                $this->render('/login');
+            else if (Yii::app()->user->priv >=50)
+                $form = New Form('application.forms.editProduct', New EditProduct);
+            else 
+                $this->redirect('/home');
+
+            $frm = $form->model;
+            $product = Product::model()->findByPk($id);
+            $frm->attributes = $product->attributes;
+
+            if ($form->submitted() && $form->validate()){
+
+            }
+
+            $this->render('editProduct', array( 'form' => $form ));
+        }
+
         public function actiondelProduct(){
 
             if(Yii::app()->user->isGuest)
-                $this->redirect(array('/login'));
-            else if (Yii::app()->user->priv >=50){
+                $this->render('/login');
+            if (Yii::app()->user->priv >=50){
 
                 if (isset($_POST['id']) && !empty($_POST['id'])) {
-                    $user = Product::model()->findByPk($_POST['id']);
-                    if (Yii::app()->user->priv > $user->priv){
+
+                    $product = Product::model()->findByPk($_POST['id']);
+
                         if ($_POST['butt_value'] == 'Inactive'){
-                            $user->active = 0;
+                            $product->active = 0;
                             echo 'Active';
                         }
                         else {
-                            $user->active = 1;
+                            $product->active = 1;
                             echo 'Inactive';
                         }
-                        $user->save();
-                    }
-                    else
-                        echo 'You do not have the required privilige level for this command.';
+                        $product->save();
                 }
             }
-            else {
-                $this->redirect(array('/home'));
-            }
-
-            $this->renderPartial('actiondelProduct');
+            else
+                echo 'You do not have the required privilige level for this command.';
         }
 	}

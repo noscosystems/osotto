@@ -9,6 +9,13 @@ $widget = $form->activeFormWidget;
     <h1>Product registration <small>Please enter your product's details</small></h1>
 </div>
 
+<?php if(Yii::app()->user->hasFlash('registerSuccess')): ?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php echo Yii::app()->user->getFlash('registerSuccess'); ?>
+    </div>
+<?php endif; ?>
+
 <?php if(Yii::app()->user->hasFlash('regDevSuccess')): ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -22,7 +29,7 @@ if($widget->errorSummary($form)){
 }
 ?>
 <div class="row">
-    <div class="col-sm-3 control-label">Select device type:</div>
+    <div class="col-sm-3 control-label">Select device category:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'type', array('class' => 'form-control') ); ?>
     </div>
@@ -83,7 +90,7 @@ if($widget->errorSummary($form)){
 
     var myButton = document.getElementById('application_models_form_RegDev_type');
     var mySelect = document.getElementById('application_models_form_RegDev_productId');
-    //var body = document.getElementsByTagName('body');
+    var body = document.getElementsByTagName('body');
 
     myButton.onchange = function (){
 
@@ -98,18 +105,42 @@ if($widget->errorSummary($form)){
         }while(xmlhttp.readyState!=4 && xmlhttp.status!=200);
         
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
-            var cars=[];
-            // console.log(xmlhttp.responseText);
-            cars =  JSON.parse(xmlhttp.responseText);
-            //console.log(cars);
+            var products = [];
+            products =  JSON.parse(xmlhttp.responseText);
+            
             mySelect.innerHTML = '';
-            for (var i=0; i<cars.length; i++){
-                console.log(cars[i]['id']);
-                mySelect.innerHTML += '<option value='+cars[i]['id']+'>'+cars[i]['name']+'</option>';
-            }
+
+            for (var i=0; i<products.length; i++)
+                mySelect.innerHTML += '<option value='+products[i]['id']+'>'+products[i]['name']+'</option>';
         }
         return false;
     }
+
+    body[0].onload = function (){
+
+        var xmlhttp = createXMLHttpObj();
+        // if(xmlhttp.readyState==4 && xmlhttp.status==200){
+        //     body.innerHTML='<div style="top:0; left:0; background:#000;"><img src=\'\' style=\'top: 50%; left: 50%; margin-top: -10px; margin-left: -10px; z-index:100;\' ></div>'
+        // }
+        if (myButton.value!='Please Select'){
+            do {
+                xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>'+'/device/sendArray',false);
+                xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+                xmlhttp.send('send='+myButton.value);
+            }while(xmlhttp.readyState!=4 && xmlhttp.status!=200);
+        }
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            var products = [];
+            products =  JSON.parse(xmlhttp.responseText);
+            
+            mySelect.innerHTML = '';
+
+            for (var i=0; i<products.length; i++)
+                mySelect.innerHTML += '<option value='+products[i]['id']+'>'+products[i]['name']+'</option>';
+        }
+        return false;
+    }
+
     function createXMLHttpObj(){
         return (window.XMLHttpRequest)?(new XMLHttpRequest()):(new ActiveXObject('Microsoft.XMLHTTP'));
     }

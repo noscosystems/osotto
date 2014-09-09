@@ -41,3 +41,63 @@
 		</div>
 	</div>
 <?php echo $form->renderEnd(); ?>
+
+<div class="row" >
+		<!-- <table class="table"> -->
+		<!-- <tbody> -->
+		<?php foreach ($images as $k => $v):?>
+			<?php //if ($k==0 || $k%3==0): ?>
+			<!-- <tr> -->
+			<?php //endif; ?>
+			<!-- <td> -->
+			<div  class="col-sm-4" >
+				<div class="image-hover">
+					<?php echo CHtml::image(Yii::app()->assetManager->publish($v->url), $v->productId,
+					array(
+					'class' => 'img-rounded',
+					'height' => '240',
+					'width' => '300'
+					));
+					?>
+					<div class="overlay">
+						<?php echo CHtml::link('Delete', array('DeleteImage', 'id' => $v->id), array('class' => 'btn btn-danger')); ?>
+					</div>
+				</div>
+			</div>
+			<!-- </td> -->
+
+		<?php endforeach; ?>
+		<!-- </tr> -->
+		<?php if ($k==0 || $k%3==0): ?>
+		</div>
+	<?php endif; ?>
+
+<style>
+
+	.image-hover{
+		position:relative;
+	}
+	.overlay {
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		z-index:50;
+		display: none;
+		position: absolute;
+		background: rgba (0,0,0, 0.2);
+	}
+
+</style>
+<script>
+$(function() {
+	$(".image-hover").hover( function(){
+			// What happens when the mouse is hovered
+			$(this).children('.overlay').show();
+		}, function(){
+			// What happens the mouse leaves
+			$(this).children('.overlay').hide();
+
+		});
+});
+</script>

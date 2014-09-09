@@ -6,9 +6,9 @@ use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
 /**
- * This is the model class for table "product".
+ * This is the model class for table "Product".
  *
- * The followings are the available columns in table 'product':
+ * The followings are the available columns in table 'Product':
  * @property integer $id
  * @property string $model_number
  * @property string $short_desc
@@ -18,7 +18,7 @@ use \application\components\ActiveRecord;
  * @property string $name
  * @property integer $catId
  * @property integer $active
- * @property integer $rating
+ * @property integer $featured
  *
  * The followings are the available model relations:
  * @property Pdf[] $pdfs
@@ -32,7 +32,7 @@ class Product extends ActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'product';
+		return 'Product';
 	}
 
 	/**
@@ -43,15 +43,15 @@ class Product extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('model_number, name, catId, rating', 'required'),
-			array('catId, active, rating', 'numerical', 'integerOnly'=>true),
+			array('model_number, name, catId, featured', 'required'),
+			array('catId, active, featured', 'numerical', 'integerOnly'=>true),
 			array('model_number', 'length', 'max'=>255),
 			array('short_desc, spec_brief', 'length', 'max'=>128),
 			array('name', 'length', 'max'=>64),
 			array('long_desc, spec_full', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, name, catId, active, rating', 'safe', 'on'=>'search'),
+			array('id, model_number, short_desc, long_desc, spec_brief, spec_full, name, catId, active, featured', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -85,7 +85,7 @@ class Product extends ActiveRecord
 			'name' => 'Name',
 			'catId' => 'Cat',
 			'active' => 'Active',
-			'rating' => 'Rating',
+			'featured' => 'Featured',
 		);
 	}
 
@@ -116,7 +116,7 @@ class Product extends ActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('catId',$this->catId);
 		$criteria->compare('active',$this->active);
-		$criteria->compare('rating',$this->rating);
+		$criteria->compare('featured',$this->featured);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -87,18 +87,16 @@
             echo CHtml::link('Products', array('/product/'), array('class'=>'btn btn-xs btn-danger btns'));
             echo CHtml::link('Contact', array('#ContactUs'), array('class'=>'btn btn-xs btn-danger btns'));
             echo CHtml::link('ABOUT US', array('#AboutUs'), array('class'=>'btn btn-xs btn-danger btns'));
+            echo CHtml::link('Register product', array('/device/regDevice'), array('class'=>'btn btn-xs btn-danger btns'));
             if (Yii::app()->user->isGuest){
                 echo CHtml::link('Home', array('/'), array('class'=>'btn btn-xs btn-success btns'));
                 echo CHtml::link('Login', array('/login'), array('class'=>'btn btn-xs btn-success btns'));
                 // echo CHtml::link('Register', array('/account/register'), array('class'=>'btn btn-xs btn-danger btns'));
                 echo CHtml::link('Register', array('/account/register'), array('class'=>'btn btn-xs btn-danger btns'));
             }
-            else if (!Yii::app()->user->priv>=10){
-                echo CHtml::link('Register a device', array('/device/regDevice'), array('class'=>'btn btn-xs btn-danger btns'));
-                echo CHtml::link('Logout', array('/account/logout'), array('class'=>'btn btn-xs btn-danger btns'));   
-            }
+            else if (!Yii::app()->user->priv>=10)
+                echo CHtml::link('Logout', array('/account/logout'), array('class'=>'btn btn-xs btn-danger btns'));
             else if (Yii::app()->user->priv>=50){
-                echo CHtml::link('Register a device', array('/device/regDevice'), array('class'=>'btn btn-xs btn-danger btns'));
                 echo CHtml::link('Logout', array('/account/logout'), array('class'=>'btn btn-xs btn-danger btns'));   
                 echo CHtml::link('Admin', array('/admin/default/index'), array('class'=>'btn btn-xs btn-danger btns'));
             }

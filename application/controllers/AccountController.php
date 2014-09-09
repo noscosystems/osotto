@@ -58,6 +58,7 @@
                     		$userDetails->save();
                     		$userAddress->save();
                             Yii::app()->user->setFlash('registerSuccess','Registered successfully.');
+                            $this->redirect('device/regDev');
                     	}
                     }
                 }

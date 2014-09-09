@@ -107,6 +107,12 @@
     </div>
   </div>
 </nav>
+<br><br><br>
+	<?php if($this->id == 'home' && $this->action->id == 'index'): ?>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000;">
+    <?php else: ?>
+    	<div class="container">
+    <?php endif; ?>
             <?php if(Yii::app()->user->hasFlash('success')): ?>
                 <br />
                 <div class="row">

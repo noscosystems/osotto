@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 ?>
 <?php $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/assets'); ?>
 
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" align="center">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -59,23 +59,13 @@ $this->breadcrumbs=array(
   <h3 style="font-size: 4em;" class="font-ubuntu text-dark text-shadow-light">Welcome to Osotto - your high tech solutions</h3>
 </div>
 <div class="col-sm-12">
-  <div class="col-sm-6"><p>
-    Bluetooth, Optical, Auxiliary & Co-axial, USB, SD, MS, MMC inputs
-
-    True 5.1 Surround Sound & Dolby Pro-logic II. 
-
-    Full MP3 & WMA audio file playback
-
-    Output for remote active sub
-
-    Full remote control
-
-    Size: 1098mm (l) x 235mm (w) x 165mm (h)
-
-    High piano-gloss finish to front panel
-
-    Output Power – RMS 125watt (5x15w + 50w)
-</p><p>Speakers:</p>
+  <div class="col-sm-6 col-xs-12 text-center" >
+    Tablets
+  <div class="col-sm-12 col-xs-12" style="z-index:999;">
+    <img src="<?php echo Yii::app()->assetManager->publish('C:\\xampp\\htdocs\\osotto\\application\\views\\Uploads\\03bb346.png');?>" class="img-rounder img-rounded">
+  </div>
+  </div>
+  <div class="col-sm-6 col-xs-12 text-center">Hifi</div>
     <ul style="list-style-type:none;">
 
       <li>Front 3” x2 + 1” tweeter x 2</li>

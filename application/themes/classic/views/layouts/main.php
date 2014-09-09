@@ -78,7 +78,7 @@
   <div class="container">
     <div class="pull-left">
         <!-- <div class="logo"> -->
-            <img src="<?php echo $assetUrl; ?>/images/logo.png" height="50" width="80">
+            <img src="<?php echo $assetUrl; ?>/images/logo-inline.png">
         <!-- </div> -->
     </div>
     <div class="pull-right links">
@@ -107,8 +107,6 @@
     </div>
   </div>
 </nav>
-<br><br><br>
-        <div class="container">
             <?php if(Yii::app()->user->hasFlash('success')): ?>
                 <br />
                 <div class="row">
@@ -151,7 +149,6 @@
                         echo implode(' &middot; ', $languages);
                     ?>
                 </div>
-            </div>
         </div>
     </body>
 

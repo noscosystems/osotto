@@ -90,7 +90,7 @@
                 $this->redirect(array('/home'));
 
             $form->model->id=$id;
-            $imgs = Productimages::model()->findAllByAttributes(array('productId' => $id));
+            $imgs = ProductImages::model()->findAllByAttributes(array('productId' => $id));
 
             if ($form->submitted() && $form->validate()){
                 if (isset($_FILES['image1']) && $_FILES['image1']['size']>0){

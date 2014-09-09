@@ -32,7 +32,7 @@ class DeviceController extends Controller
 				}
 			}
 
-			$frm->date_purchased = date("m/d/Y", $frm->date_purchased);
+			$frm->date_purchased = date("m/d/Y");
 		}
 		$this->render('regDevice',array ('form'=>$form ));
 	}

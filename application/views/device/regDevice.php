@@ -99,7 +99,7 @@ if($widget->errorSummary($form)){
         //     body.innerHTML='<div style="top:0; left:0; background:#000;"><img src=\'\' style=\'top: 50%; left: 50%; margin-top: -10px; margin-left: -10px; z-index:100;\' ></div>'
         // }
         do {
-            xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>'+'/device/sendArray',false);
+            xmlhttp.open('POST','<?php echo Yii::app()->baseUrl;?>/device/sendArray',false);
             xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
             xmlhttp.send('send='+myButton.value);
         }while(xmlhttp.readyState!=4 && xmlhttp.status!=200);

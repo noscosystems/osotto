@@ -4,7 +4,39 @@ body
 	padding: 0;
 	color: #555;
 	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: #EFEFEF;
+	background: #FFF;
+}
+
+a:visited {
+    text-decoration: none;
+}
+a:link {
+    text-decoration: none;
+}
+a:active {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.font-raleway {
+    font-family: 'Raleway', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+.links{
+    color: #363635;
+    float: right;
+    font-family: 'Raleway',sans-serif;
+    margin-right: 20px;
+    margin-top: 13px;
+    text-transform: uppercase;
+}
+.btns{
+    margin-left:15px;
+}
+#content {
+    padding: 0 !important;
 }
 
 #page
@@ -231,3 +263,4 @@ div.search-form
     resize: none;
     height: 150px !important;
 }
+

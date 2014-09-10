@@ -1,6 +1,56 @@
+
+/* Bootstrap Addons {BS} */
 .font-opensans { 
 	font-family: 'Open Sans', sans-serif;
 }
+.text-dark {
+    color: #363635;
+}
+.text-very-dark {
+    color: #111;
+}
+.text-light {
+    color: #ececec;
+}
+.text-very-light {
+    color: #c2c2c2;
+}
+.bg-dark {
+    background: #363635;
+}
+.bg-light {
+    background: #ececec;
+}
+.line {
+    width: 100%;
+}
+.line.line-thin {
+    height: 1px;
+}
+.line.line-thick {
+    height: 3px;
+}
+.text-shadow-dark {
+    text-shadow: 2px 2px #444;
+}
+.text-shadow-light {
+    text-shadow: 2px 2px #999;
+}
+.text-caption-small {
+    font-size: 1.5em;
+    padding-top: 8px;
+}
+.hidden {
+    display: none;
+}
+.text-large {
+	font-size: 48px;
+}
+
+
+
+
+
 
 .features {
 	margin: 0px;
@@ -43,4 +93,9 @@
 
 .features > .feature > .caption > .description {
 	font-size: 18px;
+}
+
+.carousel-caption {
+	bottom: none;
+	top: 20;
 }

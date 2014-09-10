@@ -12,23 +12,21 @@
             <ol class="carousel-indicators">
                 <li data-target="#image-cycle" data-slide-to="0" class="active"></li>
                 <li data-target="#image-cycle" data-slide-to="1"></li>
-                <li data-target="#image-cycle" data-slide-to="2"></li>
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="<?php echo $assetUrl; ?>/images/carousel-bg-dark.png" style="height:400px; width:100%" class="img-responsive">
-                    <div class="carousel-caption">
+                    <img src="<?php echo $assetUrl; ?>/images/carousel-bg-red-black-white.png" style="height:400px; width:100%" class="img-responsive">
+                    <div class="carousel-caption text-center">
+                        <center>
+                            <?php echo CHtml::image($assetUrl . '/images/logo-small-white.png', 'alt', array('class' => 'img-responsive')); ?>
+                        </center>
+                        <div class="hidden-xs"><br /><br /><br /></div>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="<?php echo $assetUrl; ?>/images/carousel-bg-light.png" style="height:400px; width:100%" class="img-responsive">
-                    <div class="carousel-caption">
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="<?php echo $assetUrl; ?>/images/carousel-bg-blue.png" style="height:400px; width:100%" class="img-responsive">
+                    <img src="<?php echo $assetUrl; ?>/images/happy-family.png" style="height:400px; width:100%" class="img-responsive">
                     <div class="carousel-caption">
                     </div>
                 </div>

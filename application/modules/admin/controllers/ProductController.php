@@ -13,7 +13,7 @@
     use \application\models\form\AddProduct;
     use \application\models\form\AddProductCategorie;
     use \application\models\form\EditProduct;
-    use \application\models\form\ImgForm;
+    use \application\models\form\FileUplForm;
     use \application\models\form\ListUsers;
     use \application\models\form\Search;
 
@@ -85,7 +85,7 @@
             if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
             else if (Yii::app()->user->priv >=50)
-                $form = new Form('application.forms.imgForm', new ImgForm);
+                $form = new Form('application.forms.fileUplForm', new FileUplForm);
             else
                 $this->redirect(array('/home'));
 
@@ -126,20 +126,33 @@
             else if (Yii::app()->user->priv >=50){
             
                 $image = ProductImages::model()->findByPk($id);
-                var_dump($image);
-                exit;
                 
-                ( $image->unlinkPath() &&
-                $image->delete() ) ?
+                ( $image->unlinkPath() && $image->delete() ) ?
                     (Yii::app()->user->setFlash('success','Deleted image successfully.'))
                     :(Yii::app()->user->setFlash('warning','Something went wrong, try deleting again.'));
             }
             $this->render('delImg');
         }
 
-        public function actionaddPdf()
+        public function actionaddPdf($pdfId)
         {
-            $this->renderPartial('addPdf');
+            if(Yii::app()->user->isGuest)
+                $this->redirect(array('/login'));
+            else if (Yii::app()->user->priv >=50)
+                $form = new Form('application.forms.fileUplForm', New FileUplForm);
+            else
+                $this->redirect(array('/home'));   
+
+            $pdf = Pdf::model()->findByPk($pdfId);
+            $form->model->id = $pdf->id;
+            
+            if ($form->submitted() && $form->validate()){
+                if ($pdf->pdfUpl($form->model,$pdf)){
+                    if ($pdf->save())
+                        Yii::app()->user->setFlash('UplSuccess','Pdf uploaded successfully.');
+                }
+            }
+            $this->render('addPdf', array('form' => $form ));
         }
 
         public function actionaddProductCategorie()

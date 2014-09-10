@@ -6,7 +6,7 @@
     use \CException;
     use \application\components\FormModel;
 
-    class ImgForm extends FormModel
+    class FileUplForm extends FormModel
     {
 
         public $id;

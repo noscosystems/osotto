@@ -5,8 +5,6 @@ namespace application\models\db;
 use \Yii;
 use \CException;
 use \application\components\ActiveRecord;
-use \application\models\db\Product;
-use \application\models\db\Users;
 /**
  * This is the model class for table "registration".
  *
@@ -16,8 +14,10 @@ use \application\models\db\Users;
  * @property integer $productId
  * @property string $serial_number
  * @property string $MAC
- * @property string $date_purchased
+ * @property integer $date_purchased
  * @property string $purchased_from
+ * @property integer $dateRegistered
+ * @property integer $warranty
  *
  * The followings are the available model relations:
  * @property User $customer
@@ -41,15 +41,14 @@ class Registration extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('customerId, productId, serial_number', 'required'),
-			array('customerId, productId', 'numerical', 'integerOnly'=>true),
+			array('customerId, productId, date_purchased, dateRegistered', 'required'),
+			array('customerId, productId, date_purchased, dateRegistered, warranty', 'numerical', 'integerOnly'=>true),
 			array('serial_number', 'length', 'max'=>50),
 			array('MAC', 'length', 'max'=>12),
 			array('purchased_from', 'length', 'max'=>45),
-			array('date_purchased', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, customerId, productId, serial_number, MAC, date_purchased, purchased_from', 'safe', 'on'=>'search'),
+			array('id, customerId, productId, serial_number, MAC, date_purchased, purchased_from, dateRegistered, warranty', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,8 +60,8 @@ class Registration extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'customer' => array(self::BELONGS_TO, 'User', 'customerId'),
-			'product' => array(self::BELONGS_TO, 'Product', 'productId'),
+			'customer' => array(self::BELONGS_TO, '\\application\\models\\db\\User', 'customerId'),
+			'product' => array(self::BELONGS_TO, '\\application\\models\\db\\Product', 'productId'),
 		);
 	}
 
@@ -79,6 +78,8 @@ class Registration extends ActiveRecord
 			'MAC' => 'Mac',
 			'date_purchased' => 'Date Purchased',
 			'purchased_from' => 'Purchased From',
+			'dateRegistered' => 'Date Registered',
+			'warranty' => 'Warranty',
 		);
 	}
 
@@ -105,8 +106,10 @@ class Registration extends ActiveRecord
 		$criteria->compare('productId',$this->productId);
 		$criteria->compare('serial_number',$this->serial_number,true);
 		$criteria->compare('MAC',$this->MAC,true);
-		$criteria->compare('date_purchased',$this->date_purchased,true);
+		$criteria->compare('date_purchased',$this->date_purchased);
 		$criteria->compare('purchased_from',$this->purchased_from,true);
+		$criteria->compare('dateRegistered',$this->dateRegistered);
+		$criteria->compare('warranty',$this->warranty);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

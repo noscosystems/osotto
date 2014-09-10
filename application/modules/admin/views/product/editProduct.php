@@ -21,27 +21,7 @@ if($widget->errorSummary($form)){
     echo '<div class="alert alert-danger">' . $widget->errorSummary($form) . '</div>';
 }
 ?>
-<div class="row">
-    <div class="col-sm-3 control-label">Enter device's name:</div>
-    <div class="col-sm-6">
-        <?php echo $widget->input($form, 'name', array('class' => 'form-control') ); ?>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-3 control-label">Choose device type:</div>
-    <div class="col-sm-6">
-        <?php echo $widget->input($form, 'catId', array('class' => 'form-control') ); ?>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-3 control-label">Enter device's model number:</div>
-    <div class="col-sm-6">
-        <?php echo $widget->input($form, 'model_number', array('class' => 'form-control') ); ?>
-    </div>
-</div>
-<br>
+
 <div class="row">
     <div class="col-sm-3 control-label">Enter device specs:</div>
     <div class="col-sm-6">
@@ -63,19 +43,6 @@ if($widget->errorSummary($form)){
     </div>
 </div>
 <br>
-<div class="row">
-    <div class="col-sm-3 control-label">Select rating for this device:</div>
-    <div class="col-sm-6">
-        <?php echo $widget->input($form, 'featured', array('class' => 'form-control') ); ?>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-3 control-label">Select rating for this device:</div>
-    <div class="col-sm-6">
-        <?php echo $widget->input($form, 'active', array('class' => 'form-control') ); ?>
-    </div>
-</div>
 <div class="row">
     <div class="col-sm-2 col-sm-offset-3">
         <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-lg btn-success') ); ?>

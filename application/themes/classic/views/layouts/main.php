@@ -14,6 +14,13 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
         ?>
         <!-- Scale the UI dependant on device via TWBS -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="description" content="Tablets, HiFi Speakers and Soundbars, available from Osotto. A UK Based company focused on providing customers with high quality products for an amazing price.">
+        <meta name="keywords" content="tablet,hifi,speaker,soundbar,selling,buying,android,linux,bluetooth,7.1,surround,sound">
+        <meta name="robot" content="index,follow">
+        <meta name="copyright" content="Copyright &copy; 2014 Nosco Solutions Ltd. All Rights Reserved.">
+        <meta name="author" content="Nosco Solutions Ltd.">
+        <meta name="language" content="English">
+        <meta name="revisit-after" content="7">
         
         <link rel="stylesheet" type="text/css" href="<?php echo $bootstrap; ?>/css/bootstrap.min.css" media="all" />
         <!-- <link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->assetManager->publish(Yii::getPathOfAlias('themes.classic.assets') . '/css/styles.css'); ?>" media="all" /> -->
@@ -59,14 +66,17 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img src="<?php echo $assetUrl; ?>/images/logo-inline.png"></a>
+                        <?php 
+                        $imageLogo = CHtml::image($assetUrl . '/images/logo-inline.png', 'Logo');
+                        echo CHtml::link($imageLogo, array('/home'), array('class' => 'navbar-brand'))  ;
+                        ?>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><?php echo CHtml::link('Home', array('/home')); ?></li>
-                            <li><?php echo CHtml::link('Products', array('/product')); ?></li>
+                            <li><?php // echo CHtml::link('Home', array('/home')); ?></li>
+                            <li><?php // echo CHtml::link('Products', array('/product')); ?></li>
                             <li><?php // echo CHtml::link('Contact', '#ContactUs'); ?></li>
                             <li><?php // echo CHtml::link('About Us', '#AboutUs'); ?></li>
                         </ul>

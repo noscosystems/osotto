@@ -38,14 +38,7 @@ $this->breadcrumbs=array(
     // var_dump(Yii::app()->baseUrl);
     // var_dump(Yii::getPathOfAlias('osotto.public_html.product'));
 ?>
-<div class="row">
-    <?php foreach ($categories as $categorie): ?>
-        <div class="col-md-4" >
-            <img src="<?php echo $assetMgr->publish($categorie->catImg); ?>" class="MyClickable img-responsive img-rounded" alt="Responsive image" name="<?php echo $categorie->id; ?> "title="<?php echo $categorie->name; ?>">
-            <div class="center"><center><h2><?php echo $categorie->name; ?></h2></center></div>
-        </div>
-    <?php endforeach; ?>
-</div>
+
 
 
 <div class="panel-group" id="customerDetailsAccordian">

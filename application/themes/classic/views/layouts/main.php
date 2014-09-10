@@ -71,10 +71,11 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <?php if(Yii::app()->user->isGuest): ?>
+                                <li><?php echo CHtml::link('Register Device', array('/device/regDevice')); ?></li>
                                 <li><?php echo CHtml::link('Register', array('/account/register')); ?></li>
                                 <li><?php echo CHtml::link('Login', array('/login')); ?></li>
                             <?php elseif(Yii::app()->user->priv >= 10): ?>
-                                <li><?php echo CHtml::link('Register a Device', array('/device/regDevice')); ?></li>
+                                <li><?php echo CHtml::link('Register Device', array('/device/regDevice')); ?></li>
                                 <li><?php echo CHtml::link('Logout', array('/account/logout')); ?></li>
                             <?php endif; ?>
                             <?php if(Yii::app()->user->priv >= 50): ?>

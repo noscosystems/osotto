@@ -32,7 +32,7 @@
                             <div class="col-xs-12 text-left">
                                 <span class="text-very-dark font-opensans text-large">Meet your soulmate...</span>
                                 <br />
-                                <span class="text-very-dark font-opensans text-medium">Beautiful, slim and amazing.</span>
+                                <span class="text-very-dark font-opensans text-medium">Beautiful, Intelligent and Amazing.</span>
                             </div>
                         </div>
                         <div class="hidden-xs"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
@@ -60,22 +60,22 @@
                 </div>
             </div>
             <div class="feature col-xs-12 col-sm-6">
-                <?php echo CHtml::image($assetUrl . '/images/soundbar-frontpage.png', 'alt', array('class' => 'img-responsive')); ?>
+                <?php echo CHtml::image($assetUrl . '/images/tablet-frontpage.png', 'alt', array('class' => 'img-responsive')); ?>
                 <div class="caption">
-                    Soundbars
+                    Tablets
                     <div class="description">
-                        See our amazing collection of soundbars!
+                        High performance tablets, at your service.
                     </div>
                 </div>
             </div>
         </div>
         <div class="row features">
             <div class="feature col-xs-12 col-sm-6">
-                <?php echo CHtml::image($assetUrl . '/images/tablet-frontpage.png', 'alt', array('class' => 'img-responsive')); ?>
+                <?php echo CHtml::image($assetUrl . '/images/soundbar-frontpage.png', 'alt', array('class' => 'img-responsive')); ?>
                 <div class="caption">
-                    Tablets
+                    Soundbars
                     <div class="description">
-                        High performance tablets, at your service.
+                        See our amazing collection of soundbars!
                     </div>
                 </div>
             </div>

@@ -27,7 +27,15 @@
                 </div>
                 <div class="item">
                     <img src="<?php echo $assetUrl; ?>/images/happy-family.png" style="height:400px; width:100%" class="img-responsive">
-                    <div class="carousel-caption">
+                    <div class="carousel-caption" style="left:10%">
+                        <div class="row">
+                            <div class="col-xs-12 text-left">
+                                <span class="text-very-dark font-opensans text-large">Meet your soulmate...</span>
+                                <br />
+                                <span class="text-very-dark font-opensans text-medium">Beautiful, slim and amazing.</span>
+                            </div>
+                        </div>
+                        <div class="hidden-xs"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
                     </div>
                 </div>
             </div>

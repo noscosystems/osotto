@@ -32,7 +32,7 @@ class Product extends ActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'Product';
+		return 'product';
 	}
 
 	/**

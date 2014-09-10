@@ -21,7 +21,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
         <script src="<?php echo $bootstrap; ?>/js/galleria/plugins/flickr/galleria.flickr.min.js" type="text/javascript"></script>
         <link href="<?php echo $bootstrap; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 
-        <link  href='http://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 
         <!-- Blueprint CSS Framework. -->
         <link href="<?php echo $assetUrl; ?>/css/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
@@ -45,9 +45,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
     </head>
 
     <body>
-
         <div class="container-fluid">
-
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="col-md-10 col-md-offset-1 col-xs-12">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -66,8 +64,8 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                         <ul class="nav navbar-nav">
                             <li><?php echo CHtml::link('Home', array('/home')); ?></li>
                             <li><?php echo CHtml::link('Products', array('/product')); ?></li>
-                            <li><?php echo CHtml::link('Contact', '#ContactUs'); ?></li>
-                            <li><?php echo CHtml::link('About Us', '#AboutUs'); ?></li>
+                            <li><?php // echo CHtml::link('Contact', '#ContactUs'); ?></li>
+                            <li><?php // echo CHtml::link('About Us', '#AboutUs'); ?></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <?php if(Yii::app()->user->isGuest): ?>
@@ -75,18 +73,25 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                                 <li><?php echo CHtml::link('Register', array('/account/register')); ?></li>
                                 <li><?php echo CHtml::link('Login', array('/login')); ?></li>
                             <?php elseif(Yii::app()->user->priv >= 10): ?>
-                                <li><?php echo CHtml::link('Register Device', array('/device/regDevice')); ?></li>
-                                <li><?php echo CHtml::link('Logout', array('/account/logout')); ?></li>
-                            <?php endif; ?>
-                            <?php if(Yii::app()->user->priv >= 50): ?>
-                                <li><?php echo CHtml::link('Admin', array('/admin/default/index')); ?></li>
+                                <li><?php echo CHtml::link('Register a Device', array('/device/regDevice')); ?></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <?php if(Yii::app()->user->priv >= 50): ?>
+                                            <li><?php echo CHtml::link('Admin', array('/admin/default/index')); ?></li>
+                                        <?php endif; ?>
+                                        <li><?php echo CHtml::link('Settings', array('/account/settings')); ?></li>
+                                        <li class="divider"></li>
+                                        <li><?php echo CHtml::link('Logout', array('/account/logout')); ?></li>
+                                    </ul>
+                                </li>
                             <?php endif; ?>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
 
-            <div style="height:20px;"></div>
+            <div style="height:36px; width:100%"></div>
 
             <br />
 
@@ -96,6 +101,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
 
                     <?php else: ?>
                         <div class="container">
+                            <br /><br />
                     <?php endif; ?>
                     <?php if(Yii::app()->user->hasFlash('success')): ?>
                         <br />
@@ -111,24 +117,21 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                     <?php echo $content; ?>
 
                     <div class="clear"></div>
-                </div>
 
-                <div class="col-xs-12">
-                    <div class="col-xs-12 text-center" style="width:100%; background:#444; color:#CCC; padding: 30px;">
-                        <?php
-                        echo Yii::t(
-                        'application',
-                        'Copyright &copy; {year} by {company}.',
-                        array(
-                            '{year}' => date('Y'),
-                            '{company}' => "Nosco Systems",
-                            )
-                        );
-                        ?>
-                        <?php
-                        echo Yii::t('application', 'All rights reserved.');
-                        ?>
-                    </div>
+                    <?php if($this->id == 'home' && $this->action->id == 'index'): ?>
+
+                    <?php else: ?>
+                        <br /><br />
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+                
+            <div class="row">
+                <div class="col-xs-12 text-center" style="width:100%; background:#333; color:#CCC; padding: 30px; bottom:0; left:0; position:relative;">
+                    <span class="font-opensans">
+                        Copyright &copy; <?php echo date("Y"); ?> <?php echo CHtml::link('Nosco Systems', 'http://www.noscosystems.com'); ?>. All rights reserved.
+                    </span>
                 </div>
             </div>
         </div>

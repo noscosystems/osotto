@@ -1,3 +1,46 @@
-nav.navbar {
-	height:20px;
+.font-opensans { 
+	font-family: 'Open Sans', sans-serif;
+}
+
+.features {
+	margin: 0px;
+	width: 100%;
+	padding: 0px;
+}
+
+.features > .feature {
+	height: 400px;
+	overflow: hidden;
+	padding: 0px;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+.features > .feature img {
+	position: absolute;
+	height: 400px;
+	width: 100%;
+}
+
+.features > .feature > .caption {
+	padding: 10px;
+	background-color: rgba(255,255,255,0.6);
+	color: #000;
+	font-size: 32px;
+	font-family: 'Open Sans', sans-serif;
+	position: absolute;
+	width: 100%;
+}
+
+.features > .feature > .caption a:hover { color: #000; }
+.features > .feature > .caption a:active { color: #000; }
+.features > .feature > .caption a:link { color: #000; }
+.features > .feature > .caption a:visited { color: #000; }
+
+.features > .feature > .caption > .description {
+	font-size: 18px;
 }

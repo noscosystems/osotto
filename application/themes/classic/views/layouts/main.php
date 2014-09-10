@@ -157,6 +157,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   
             ga('create', 'UA-50290689-2', 'auto');
+            ga('require', 'displayfeatures');
             ga('send', 'pageview');
         </script>
     </body>

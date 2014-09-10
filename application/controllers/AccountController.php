@@ -15,67 +15,82 @@
 
 	class AccountController extends Controller{
 
+        protected $identity;
+
 		public function actionRegister(){
+
 			if (Yii::app()->user->isGuest){
-            $form = new Form('application.forms.register', new Register);
+                $form = new Form('application.forms.register', new Register);
 
-            if($form->submitted() && $form->validate()) {
-                $frm = $form->model;
-                $user = Users::model()->findAllByAttributes(array('username' => $frm->username));
-                if($user){
-                    $frm->addError('username', 'The username specified is already taken! Please choose another.');
-                } else {
-                    $user = new Users;
-                    $userDetails = new CustomerContactDetails;
-                    $userAddress = new CustomerAddress;
-                    $user->attributes = $frm->attributes;
-                    $user->title = 1;
-                    $user->priv = 10;
-                    // $user->active = 1;
-                    $user->created = time();
-                    //$user->password = \CPasswordHelper::hashPassword($user->password);
-                    $user->middlename=($frm->middlename=='')?(null):($frm->middlename);
-                    $user->title = 1;
-                    $userDetails->attributes = $frm->attributes;
+                if($form->submitted() && $form->validate()) {
 
-                    $emailExists = CustomerContactDetails::model()->findAllByAttributes(array('email' => $frm->email));
+                    $frm = $form->model;
+                    $user = Users::model()->findAllByAttributes(array('username' => $frm->username));
 
-                    if ($emailExists){
-                        $frm->addError('email','Email already taken by another user');
-                    }
+                    if($user)
+                        $frm->addError('username', 'The username specified is already taken! Please choose another.');
+                    else {
+                        $user = new Users;
+                        $userDetails = new CustomerContactDetails;
+                        $userAddress = new CustomerAddress;
+                        $user->attributes = $frm->attributes;
+                        $user->title = 1;
+                        $user->priv = 10;
+                        // $user->active = 1;
+                        $user->created = time();
+                        //$user->password = \CPasswordHelper::hashPassword($user->password);
+                        $user->middlename=($frm->middlename=='')?(null):($frm->middlename);
+                        $user->title = 1;
+                        $userDetails->attributes = $frm->attributes;
 
-                    $mobileExists = CustomerContactDetails::model()->findAllByAttributes(array('mobile' => $userDetails->mobile));
+                        $emailExists = CustomerContactDetails::model()->findAllByAttributes(array('email' => $frm->email));
 
-                    if ($mobileExists){
-                        $frm->addError('mobile','Mobile number already taken by another user');
-                    }
+                        if ($emailExists)
+                            $frm->addError('email','Email already taken by another user');
 
-                    $userAddress->attributes = $form->model->attributes;
+                        $mobileExists = CustomerContactDetails::model()->findAllByAttributes(array('mobile' => $userDetails->mobile));
 
-                    if (empty($frm->errors)){
-                    	if ($user->save()){
-                    		$userDetails->customerId = $userAddress->customerId=$user->id;
-                    		$userDetails->save();
-                    		$userAddress->save();
-                            Yii::app()->user->setFlash('registerSuccess','Registered successfully.');
-                            $this->redirect('device/regDev');
-                    	}
+                        if ($mobileExists)
+                            $frm->addError('mobile','Mobile number already taken by another user');
+
+                        $userAddress->attributes = $form->model->attributes;
+                        
+                        if (empty($frm->errors)){
+                        	if ($user->save()){
+                        		$userDetails->customerId = $userAddress->customerId=$user->id;
+                        		$userDetails->save();
+                        		$userAddress->save();
+
+                                $this->identity = new UserIdentity($form->model->username, $form->model->password);
+
+                                if($this->identity->authenticate()) {
+                                    Yii::app()->user->login($this->identity);
+                                    $this->redirect(array('device/regDevice'));
+                                }
+                                Yii::app()->user->setFlash('registerSuccess','Registered successfully.');
+                                $this->redirect('device/regDev');
+                        	}
+                        }
                     }
                 }
             }
-        }
-        else {
-            $this->redirect(array('/home'));
-        }
-			$this->render('register',array('form'=>$form));
+            else 
+                $this->redirect(array('/home'));
+
+        $this->render('register',array('form'=>$form));
+
 		}
         
         public function actionchangePass(){
+
             $form = new Form ('application.forms.changePass', new ChangePass);
             $user = Users::model()->findByPk(Yii::app()->user->id);
+
             if ($user){
                 if ($form->submitted() && $form->validate()){
+
                     $frm = $form->model;
+
                     if ($user->password($frm->old_pass) && $frm->password == $frm->rep_pass){
                         $user->password = $frm->password;
                         // $user->password = \CPasswordHelper::hashPassword($frm->password);

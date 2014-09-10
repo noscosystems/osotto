@@ -20,6 +20,7 @@ use \application\components\ActiveRecord;
  * @property integer $created
  * @property integer $active
  * @property integer $priv
+ * @property integer $optIn
  *
  * The followings are the available model relations:
  * @property CustomerAddress[] $customerAddresses
@@ -45,13 +46,14 @@ class Users extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('firstname, lastname, ageGroup, username, password, created, priv, active', 'required'),
-			array('title, ageGroup, created, active, priv', 'numerical', 'integerOnly'=>true),
+			array('firstname, lastname, ageGroup, username, password, created, priv', 'required'),
+			array('title, ageGroup, created, priv', 'numerical', 'integerOnly'=>true),
+			array('active, optIn', 'boolean'),
 			array('firstname, middlename, lastname, username', 'length', 'max'=>36),
 			array('password', 'length', 'max'=>64),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, firstname, middlename, lastname, ageGroup, username, password, created, active, priv', 'safe', 'on'=>'search'),
+			array('id, title, firstname, middlename, lastname, ageGroup, username, password, created, active, priv, optIn', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,6 +89,7 @@ class Users extends ActiveRecord
 			'created' => 'Created',
 			'active' => 'Active',
 			'priv' => 'Priv',
+			'optIn' => 'Opt In',
 		);
 	}
 
@@ -119,6 +122,7 @@ class Users extends ActiveRecord
 		$criteria->compare('created',$this->created);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('priv',$this->priv);
+		$criteria->compare('optIn',$this->optIn);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -135,7 +139,6 @@ class Users extends ActiveRecord
 	{
 		return parent::model($className);
 	}
-
 
 	public function __set($property, $value)
     {
@@ -158,5 +161,4 @@ class Users extends ActiveRecord
     {
         return \CPasswordHelper::hashPassword($password);
     }
-
 }

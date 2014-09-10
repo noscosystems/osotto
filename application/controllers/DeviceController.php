@@ -11,7 +11,7 @@
     
 class DeviceController extends Controller
 {
-	public function actionRegDevice()
+	public function actionregDevice()
 	{
 		if (Yii::app()->user->isGuest)
 			$this->redirect(array('device/notregistered'));
@@ -24,17 +24,16 @@ class DeviceController extends Controller
 				$reg->attributes = $form->model->attributes;
 				$reg->customerId=Yii::app()->user->id;
 				$reg->dateRegistered = time("Today");
-				if($reg->date_purchased > time("Now")){
+
+				if($reg->date_purchased > time("Now"))
 					$frm->addError('dateInvalid','Purchase date can not be past today\'s date!');
-				}
-				if (empty($reg->errors) && empty($frm->errors)){
+				if (empty($reg->errors) && empty($frm->errors))
 					($reg->save())?(Yii::app()->user->setFlash('regDevSuccess','Registered device successfully')):'';
-				}
 			}
 
 			$frm->date_purchased = date("m/d/Y");
 		}
-		$this->render('regDevice',array ('form'=>$form ));
+		$this->render('regDevice',array ('form' => $form ));
 	}
 
 	public function actionnotregistered(){

@@ -86,6 +86,10 @@
                 'type' => 'text',
                 'maxlength' => 255,
                 'hint' => Yii::t('application', 'Please enter your date of birth; it is case-sensitive.'),
+            ),
+            'optIn' => array(
+                'type' => 'checkbox'
+                // 'hint' => Yii::t('application', 'Please enter your date of birth; it is case-sensitive.'),
             )
         ),
 

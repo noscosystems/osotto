@@ -137,9 +137,9 @@
             $this->render('delImg');
         }
 
-        public function actiondelPdf()
+        public function actionaddPdf()
         {
-            $this->renderPartial('delPdf');
+            $this->renderPartial('addPdf');
         }
 
         public function actionaddProductCategorie()

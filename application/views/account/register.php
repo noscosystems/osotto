@@ -128,6 +128,14 @@ if($widget->errorSummary($form)){
 </div>
 <br>
 <div class="row">
+    <div class="col-sm-3 control-label">News and upates</div>
+    <div class="col-sm-6">
+        <?php echo $widget->input($form, 'optIn', array('class' => '', 'checked' => true) ); ?>
+        Please send me information about updates and new products
+    </div>
+</div>
+<br>
+<div class="row">
     <div class="col-sm-2 col-sm-offset-3">
         <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-lg btn-success') ); ?>
     </div>

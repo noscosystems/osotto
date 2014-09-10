@@ -38,9 +38,9 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
         </title>
 
         <script>
-        $(document).ready function(){
+        $(document).ready( function(){
             $("#image-cycle").carousel();
-        }
+        })
         </script>
     </head>
 
@@ -84,6 +84,8 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
+
+            <div style="height:20px;"></div>
 
             <br />
 

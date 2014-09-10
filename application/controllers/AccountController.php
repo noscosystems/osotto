@@ -65,10 +65,9 @@
 
                                 if($this->identity->authenticate()) {
                                     Yii::app()->user->login($this->identity);
+                                    Yii::app()->user->setFlash('registerSuccess','Registered successfully.');
                                     $this->redirect(array('device/regDevice'));
                                 }
-                                Yii::app()->user->setFlash('registerSuccess','Registered successfully.');
-                                $this->redirect('device/regDev');
                         	}
                         }
                     }

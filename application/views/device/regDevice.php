@@ -8,14 +8,14 @@ $widget = $form->activeFormWidget;
 <div class="page-header">
     <h1>Product registration <small>Please enter your product's details</small></h1>
 </div>
-
+<?php /*******************************************************************************************************
 <?php if(Yii::app()->user->hasFlash('registerSuccess')): ?>
-    <div class="alert alert-success">
+    <div class="alert alert-success" id="alert">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <?php echo Yii::app()->user->getFlash('registerSuccess'); ?>
     </div>
 <?php endif; ?>
-
+*******************************************************************************************************/?>
 <?php if(Yii::app()->user->hasFlash('regDevSuccess')): ?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -87,6 +87,13 @@ if($widget->errorSummary($form)){
     $(function() {
         $( "#application_models_form_RegDev_date_purchased" ).datepicker();
     });
+
+    // $(function(){
+    //     $('#alert').fadeOut(4250,
+    //           function (){
+    //              $('#alert').remove();
+    //           });
+    // });
 
     var myButton = document.getElementById('application_models_form_RegDev_type');
     var mySelect = document.getElementById('application_models_form_RegDev_productId');

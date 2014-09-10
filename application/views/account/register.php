@@ -9,13 +9,6 @@ $widget = $form->activeFormWidget;
     <h1>Register <small>Please enter your information</small></h1>
 </div>
 
-<?php if(Yii::app()->user->hasFlash('registerSuccess')): ?>
-    <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo Yii::app()->user->getFlash('registerSuccess'); ?>
-    </div>
-<?php endif; ?>
-
 <?php
 if($widget->errorSummary($form)){
     echo '<div class="alert alert-danger">' . $widget->errorSummary($form) . '</div>';

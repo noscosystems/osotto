@@ -12,8 +12,31 @@
 class HomeController extends Controller
 {
 	public function actionIndex()
+	{		$this->render('index');
+	}
+
+	public function actionContact()
 	{
-		$this->render('index');
+		$form = New Form('application.forms.enquiry', New Enquiry);
+		$frm = $form->model;
+
+		if ($form->submitted() && $form->validate()){
+			$phNumber = ($frm->phNumber!='')?("\nMy callback number is: ".$frm->phNumber):('');
+			$Name = "Admin_Is_MyName"; //senders name
+			$email = $frm->emailFrom; //senders e-mail adress
+			$recipient = 'sales@osotto.co.uk'; //recipient
+			$mail_body = $frm->msgText.$phNumber;
+			$subject = $frm->subject;
+			$head = 'From:'.$email;
+
+			$mailToBeSent = mail($recipient, $subject, $mail_body,$head);
+			if($mailToBeSent)
+			  	Yii::app()->user->setFlash('Sent', 'A code has been sent to you to restore your password.');
+			else
+				Yii::app()->user->setFlash('Try again','Try again.');
+
+		}
+		$this->render('contact', array('form'=>$form));
 	}
 
 	// Uncomment the following methods and override them if needed

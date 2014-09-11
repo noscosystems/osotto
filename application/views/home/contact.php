@@ -15,6 +15,12 @@
     	<?php echo $widget->errorSummary($form); ?>
     </div>
 <?php endif;?>
+<?php if(Yii::app()->user->hasFlash('Sent')): ?>
+    <div class="alert alert-danger">
+    	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    	<?php echo Yii::app()->user->getFlash('Sent'); ?>
+    </div>
+<?php endif;?>
 <br>
 <div class="row">
     <div class="col-sm-3 control-label">Enter your email:</div>

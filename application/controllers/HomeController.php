@@ -24,12 +24,14 @@ class HomeController extends Controller
 			$phNumber = ($frm->phNumber!='')?("\nMy callback number is: ".$frm->phNumber):('');
 			$Name = "Admin_Is_MyName"; //senders name
 			$email = $frm->emailFrom; //senders e-mail adress
-			$recipient = 'sales@osotto.co.uk'; //recipient
-			$mail_body = $frm->msgText.$phNumber;
+			$recipient = 'clive.dann@googlemail.com'; //recipient
+			$mail_body = (string)$frm->msgText.$phNumber;
 			$subject = $frm->subject;
 			$head = 'From:'.$email;
 
 			$mailToBeSent = mail($recipient, $subject, $mail_body,$head);
+			// var_dump($mailToBeSent);
+			// exit;
 			if($mailToBeSent)
 			  	Yii::app()->user->setFlash('Sent', 'A code has been sent to you to restore your password.');
 			else

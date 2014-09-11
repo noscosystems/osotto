@@ -19,25 +19,27 @@
         <div class="row features">
             <?php $i = 0; ?>
             <?php foreach($category->Products as $product): ?>
-                <?php $i++; ?>
-                <?php if($i > 0 && $i % 3 == 1): ?>
-                    </div><div class="row features">
-                <?php endif; ?>
-                <a href="<?php echo Yii::app()->urlManager->baseUrl; ?>/product/view?id=<?php echo $product->id; ?>">
-                    <div class="feature col-xs-12 col-sm-4" style="height:300px; background:#CCC ">
-                        <?php if($product->Images && isset($product->Images[0]) && $image = $product->Images[0]): ?>
-                            <?php if(file_exists($image->url)): ?>
-                                <?php echo CHtml::image(Yii::app()->assetManager->publish($image->url), 'Product Image', array('class' => 'img-responsive')); ?>
+                <?php if($product->active): ?>
+                    <?php $i++; ?>
+                    <?php if($i > 0 && $i % 3 == 1): ?>
+                        </div><div class="row features">
+                    <?php endif; ?>
+                    <a href="<?php echo Yii::app()->urlManager->baseUrl; ?>/product/view?id=<?php echo $product->id; ?>">
+                        <div class="feature col-xs-12 col-sm-4" style="height:300px; background:#CCC ">
+                            <?php if($product->Images && isset($product->Images[0]) && $image = $product->Images[0]): ?>
+                                <?php if(file_exists($image->url)): ?>
+                                    <?php echo CHtml::image(Yii::app()->assetManager->publish($image->url), 'Product Image', array('class' => 'img-responsive')); ?>
+                                <?php endif; ?>
                             <?php endif; ?>
-                        <?php endif; ?>
-                        <div class="caption">
-                            <?php echo CHtml::encode(ucwords(strtolower($product->name))); ?>
+                            <div class="caption">
+                                <?php echo CHtml::encode(ucwords(strtolower($product->name))); ?>
+                            </div>
+                            <div class="description-hover">
+                                <?php echo CHtml::encode(ucfirst($product->short_desc)); ?>
+                            </div>
                         </div>
-                        <div class="description-hover">
-                            <?php echo CHtml::encode(ucfirst($product->short_desc)); ?>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
     <?php else: ?>

@@ -23,10 +23,27 @@ class ProductController extends Controller
         $this->renderPartial('sendArray'/*, array('send' => $send)*/);
     }
 
+    // Depricated (Use actionView)
     public function actionviewProduct($id){
         $product = Product::model()->findByPk($id);
         $imgs = $product->productImages;
         $this->renderPartial('viewProduct', array('imgs' => $imgs) );//($product)?(array('product' => $product)):(null));
+    }
+
+    public function actionView($id)
+    {
+        $product = \application\models\db\Product::model()->findByPk($id);
+
+        if(!$product)
+            throw new \CHttpException(400, 'Could not find a product with the ID specified');
+
+        $variables = array(
+            'product' => $product
+        );
+
+        Yii::app()->request->isAjaxRequest
+        ? $this->renderPartial('view', $variables)
+        : $this->render('view', $variables);
     }
 }
 ?>

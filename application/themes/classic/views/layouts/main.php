@@ -75,25 +75,25 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><?php // echo CHtml::link('Home', array('/home')); ?></li>
                             <li><?php // echo CHtml::link('Products', array('/product')); ?></li>
                             <li><?php // echo CHtml::link('Contact', '#ContactUs'); ?></li>
                             <li><?php // echo CHtml::link('About Us', '#AboutUs'); ?></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+                            <li><?php echo CHtml::link('Home', array('/home')); ?></li>
                             <?php if(Yii::app()->user->isGuest): ?>
                                 <li><?php echo CHtml::link('Register Device', array('/device/regDevice')); ?></li>
                                 <li><?php echo CHtml::link('Register', array('/account/register')); ?></li>
                                 <li><?php echo CHtml::link('Login', array('/login')); ?></li>
                             <?php elseif(Yii::app()->user->priv >= 10): ?>
-                                <li><?php echo CHtml::link('Register a Device', array('/device/regDevice')); ?></li>
+                                <li><?php echo CHtml::link('Register Device', array('/device/regDevice')); ?></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <?php if(Yii::app()->user->priv >= 50): ?>
                                             <li><?php echo CHtml::link('Admin', array('/admin/default/index')); ?></li>
                                         <?php endif; ?>
-                                        <li><?php echo CHtml::link('Settings', array('/account/settings')); ?></li>
+                                        <li><?php echo CHtml::link('Change password', array('/account/changePass')); ?></li>
                                         <li class="divider"></li>
                                         <li><?php echo CHtml::link('Logout', array('/account/logout')); ?></li>
                                     </ul>

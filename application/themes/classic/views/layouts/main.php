@@ -107,12 +107,7 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
 
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 col-xs-12" style="padding: 0px;">
-                    <?php if($this->id == 'home' && $this->action->id == 'index'): ?>
-
-                    <?php else: ?>
-                        <div class="container">
-                            <br /><br />
-                    <?php endif; ?>
+                   <div class="container-fluid" style="margin:0px; padding:0px; width:100%;">
                     <?php if(Yii::app()->user->hasFlash('success')): ?>
                         <br />
                         <div class="row">
@@ -128,12 +123,7 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
 
                     <div class="clear"></div>
 
-                    <?php if($this->id == 'home' && $this->action->id == 'index'): ?>
-
-                    <?php else: ?>
-                        <br /><br />
-                        </div>
-                    <?php endif; ?>
+                    </div>
                 </div>
             </div>
                 

@@ -16,9 +16,15 @@
     </div>
 <?php endif;?>
 <?php if(Yii::app()->user->hasFlash('Sent')): ?>
-    <div class="alert alert-danger">
+    <div class="alert alert-success">
     	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     	<?php echo Yii::app()->user->getFlash('Sent'); ?>
+    </div>
+<?php endif;?>
+<?php if(Yii::app()->user->hasFlash('Try again')): ?>
+    <div class="alert alert-success">
+    	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    	<?php echo Yii::app()->user->getFlash('Try again'); ?>
     </div>
 <?php endif;?>
 <br>

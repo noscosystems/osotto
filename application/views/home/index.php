@@ -4,10 +4,11 @@
     $this->breadcrumbs=array(
         'Home',
     );
+
+    $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/assets');
 ?>
-    <?php $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/assets'); ?>
     <div class="container-fluid" style="margin:0px; padding:0px; width:100%;">
-        <div style="height:400px; overflow:hidden; z-index:100;" id="image-cycle" class="carousel slide" data-ride="carousel" data-interval="4000" data-wrap="true">
+        <div style="height:60%; overflow:hidden; z-index:100;" id="image-cycle" class="carousel slide" data-ride="carousel" data-interval="4000" data-wrap="true">
             <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#image-cycle" data-slide-to="0" class="active"></li>
@@ -17,25 +18,25 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="<?php echo $assetUrl; ?>/images/carousel-bg-red-black-white.png" style="height:400px; width:100%" class="img-responsive">
+                    <img src="<?php echo $assetUrl; ?>/images/carousel-bg-red-black-white.png" style="height:auto; width:100%" class="img-responsive">
                     <div class="carousel-caption text-center">
                         <center>
-                            <?php echo CHtml::image($assetUrl . '/images/logo-small-white.png', 'alt', array('class' => 'img-responsive')); ?>
+                            <?php echo CHtml::image($assetUrl . '/images/logo-small-white.png', 'alt', array('class' => 'img-responsive', 'style' => 'width:60%; height:auto;')); ?>
                         </center>
-                        <div class="hidden-xs"><br /><br /><br /></div>
+                        <div class="hidden-xs"><br /><br /></div>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="<?php echo $assetUrl; ?>/images/happy-family.png" style="height:400px; width:100%" class="img-responsive">
+                    <img src="<?php echo $assetUrl; ?>/images/happy-family.png" style="height:auto; width:100%" class="img-responsive">
                     <div class="carousel-caption" style="left:10%">
-                        <div class="row">
+                        <div class="row" style="top:0">
                             <div class="col-xs-12 text-left">
                                 <span class="text-very-dark font-opensans text-large">Meet your soulmate...</span>
                                 <br />
                                 <span class="text-very-dark font-opensans text-medium">Beautiful, Intelligent and Amazing.</span>
                             </div>
                         </div>
-                        <div class="hidden-xs"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
+                        <div class="hidden-xs"><br /><br /><br /><br /><br /><br /><br /><br /></div>
                     </div>
                 </div>
             </div>

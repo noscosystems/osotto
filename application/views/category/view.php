@@ -10,9 +10,14 @@
 <br />
 
 <?php if($category->Products): ?>
-    <?php foreach($category->Products as $product): ?>
-        <?php var_dump($product); ?>
-    <?php endforeach; ?>
+    <div class="row">
+        <?php foreach($category->Products as $product): ?>
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <?php echo CHtml::encode(ucwords(strtolower($product->name))); ?>
+                <br /><br /><br />
+            </div>
+        <?php endforeach; ?>
+    </div>
 <?php else: ?>
     <div class="jumbotron">
         <div class="container">

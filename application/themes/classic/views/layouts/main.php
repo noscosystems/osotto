@@ -3,17 +3,16 @@
 * @var Controller $this
 */
 $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/assets');
+$bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twbs.bootstrap.dist'));
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <meta charset="utf8" />
-        <?php
-        $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twbs.bootstrap.dist'));
-        ?>
         <!-- Scale the UI dependant on device via TWBS -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <!-- Meta tags -->
         <meta name="description" content="Tablets, HiFi Speakers and Soundbars, available from Osotto. A UK Based company focused on providing customers with high quality products for an amazing price.">
         <meta name="keywords" content="tablet,hifi,speaker,soundbar,selling,buying,android,linux,bluetooth,7.1,surround,sound">
         <meta name="robot" content="index,follow">
@@ -80,10 +79,8 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                             <li><?php // echo CHtml::link('About Us', '#AboutUs'); ?></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><?php echo CHtml::link('Home', array('/home')); ?></li>
                             <?php if(Yii::app()->user->isGuest): ?>
                                 <li><?php echo CHtml::link('Register Device', array('/device/regDevice')); ?></li>
-                                <li><?php echo CHtml::link('Register', array('/account/register')); ?></li>
                                 <li><?php echo CHtml::link('Login', array('/login')); ?></li>
                             <?php elseif(Yii::app()->user->priv >= 10): ?>
                                 <li><?php echo CHtml::link('Register Device', array('/device/regDevice')); ?></li>

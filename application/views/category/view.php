@@ -4,7 +4,7 @@
 <div class="container-fluid" style="margin:0px; padding:0px; width:100%;">
     <div class="row features">
         <div class="feature col-xs-12" style="height:200px; background:#CCC">
-            <?php echo CHtml::image($category->catImg, 'Category Image', array('class' => 'img-responsive')); ?>
+            <?php echo CHtml::image(Yii::app()->assetManager->publish($category->catImg), 'Category Image', array('class' => 'img-responsive')); ?>
             <div class="caption">
                 <?php echo CHtml::encode($category->name); ?>'s
             </div>

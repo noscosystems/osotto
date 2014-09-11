@@ -32,7 +32,7 @@ class HomeController extends Controller
 			$mailToBeSent = mail($recipient, $subject, $mail_body,$head);
 
 			if($mailToBeSent)
-			  	Yii::app()->user->setFlash('Sent', 'A code has been sent to you to restore your password.');
+			  	Yii::app()->user->setFlash('Sent', 'Your enquiry has been sent.');
 			else
 				Yii::app()->user->setFlash('Try again','Try again.');
 

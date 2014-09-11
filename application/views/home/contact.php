@@ -50,7 +50,7 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-3 control-label">Enter description for device:</div>
+    <div class="col-sm-3 control-label">Enter your enquiry here:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'msgText', array('class' => 'form-control textarea') ); ?>
     </div>

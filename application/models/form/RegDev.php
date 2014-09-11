@@ -14,7 +14,7 @@
         public function rules()
         {
             return array(
-                array('productId, serial_number, type', 'required'),
+                array('productId, type', 'required'),
                 array('productId', 'numerical', 'integerOnly'=>true),
                 array('serial_number', 'length', 'max'=>50),
                 array('MAC', 'length', 'max'=>12),

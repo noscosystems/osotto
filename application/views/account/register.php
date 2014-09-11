@@ -79,16 +79,16 @@ if($widget->errorSummary($form)){
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-3 control-label">Country</div>
+    <div class="col-sm-3 control-label">Addressline 1</div>
     <div class="col-sm-6">
-        <?php echo $widget->input($form, 'country', array('class' => 'form-control') ); ?>
+        <?php echo $widget->input($form, 'address1', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <br>
 <div class="row">
-    <div class="col-sm-3 control-label">County</div>
+    <div class="col-sm-3 control-label">Addressline2</div>
     <div class="col-sm-6">
-        <?php echo $widget->input($form, 'county', array('class' => 'form-control') ); ?>
+        <?php echo $widget->input($form, 'address2', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <br>
@@ -100,23 +100,23 @@ if($widget->errorSummary($form)){
 </div>
 <br>
 <div class="row">
+    <div class="col-sm-3 control-label">County</div>
+    <div class="col-sm-6">
+        <?php echo $widget->input($form, 'county', array('class' => 'form-control') ); ?>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-3 control-label">Country</div>
+    <div class="col-sm-6">
+        <?php echo $widget->input($form, 'country', array('class' => 'form-control') ); ?>
+    </div>
+</div>
+<br>
+<div class="row">
     <div class="col-sm-3 control-label">Postcode</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'postcode', array('class' => 'form-control') ); ?>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-3 control-label">Addressline 1</div>
-    <div class="col-sm-6">
-        <?php echo $widget->input($form, 'address1', array('class' => 'form-control') ); ?>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-3 control-label">Addressline2</div>
-    <div class="col-sm-6">
-        <?php echo $widget->input($form, 'address2', array('class' => 'form-control') ); ?>
     </div>
 </div>
 <br>

@@ -21,10 +21,11 @@
 
 			if (Yii::app()->user->isGuest){
                 $form = new Form('application.forms.register', new Register);
+                $frm = $form->model;
+                $frm->country = 'UK';
 
                 if($form->submitted() && $form->validate()) {
 
-                    $frm = $form->model;
                     $user = Users::model()->findAllByAttributes(array('username' => $frm->username));
 
                     if($user)
@@ -63,7 +64,7 @@
 
                                 $this->identity = new UserIdentity($form->model->username, $form->model->password);
 
-                                if($this->identity->authenticate()) {
+                                if($this->identity->authenticate()){
                                     Yii::app()->user->login($this->identity);
                                     Yii::app()->user->setFlash('registerSuccess','Registered successfully.');
                                     $this->redirect(array('device/regDevice'));

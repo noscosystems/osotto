@@ -24,7 +24,7 @@
                 <a href="<?php echo Yii::app()->urlManager->baseUrl; ?>/product/view?id=<?php echo $product->id; ?>">
                     <div class="feature col-xs-12 col-sm-4" style="height:300px; background:#CCC">
                         <?php if($product->Images && isset($product->Images[0]) && $image = $product->Images[0]): ?>
-                            <?php echo CHtml::image($image->url, 'Product Image', array('class' => 'img-responsive')); ?>
+                            <?php echo CHtml::image(Yii::app()->assetManager->publish($image->url), 'Product Image', array('class' => 'img-responsive')); ?>
                         <?php endif; ?>
                         <div class="caption">
                             <?php echo CHtml::encode(ucwords(strtolower($product->name))); ?>

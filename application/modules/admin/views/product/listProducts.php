@@ -53,7 +53,7 @@
     </thead>
     <tbody>
         <?php foreach($products as $v): ?>
-            <tr>
+            <tr <?php if(!$v->active) echo 'class="danger"'; ?>>
                 <td><?php echo $v->name; ?></td>
                 <td><?php echo CHtml::link('Add new pdf', array('/admin/product/addPdf', 'id' => $v->pdf->id ),array('class' => 'btn btn-xs btn-danger', 'title' => 'Click to delete pdf.')); ?></td>
                 <td><?php echo CHtml::link('Add/Delete images', array('/admin/product/ImgUpl', 'id' => $v->id ),array('class' => 'btn btn-xs btn-primary', 'title' => 'Click to add/delete images.')); ?></td>

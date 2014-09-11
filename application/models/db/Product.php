@@ -63,13 +63,13 @@ class Product extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'categorie' 	=> array(self::BELONGS_TO, '\\application\\models\\db\\ProductCategories', 'id'),
+			'categorie' 	=> array(self::BELONGS_TO, '\\application\\models\\db\\ProductCategories', 'catId'),
 			'pdf' 			=> array(self::HAS_ONE, '\\application\\models\\db\\Pdf', 'productId'),
 			'productImages' => array(self::HAS_MANY, '\\application\\models\\db\\ProductImages', 'productId'),
 			'registrations' => array(self::HAS_MANY, '\\application\\models\\db\\Registration', 'productId'),
 			
 			// Lukes Relations (Basically the same as above with correct naming patterns)
-			'Category' => array(self::BELONGS_TO, 	'\\application\\models\\db\\ProductCategories', 	'id'),
+			'Category' => array(self::BELONGS_TO, 	'\\application\\models\\db\\ProductCategories', 	'catId'),
 			'PDF'      => array(self::HAS_ONE, 		'\\application\\models\\db\\Pdf', 					'productId'),
 			'Images'   => array(self::HAS_MANY, 	'\\application\\models\\db\\ProductImages', 		'productId'),
 			'Devices'  => array(self::HAS_MANY, 	'\\application\\models\\db\\Registration', 			'productId'),

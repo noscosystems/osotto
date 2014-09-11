@@ -49,7 +49,7 @@ class ProductCategories extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'products' => array(self::HAS_MANY, 'Product', 'catId')
+			'Products' => array(self::HAS_MANY, '\\application\\models\\db\\Product', 'catId')
 		);
 	}
 

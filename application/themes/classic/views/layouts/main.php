@@ -76,10 +76,29 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
                         ?>
                     </div>
 
+                    <script>
+                    $(document).ready( function(){
+                        $(".dropdown-hover").hover( function(){
+                            $(this).parent().attr('class', 'dropdown open');
+                        }, function(){
+                            $(this).parent().attr('class', 'dropdown');
+                        })
+                    });
+                    </script>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><?php // echo CHtml::link('Products', array('/product')); ?></li>
+                            <li class="dropdown">
+                                <?php echo CHtml::link('Products', '#', array('class' => 'dropdown-toggle dropdown-hover', 'data-toggle' => 'dropdown')); ?>
+                                <ul class="dropdown-menu" role="menu">
+                                    <?php $categories = \application\models\db\ProductCategories::model()->findAll(); ?>
+                                    <?php foreach($categories as $category): ?>
+                                        <li>
+                                            <?php echo CHtml::link($category->name, array('/category/view', 'id' => $category->id)); ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </li>
                             <li><?php // echo CHtml::link('Contact', '#ContactUs'); ?></li>
                             <li><?php // echo CHtml::link('About Us', '#AboutUs'); ?></li>
                         </ul>

@@ -84,7 +84,6 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
                             <li><?php // echo CHtml::link('About Us', '#AboutUs'); ?></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><?php echo CHtml::link('Home', array('/home')); ?></li>
                             <?php if(Yii::app()->user->isGuest): ?>
                                 <li><?php echo CHtml::link('Register Device', array('/device/regdevice')); ?></li>
                                 <li><?php echo CHtml::link('Login', array('/login')); ?></li>

@@ -35,7 +35,7 @@
             ),
             'model_number' => array(
                 'type' => 'text',
-                'maxlength' => 20,
+                'maxlength' => 255,
                 'hint' => Yii::t('application', 'Please fill in your device\'s model number.'),
             ),
             'short_desc' => array(
@@ -50,7 +50,7 @@
             ),
             'spec_brief' => array(
                 'type' => 'text',
-                'maxlength' => 36,
+                'maxlength' => 128,
                 'hint' => Yii::t('application', 'Please enter brief spec of your device.'),
             )
             

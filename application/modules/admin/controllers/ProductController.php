@@ -206,7 +206,7 @@
             $products = Product::model()->findAll($criteria);
 
             if ($form->submitted() && $form->validate())
-                $this->redirect(array('/admin/editProduct', 'name' => $form->model->search));
+                $this->redirect(array('/admin/product/editProduct', 'param' => $form->model->search));
 
             // ($form)?(array('form'=>$form)):null
 
@@ -219,7 +219,7 @@
             );
         }
 
-        public function actioneditProduct($id){
+        public function actioneditProduct($param){
             if(Yii::app()->user->isGuest)
                 $this->render('/login');
             else if (Yii::app()->user->priv >=50)
@@ -227,12 +227,24 @@
             else 
                 $this->redirect('/home');
 
+            //$product='';
+
+            if (preg_match('/^[0-9]$/',$param)){
+                $product = Product::model()->findByPk($param);
+            }
+            else if (preg_match('/^[0-9]||[A-z]$/',$param))
+                $product = Product::model()->findByAttributes(array('name' => $param));
+
             $frm = $form->model;
-            $product = Product::model()->findByPk($id);
             $frm->attributes = $product->attributes;
 
             if ($form->submitted() && $form->validate()){
 
+                $product->attributes = $frm->attributes;
+
+                if ($product->save()){
+                    Yii::app()->user->setFlash('editSuccess','Product editted successfully.');
+                }
             }
 
             $this->render('editProduct', array( 'form' => $form ));

@@ -36,6 +36,9 @@
 		<div class="col-sm-3">
 			<?php echo $widget->button($form, 'submit', array('class' => 'btn btn-xs btn-success') ); ?>
 		</div>
+		<div class="col-sm-3">
+			<?php echo CHtml::link('Finished', array('/home'), array('class'=> 'btn btn-xs btn-success')); ?>
+		</div>
 		<div class=" col-sm-offset-2 col-sm-12 help-block">
 			Allowed image types are: jpeg and png.
 		</div>

@@ -45,17 +45,12 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
         <link href="<?php echo $assetUrl; ?>/css/custom.css" rel="stylesheet" type="text/css" media="all" />
         <link href="<?php echo $assetUrl; ?>/css/main.css" rel="stylesheet" type="text/css" media="all" />
         <link href="<?php echo $assetUrl; ?>/css/form.css" rel="stylesheet" type="text/css" media="all" />
+        <script src="<?php echo $assetUrl; ?>/js/main.js"></script>
 
         <!-- Document Meta Title. -->
         <title>
             Osotto - Your High Tech Solutions
         </title>
-
-        <script>
-        $(document).ready( function(){
-            $("#image-cycle").carousel();
-        })
-        </script>
     </head>
 
     <body>
@@ -76,15 +71,6 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
                         ?>
                     </div>
 
-                    <script>
-                    $(document).ready( function(){
-                        $(".dropdown-hover").hover( function(){
-                            $(this).parent().attr('class', 'dropdown open');
-                        }, function(){
-                            $(this).parent().attr('class', 'dropdown');
-                        })
-                    });
-                    </script>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">

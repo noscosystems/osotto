@@ -12,6 +12,7 @@
     <ol class="carousel-indicators">
         <li data-target="#image-cycle" data-slide-to="0" class="active"></li>
         <li data-target="#image-cycle" data-slide-to="1"></li>
+        <li data-target="#image-cycle" data-slide-to="2"></li>
     </ol>
 
     <!-- Wrapper for slides -->
@@ -33,6 +34,17 @@
                         <span class="text-very-dark font-opensans text-large">Meet your soulmate...</span>
                         <br />
                         <span class="text-very-dark font-opensans text-medium">Beautiful, Intelligent and Amazing.</span>
+                    </div>
+                </div>
+                <div class="hidden-xs"><br /><br /><br /><br /><br /><br /><br /><br /></div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="<?php echo $assetUrl; ?>/images/carousel-happy-family.png" style="height:auto; width:100%" class="img-responsive">
+            <div class="carousel-caption" style="left:10%">
+                <div class="row" style="top:0">
+                    <div class="col-xs-12 text-center">
+                        <span class="text-white text-shadow-dark font-opensans text-large">Great Fun for the Family</span>
                     </div>
                 </div>
                 <div class="hidden-xs"><br /><br /><br /><br /><br /><br /><br /><br /></div>

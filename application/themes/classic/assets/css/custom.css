@@ -9,11 +9,17 @@
 .text-very-dark {
     color: #111;
 }
+.text-black {
+    color: #000;
+}
 .text-light {
     color: #ececec;
 }
 .text-very-light {
     color: #c2c2c2;
+}
+.text-white {
+    color: #fff;
 }
 .bg-dark {
     background: #363635;
@@ -31,10 +37,10 @@
     height: 3px;
 }
 .text-shadow-dark {
-    text-shadow: 2px 2px #444;
+    text-shadow: 1px 1px #444;
 }
 .text-shadow-light {
-    text-shadow: 2px 2px #999;
+    text-shadow: 1px 1px #999;
 }
 .text-caption-small {
     font-size: 1.5em;

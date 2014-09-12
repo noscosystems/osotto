@@ -44,7 +44,10 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>username</th><th>current privilige</th><th class="text-right">Link to edit page</th><th class="text-right">Delete user</th>
+            <th>username</th>
+            <th>current privilige</th>
+            <th class="text-right">Link to edit page</th>
+            <th class="text-right">Delete user</th>
         </tr>
     </thead>
     <tbody>
@@ -53,7 +56,7 @@
                 <td><?php echo $v->username; ?></td>
                 <td><?php echo $v->priv; ?></td>
                 <td class="text-right">
-                    <?php echo CHtml::link('Edit User', array('/admin/user/', 'id' => $v->id ),array('class' => 'btn btn-xs btn-warning', 'title' => 'Click to edit a user.')); ?>
+                    <?php echo CHtml::link('View/Edit User', array('/admin/account/EditUser', 'id' => $v->id ),array('class' => 'btn btn-xs btn-warning', 'title' => 'Click to edit a user.')); ?>
                 </td>
                 <td class="text-right">
                     <button value="<?php echo $v->id; ?>" class="btn btn-danger btn-xs" onclick="return send(this)">Inactive</button>

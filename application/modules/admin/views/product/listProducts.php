@@ -44,7 +44,7 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>username</th>
+            <th>name</th>
             <th>Delete Pdf</th>
             <th>Add/Delete image</th>
             <th class="text-right">Link to edit page</th>

@@ -35,11 +35,20 @@
                 })
             </script>
         </div>
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-sm-6" style="height:300px;">
             <?php if($product->Images): ?>
                 <?php if(isset($product->Images[0]) && $image = $product->Images[0]): ?>
                     <?php if(file_exists($image->url)): ?>
-                        <?php echo CHtml::image(Yii::app()->assetManager->publish($image->url), 'Product Image', array('class' => 'img-responsive')); ?>
+                        <?php 
+                        echo CHtml::image(
+                        Yii::app()->assetManager->publish($image->url), 
+                        'Product Image', 
+                        array(
+                            'class' => 'img-responsive', 
+                            'id' => 'imageMainProduct',
+                            'style' => 'height:100%;',
+                            )
+                        ); ?>
                     <?php endif; ?>
                 <?php endif; ?>
                 <?php if(count($product->Images) > 1): ?>
@@ -53,6 +62,7 @@
                                 'Product Image', 
                                 array(
                                     'class' => 'product-image img-responsive',
+                                    'style' => 'width:70px; height:70px; float:left; cursor:pointer;'
                                     )
                                 ); ?>
                             <?php endforeach; ?>
@@ -80,7 +90,6 @@
                                         'Product Image', 
                                         array(
                                             'class' => 'img-responsive',
-                                            'id' => 'imageMainProduct',
                                             )
                                         ); ?>
                                     <?php endif; ?>
@@ -108,6 +117,7 @@
     </div>
 <?php endif; ?>
 
+<br /><br /><br />
 <br /><br /><br />
 
 <script>

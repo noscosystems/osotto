@@ -73,37 +73,49 @@
             <?php endif; ?>
         </div>
     </div>
-    <?php if($product->Category->Products && count($product->Category->Products) > 1): ?>
+
+    <?php
+    $sql = "SELECT    `product`.*
+            FROM      `{{product}}`            AS `product`
+            WHERE     
+                    `product`.`id` != :id 
+                AND `product`.`catId` = :catID 
+                AND `product`.`active` = 1 
+            ORDER BY `product`.`featured` DESC 
+            LIMIT 4; 
+            ";
+    $relatedProducts = \application\models\db\Product::model()->findAllBySql($sql, array(
+        ':id' => $product->id,
+        ':catID' => $product->catId,
+    ));
+    ?>
+    <?php if($relatedProducts): ?>
         <div class="page-header">
             <h1>Related Products</h1>
             <div class="row features">
-                <?php $i = 0; ?>
-                <?php foreach($product->Category->Products as $related): ?>
-                    <?php if($related->active && $related->id != $product->id): ?>
-                        <?php $i++; if($i > 0 && $i % 4 == 0) break; ?>
-                        <a href="<?php echo Yii::app()->urlManager->baseUrl; ?>/product/view?id=<?php echo $related->id; ?>">
-                            <div class="feature col-xs-12 col-sm-4" style="height:300px; background:#CCC ">
-                                <?php if($related->Images && isset($related->Images[0]) && $image = $related->Images[0]): ?>
-                                    <?php if(file_exists($image->url)): ?>
-                                        <?php 
-                                        echo CHtml::image(
-                                        Yii::app()->assetManager->publish($image->url), 
-                                        'Product Image', 
-                                        array(
-                                            'class' => 'img-responsive',
-                                            )
-                                        ); ?>
-                                    <?php endif; ?>
+                <?php foreach($relatedProducts as $related): ?>
+                    <a href="<?php echo Yii::app()->urlManager->baseUrl; ?>/product/view?id=<?php echo $related->id; ?>">
+                        <div class="feature col-xs-12 col-sm-4" style="height:300px; background:#CCC ">
+                            <?php if($related->Images && isset($related->Images[0]) && $image = $related->Images[0]): ?>
+                                <?php if(file_exists($image->url)): ?>
+                                    <?php 
+                                    echo CHtml::image(
+                                    Yii::app()->assetManager->publish($image->url), 
+                                    'Product Image', 
+                                    array(
+                                        'class' => 'img-responsive',
+                                        )
+                                    ); ?>
                                 <?php endif; ?>
-                                <div class="caption">
-                                    <?php echo CHtml::encode(ucwords(strtolower($related->name))); ?>
-                                </div>
-                                <div class="description-hover">
-                                    <?php echo CHtml::encode(ucfirst($related->short_desc)); ?>
-                                </div>
+                            <?php endif; ?>
+                            <div class="caption">
+                                <?php echo CHtml::encode(ucwords(strtolower($related->name))); ?>
                             </div>
-                        </a>
-                    <?php endif; ?>
+                            <div class="description-hover">
+                                <?php echo CHtml::encode(ucfirst($related->short_desc)); ?>
+                            </div>
+                        </div>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </div>

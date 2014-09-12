@@ -13,7 +13,7 @@
     echo $form->renderBegin();
     $widget = $form->activeFormWidget;
 ?>
-
+<br /><br /><br />
 <fieldset>
 <?php if(isset($partial)) $formLength = 9; else $formLength = 6; ?>
     <div class="form-group <?php echo $widget->error($form, 'username') ? 'has-error' : ''; ?>">

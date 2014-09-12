@@ -7,7 +7,6 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf8" />
         <!-- Scale the UI dependant on device via TWBS -->
@@ -17,19 +16,22 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
         <meta name="keywords" content="tablet,hifi,speaker,soundbar,selling,buying,android,linux,bluetooth,7.1,surround,sound">
         <meta name="robot" content="index,follow">
         <meta name="copyright" content="Copyright &copy; 2014 Nosco Solutions Ltd. All Rights Reserved.">
-        <meta name="author" content="Nosco Solutions Ltd.">
+        <meta name="author" content="Nosco Management Solutions Ltd.">
         <meta name="language" content="English">
         <meta name="revisit-after" content="7">
         
-        <link rel="stylesheet" type="text/css" href="<?php echo $bootstrap; ?>/css/bootstrap.min.css" media="all" />
-        <!-- <link rel="stylesheet" type="text/css" href="<?php // echo Yii::app()->assetManager->publish(Yii::getPathOfAlias('themes.classic.assets') . '/css/styles.css'); ?>" media="all" /> -->
-        <script src="https://code.jquery.com/jquery.js"></script>
-        <!--<script type="text/javascript" src="<?php echo $bootstrap; ?>/js/jquery-1.11.1.js"></script>-->
-        <script src="<?php echo $bootstrap; ?>/js/bootstrap.min.js"></script>
-        <script src="<?php echo $bootstrap; ?>/js/galleria/galleria-1.3.6.min.js" type="text/javascript"></script>
-        <script src="<?php echo $bootstrap; ?>/js/galleria/plugins/flickr/galleria.flickr.min.js" type="text/javascript"></script>
-        <link href="<?php echo $bootstrap; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+        <!-- Load JQuery before everything -->
+        <script src="<?php echo $assetUrl; ?>/js/jq.1.11.1.min.js"></script>
 
+        <!-- Load All TWBS Components -->
+        <link rel="stylesheet" type="text/css" href="<?php echo $bootstrap; ?>/css/bootstrap.min.css" media="all" />
+        <link href="<?php echo $bootstrap; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+        <script src="<?php echo $bootstrap; ?>/js/bootstrap.min.js"></script>
+
+        <!--<script src="<?php echo $bootstrap; ?>/js/galleria/galleria-1.3.6.min.js" type="text/javascript"></script>-->
+        <!--<script src="<?php echo $bootstrap; ?>/js/galleria/plugins/flickr/galleria.flickr.min.js" type="text/javascript"></script>-->
+
+        <!-- Load Google Custom Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 
         <!-- Blueprint CSS Framework. -->
@@ -38,9 +40,12 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
         <!--[if lt IE 8]>
         <link href="<?php echo $assetUrl; ?>/css/ie.css" rel="stylesheet" type="text/css" media="screen, projection" />
         <![endif]-->
+
+        <!-- Custom Utils -->
         <link href="<?php echo $assetUrl; ?>/css/custom.css" rel="stylesheet" type="text/css" media="all" />
         <link href="<?php echo $assetUrl; ?>/css/main.css" rel="stylesheet" type="text/css" media="all" />
         <link href="<?php echo $assetUrl; ?>/css/form.css" rel="stylesheet" type="text/css" media="all" />
+
         <!-- Document Meta Title. -->
         <title>
             Osotto - Your High Tech Solutions

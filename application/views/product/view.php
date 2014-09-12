@@ -30,15 +30,34 @@
             </div>
 
             <script>
-              $(function () {
-                  $('#properties a:first').tab('show')
-              })
+                $(function () {
+                    $('#properties a:first').tab('show')
+                })
             </script>
         </div>
         <div class="col-xs-12 col-sm-6">
-            <?php if($product->Images && isset($product->Images[0]) && $image = $product->Images[0]): ?>
-                <?php if(file_exists($image->url)): ?>
-                    <?php echo CHtml::image(Yii::app()->assetManager->publish($image->url), 'Product Image', array('class' => 'img-responsive')); ?>
+            <?php if($product->Images): ?>
+                <?php if(isset($product->Images[0]) && $image = $product->Images[0]): ?>
+                    <?php if(file_exists($image->url)): ?>
+                        <?php echo CHtml::image(Yii::app()->assetManager->publish($image->url), 'Product Image', array('class' => 'img-responsive')); ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if(count($product->Images) > 1): ?>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <?php foreach($product->Images as $image): ?>
+                                <?php 
+                                echo CHtml::image(
+                                Yii::app()->assetManager->publish($image->url), 
+                                'Product Image', 
+                                array(
+                                    'class' => 'product-image img-responsive',
+                                    )
+                                ); ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                 <?php endif; ?>
             <?php endif; ?>
         </div>
@@ -55,7 +74,15 @@
                             <div class="feature col-xs-12 col-sm-4" style="height:300px; background:#CCC ">
                                 <?php if($related->Images && isset($related->Images[0]) && $image = $related->Images[0]): ?>
                                     <?php if(file_exists($image->url)): ?>
-                                        <?php echo CHtml::image(Yii::app()->assetManager->publish($image->url), 'Product Image', array('class' => 'img-responsive')); ?>
+                                        <?php 
+                                        echo CHtml::image(
+                                        Yii::app()->assetManager->publish($image->url), 
+                                        'Product Image', 
+                                        array(
+                                            'class' => 'img-responsive',
+                                            'id' => 'imageMainProduct',
+                                            )
+                                        ); ?>
                                     <?php endif; ?>
                                 <?php endif; ?>
                                 <div class="caption">
@@ -82,3 +109,12 @@
 <?php endif; ?>
 
 <br /><br /><br />
+
+<script>
+$(document).ready( function(){
+    $(".product-image").click( function(){
+        var src = $(this).attr('src');
+        $("#imageMainProduct").attr('src', src);
+    })
+})
+</script>

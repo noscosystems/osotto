@@ -117,33 +117,28 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
 
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 col-xs-12" style="padding: 0px;">
-                   <div class="container-fluid" style="margin:0px; padding:0px; width:100%;">
-                    <?php if(Yii::app()->user->hasFlash('success')): ?>
-                        <br />
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="alert alert-success">
-                                    <?php echo Yii::app()->user->getFlash('success'); ?>
+                    <div class="container-fluid" style="margin:0px; padding:0px; width:100%;">
+                        <?php if(Yii::app()->user->hasFlash('success')): ?>
+                            <br />
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="alert alert-success">
+                                        <?php echo Yii::app()->user->getFlash('success'); ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endif; ?>
+                        <?php endif; ?>
 
-                    <?php echo $content; ?>
-
-                    <div class="clear"></div>
-
+                        <?php echo $content; ?>
+                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
-                
-            <div class="row">
-                <div class="col-xs-12 text-center" style="width:100%; background:#333; color:#CCC; padding: 30px; bottom:0; left:0; position:relative;">
-                    <span class="font-opensans">
-                        Copyright &copy; <?php echo date("Y"); ?> <?php echo CHtml::link('Nosco Systems', 'http://www.noscosystems.com'); ?>. All rights reserved.
-                    </span>
-                </div>
-            </div>
+        </div>
+        <div class="col-xs-12 text-center font-opensans" style="width:100%; height:100%; background:#333; color:#CCC; padding:30px; bottom:0; left:0; position:relative;">
+            <span class="font-opensans">
+                Copyright &copy; <?php echo date("Y"); ?> <?php echo CHtml::link('Nosco Systems', 'http://www.noscosystems.com'); ?>. All rights reserved.
+            </span>
         </div>
 
         <script>

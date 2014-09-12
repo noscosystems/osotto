@@ -136,7 +136,7 @@ $widget = $form->activeFormWidget;
         <br>
         <div class="row">
             <div class="col-sm-2 col-sm-offset-3">
-                <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-lg btn-success') ); ?>
+                <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-success') ); ?>
             </div>
         </div>
         <?php echo $form->renderEnd(); ?>

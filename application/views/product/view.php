@@ -65,6 +65,7 @@
                                     'style' => 'width:70px; height:70px; float:left; cursor:pointer;'
                                     )
                                 ); ?>
+                                &nbsp;
                             <?php endforeach; ?>
                         </div>
                     </div>

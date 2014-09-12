@@ -61,7 +61,7 @@
 
 @media (max-width: 768px) {
     .text-large {
-    font-size: 24px;
+        font-size: 24px;
     }
     .text-medium-large {
         font-size: 18px;

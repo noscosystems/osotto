@@ -68,12 +68,8 @@
 				</div>
 			</div>
 			<!-- </td> -->
-
 		<?php endforeach; ?>
 		<!-- </tr> -->
-		<?php if ($k==0 || $k%3==0): ?>
-		</div>
-	<?php endif; ?>
 
 <style>
 

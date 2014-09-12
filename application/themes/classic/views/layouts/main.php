@@ -67,7 +67,7 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
                         </button>
                         <?php 
                         $imageLogo = CHtml::image($assetUrl . '/images/logo-inline.png', 'Logo');
-                        echo CHtml::link($imageLogo, array('/home'), array('class' => 'navbar-brand'))  ;
+                        echo CHtml::link($imageLogo, array('/home'), array('class' => 'navbar-brand', 'style' => 'padding:11px;'))  ;
                         ?>
                     </div>
 

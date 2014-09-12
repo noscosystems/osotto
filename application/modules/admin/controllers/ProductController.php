@@ -229,9 +229,8 @@
 
             //$product='';
 
-            if (preg_match('/^[0-9]$/',$param)){
+            if (preg_match('/^[0-9]$/',$param))
                 $product = Product::model()->findByPk($param);
-            }
             else if (preg_match('/^[0-9]||[A-z]$/',$param))
                 $product = Product::model()->findByAttributes(array('name' => $param));
 
@@ -242,9 +241,8 @@
 
                 $product->attributes = $frm->attributes;
 
-                if ($product->save()){
+                if ($product->save())
                     Yii::app()->user->setFlash('editSuccess','Product editted successfully.');
-                }
             }
 
             $this->render('editProduct', array( 'form' => $form ));

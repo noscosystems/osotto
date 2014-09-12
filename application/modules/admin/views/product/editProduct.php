@@ -26,7 +26,9 @@ if($widget->errorSummary($form)){
     <div class="col-sm-3 control-label">Enter device specs:</div>
     <div class="col-sm-6">
         <?php echo $widget->input($form, 'spec_brief', array('class' => 'form-control') ); ?>
+        <?php echo $widget->hint($form, 'spec_brief', 'div', array('class' => 'help-block')); ?>
     </div>
+
 </div>
 <br>
 <div class="row">

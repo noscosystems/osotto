@@ -55,8 +55,8 @@
             ),
             'spec_brief' => array(
                 'type' => 'text',
-                'maxlength' => 36,
-                'hint' => Yii::t('application', 'Please enter brief spec of your device.'),
+                'maxlength' => 128,
+                'hint' => Yii::t('application', 'Please enter brief (not more than 128 symbols) spec of your device.'),
             )
             
         ),

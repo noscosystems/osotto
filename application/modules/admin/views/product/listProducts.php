@@ -55,12 +55,7 @@
         <?php foreach($products as $v): ?>
             <tr <?php if(!$v->active) echo 'class="danger"'; ?>>
                 <td><?php echo $v->name; ?></td>
-                <td>
-                    <?php if($v->PDF): ?>
-                        <?php echo CHtml::link('Add new pdf', array('/admin/product/addPdf', 'id' => $v->PDF->id ),array('class' => 'btn btn-xs btn-danger', 'title' => 'Click to delete pdf.')); ?></td>
-                    <?php else: ?>
-                        <span class="label label-warning">No PDF</span>
-                    <?php endif; ?>
+                <td><?php echo CHtml::link('Add new pdf', array('/admin/product/addPdf', 'pdfId' => $v->pdf->id ),array('class' => 'btn btn-xs btn-danger', 'title' => 'Click to delete pdf.')); ?></td>
                 <td><?php echo CHtml::link('Add/Delete images', array('/admin/product/ImgUpl', 'id' => $v->id ),array('class' => 'btn btn-xs btn-primary', 'title' => 'Click to add/delete images.')); ?></td>
                 <td class="text-right">
                     <?php echo CHtml::link('Edit Product', array('/admin/product/editProduct', 'param' => $v->id ),array('class' => 'btn btn-xs btn-warning', 'title' => 'Click to edit a product.')); ?>

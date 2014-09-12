@@ -23,7 +23,7 @@
                 <center>
                     <?php echo CHtml::image($assetUrl . '/images/logo-small-white.png', 'alt', array('class' => 'img-responsive', 'style' => 'width:60%; height:auto;')); ?>
                 </center>
-                <div class="hidden-xs"><br /><br /></div>
+                <br /><br />
             </div>
         </div>
         <div class="item">
@@ -36,7 +36,7 @@
                         <span class="text-very-dark font-opensans text-medium">Beautiful, Intelligent and Amazing.</span>
                     </div>
                 </div>
-                <div class="hidden-xs"><br /><br /><br /><br /><br /><br /><br /><br /></div>
+                <br /><br /><br /><br /><br /><br /><br />
             </div>
         </div>
         <div class="item">
@@ -47,7 +47,7 @@
                         <span class="text-white text-shadow-dark font-opensans text-large">Great Fun for the Family</span>
                     </div>
                 </div>
-                <div class="hidden-xs"><br /><br /><br /><br /><br /><br /><br /><br /></div>
+                <br /><br /><br /><br /><br /><br /><br />
             </div>
         </div>
     </div>

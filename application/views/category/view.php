@@ -1,7 +1,6 @@
 <?php
     $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/assets');
-?>
-<div class="container-fluid" style="margin:0px; padding:0px; width:100%;">
+?>    
     <div class="row features">
         <div class="feature col-xs-12" style="height:200px; background:#CCC">
             <?php if($category->catImg && file_exists($category->catImg)): ?>
@@ -50,4 +49,3 @@
             </div>
         </div>
     <?php endif; ?>
-</div>

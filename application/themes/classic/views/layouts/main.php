@@ -111,7 +111,7 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
                 </div><!-- /.container-fluid -->
             </nav>
 
-            <div style="height:36px; width:100%"></div>
+            <div style="height:32px; width:100%"></div>
 
             <br />
 

@@ -54,7 +54,7 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
     </head>
 
     <body>
-        <div class="container-fluid">
+        <div class="container-fluid wrapper">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="col-md-10 col-md-offset-1 col-xs-12">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -134,8 +134,9 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
                     </div>
                 </div>
             </div>
+            <div style="height:80px; width:100%"></div>
         </div>
-        <div class="col-xs-12 text-center font-opensans" style="width:100%; height:100%; background:#333; color:#CCC; padding:30px; bottom:0; left:0; position:relative;">
+        <div class="col-xs-12 text-center font-opensans" style="width:100%; height:80px; background:#333; color:#CCC; padding:30px; position:relative;">
             <span class="font-opensans">
                 Copyright &copy; <?php echo date("Y"); ?> <?php echo CHtml::link('Nosco Systems', 'http://www.noscosystems.com'); ?>. All rights reserved.
             </span>

@@ -68,7 +68,7 @@
 
                     if ((bool)($userDetails->email)!=false){
 
-                        $tmpPass = md5(time());
+                        $user->password = $tmpPass = md5(time());
                         $Name = "Admin_Is_MyName"; //senders name
                         $email = "noreply@osotto.co.uk"; //senders e-mail adress
                         $recipient = $userDetails->email; //recipient
@@ -78,13 +78,13 @@
                         $head = 'From:'.$email;
 
                         $mailToBeSent = mail($recipient, $subject, $mail_body,$head);
-                        if ($mailToBeSent)
-                            Yii::app()->user->setFlash('Sent', 'A code has been sent to you to restore your password.');
-                        else
-                            Yii::app()->user->setFlash('Try again','Try again.');
+                        if ($user->save()){
+                            if ($mailToBeSent)
+                                Yii::app()->user->setFlash('Sent', 'A code has been sent to you to restore your password.');
+                            else
+                                Yii::app()->user->setFlash('Try again','Try again.');
+                        }
                     }
-                    $user->password = $tmpPass;
-                    $user->save();
                 }
 
             $this->render ('forgottenPassword', array ('form' => $form ));

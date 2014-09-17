@@ -15,9 +15,7 @@
         {
             return array(
                 array('old_pass, password, rep_pass', 'required'),
-                array('old_pass', 'length','min' => 5, 'max' => 64),
-                array('password', 'length','min' => 5, 'max' => 64),
-                array('rep_pass', 'length','min' => 5, 'max' => 64),
+                array('old_pass, password, rep_pass', 'length','min' => 5, 'max' => 64)
             );
         }
     }

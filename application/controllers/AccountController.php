@@ -21,7 +21,7 @@
         public function actionForgottenPasswordRestore($param1,$param2){
 
             (Yii::app()->user->isGuest)
-            ?($form = New Form('application.forms.changePass', new ChangePass))
+            ?($form = New Form('application.forms.setNewPassword', new SetNewPassword))
             :( $this->redirect ( array ('/home') ) );
 
                 $user = Users::model()->findByAttributes(array('password' => $param1, 'username' => $param2));

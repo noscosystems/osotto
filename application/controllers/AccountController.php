@@ -23,7 +23,9 @@
             (Yii::app()->user->isGuest)
             ?($form = New Form('application.forms.changePass', new ChangePass))
             :( $this->redirect ( array ('/home') ) );
-                $user = Users::model()->findByAttributes(array('password' => $param1, 'email' => $param2));
+
+                $user = Users::model()->findByAttributes(array('password' => $param1, 'username' => $param2));
+
             if ( $form->submitted() && $form->validate() ){
                 
                 $frm = $form->model;
@@ -59,7 +61,7 @@
                         $email = "noreply@osotto.co.uk"; //senders e-mail adress
                         $recipient = $userDetails->email; //recipient
                         $mail_body = "Password reset for www.osotto.co.uk. \n Follow this link and fill in the required fields: \n 
-                        http://www.noscobg.com/account/forgottenPasswordRestore?param1=".$tmpPass."&param2=".$recipient; //mail body
+                        http://osotto.co.uk/account/forgottenPasswordRestore?param1=".$tmpPass."&param2=".$user->username; //mail body
                         $subject = "Password reset."; //subject
                         $head = 'From:'.$email;
 

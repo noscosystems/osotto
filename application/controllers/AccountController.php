@@ -13,7 +13,7 @@
 	use \application\models\form\Register;
     use \application\models\form\ChangePass;
     use \application\models\form\ForgottenPassword;
-    use \application\models\form\SetNewPasswordPassword;
+    use \application\models\form\SetNewPassword;
 
 	class AccountController extends Controller{
 

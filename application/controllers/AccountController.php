@@ -27,7 +27,10 @@
 
                 $user = Users::model()->findByAttributes(array('password' => $param1, 'username' => $param2));
                 echo '<pre>';
-                var_dump($user);
+                var_dump($param1);
+                echo '</pre>';
+                echo '<br><pre>';
+                var_dump($param2);
                 echo '</pre>';
 
             if ( $form->submitted() && $form->validate() ){

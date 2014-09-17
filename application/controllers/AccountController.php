@@ -25,7 +25,6 @@
             ?($form = New Form('application.forms.setNewPassword', new SetNewPassword))
             :( $this->redirect ( array ('/home') ) );
 
-                $user = Users::model()->findByAttributes(array('password' => $param1, 'username' => $param2));
                 echo '<pre>';
                 var_dump($param1);
                 echo '</pre>';
@@ -35,6 +34,7 @@
 
             if ( $form->submitted() && $form->validate() ){
                 
+                $user = Users::model()->findByAttributes(array('password' => $param1, 'username' => $param2));
                 echo '<pre>';
                 var_dump($user);
                 echo '</pre>';

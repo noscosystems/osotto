@@ -68,7 +68,7 @@
 
                     if ((bool)($userDetails->email)!=false){
 
-                        $tmpPass = $user->setPassword(md5(time()));
+                        $tmpPass = md5(time());
                         $Name = "Admin_Is_MyName"; //senders name
                         $email = "noreply@osotto.co.uk"; //senders e-mail adress
                         $recipient = $userDetails->email; //recipient

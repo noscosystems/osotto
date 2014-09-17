@@ -35,18 +35,14 @@
             if ( $form->submitted() && $form->validate() ){
                 
                 $user = Users::model()->findByAttributes(array('password' => $param1, 'username' => $param2));
-                echo '<pre>';
-                var_dump($user);
-                echo '</pre>';
-                exit;
-
                 $frm = $form->model;
 
                 if ($user->password == $param1 && $frm->password == $frm->rep_pass){
 
                     $user->password = $frm->password;
-                    $user->save();
-                    Yii::app()->user->setFlash('pass', 'New password set successfully.');
+
+                    if ($user->save())
+                        Yii::app()->user->setFlash('pass', 'New password set successfully.');
                 }
             }
             $this->render('forgottenPasswordRestore', array ('form' => $form) );

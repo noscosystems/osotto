@@ -26,14 +26,22 @@
             :( $this->redirect ( array ('/home') ) );
 
                 $user = Users::model()->findByAttributes(array('password' => $param1, 'username' => $param2));
+                echo '<pre>';
+                var_dump($user);
+                echo '</pre>';
 
             if ( $form->submitted() && $form->validate() ){
                 
+                echo '<pre>';
+                var_dump($user);
+                echo '</pre>';
+                exit;
+
                 $frm = $form->model;
 
                 if ($user->password == $param1 && $frm->password == $frm->rep_pass){
 
-                    $user->password = Users::model()->_setPassword($frm->new_pass);
+                    $user->password = $frm->password;
                     $user->save();
                     Yii::app()->user->setFlash('pass', 'New password set successfully.');
                 }

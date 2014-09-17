@@ -1,5 +1,5 @@
 <?php $baseUrl = Yii::app()->baseUrl; ?>
-<meta http-equiv="refresh" content="3; url=<?php echo $baseUrl?>/osotto/public_html/admin/product/listProducts">
+<meta http-equiv="refresh" content="3; url=<?php echo $baseUrl?>/admin/product/listProducts">
 
 <?php
     /**

@@ -68,12 +68,12 @@
 
                     if ((bool)($userDetails->email)!=false){
 
-                        $user->password = $tmpPass = md5(time());
+                        $user->password = md5(time());
                         $Name = "Admin_Is_MyName"; //senders name
                         $email = "noreply@osotto.co.uk"; //senders e-mail adress
                         $recipient = $userDetails->email; //recipient
                         $mail_body = "Password reset for www.osotto.co.uk. \n Follow this link and fill in the required fields: \n 
-                        http://osotto.co.uk/account/forgottenPasswordRestore?param1=".$tmpPass."&param2=".$user->username; //mail body
+                        http://osotto.co.uk/account/forgottenPasswordRestore?param1=".$user->password."&param2=".$user->username; //mail body
                         $subject = "Password reset."; //subject
                         $head = 'From:'.$email;
 

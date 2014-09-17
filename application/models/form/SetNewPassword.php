@@ -6,7 +6,7 @@
     use \CException;
     use \application\components\FormModel;
 
-    class ChangePass extends FormModel
+    class SetNewPassword extends FormModel
     {
 
         public $password,$rep_pass;

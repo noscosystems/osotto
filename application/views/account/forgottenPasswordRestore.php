@@ -23,24 +23,27 @@
 <?php } ?>
 
 <br>
-
-<div class="row">
-    <div class="col-sm-3 control-label">Enter new password:</div>
-    <div class="col-sm-6">
-        <?php echo $widget->input($form, 'password', array('class' => 'form-control') ); ?>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-3 control-label">Repeat new password:</div>
-    <div class="col-sm-6">
-        <?php echo $widget->input($form, 'rep_pass', array('class' => 'form-control') ); ?>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm-2 col-sm-offset-3">
-        <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-lg btn-success',) ); ?>
+<div class="col-sm-8 col-sm-offset-2">
+    <div class="well">
+        <div class="row">
+            <div class="col-sm-3 control-label">Enter new password:</div>
+            <div class="col-sm-6">
+                <?php echo $widget->input($form, 'password', array('class' => 'form-control') ); ?>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3 control-label">Repeat new password:</div>
+            <div class="col-sm-6">
+                <?php echo $widget->input($form, 'rep_pass', array('class' => 'form-control') ); ?>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-3">
+                <?php echo $widget->button($form, 'submit', array('class' => 'btn btn-md btn-success',) ); ?>
+            </div>
+        </div>
     </div>
 </div>
 <?php echo $form->renderEnd(); ?>

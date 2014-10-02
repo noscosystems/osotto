@@ -2,7 +2,7 @@
     $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/assets');
 ?>    
     <div class="row features">
-        <div class="feature col-xs-12" style="height:200px; background:#CCC">
+        <div class="feature col-xs-12" style="height:500px; background:#CCC">
             <?php if($category->catImg && file_exists($category->catImg)): ?>
                 <?php echo CHtml::image(Yii::app()->assetManager->publish($category->catImg), 'Category Image', array('class' => 'img-responsive')); ?>
             <?php endif; ?>
@@ -24,7 +24,7 @@
                         </div><div class="row features">
                     <?php endif; ?>
                     <a href="<?php echo Yii::app()->urlManager->baseUrl; ?>/product/view?id=<?php echo $product->id; ?>">
-                        <div class="feature col-xs-12 col-sm-4" style="height:300px; background:#CCC ">
+                        <div class="feature col-xs-12 col-sm-4" style="height:500px; background:#CCC ">
                             <?php if($product->Images && isset($product->Images[0]) && $image = $product->Images[0]): ?>
                                 <?php if(file_exists($image->url)): ?>
                                     <?php echo CHtml::image(Yii::app()->assetManager->publish($image->url), 'Product Image', array('class' => 'img-responsive')); ?>

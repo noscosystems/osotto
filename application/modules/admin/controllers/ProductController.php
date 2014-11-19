@@ -24,7 +24,7 @@
 		{
 			if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
-            else if (Yii::app()->user->priv >=50)
+            else if (Yii::app()->user->model()->priv >=50)
                 $form = new Form('application.forms.addProduct', new AddProduct);
             else
                 $this->redirect(array('/home'));
@@ -84,7 +84,7 @@
         {
             if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
-            else if (Yii::app()->user->priv >=50)
+            else if (Yii::app()->user->model()->priv >=50)
                 $form = new Form('application.forms.fileUplForm', new FileUplForm);
             else
                 $this->redirect(array('/home'));
@@ -123,7 +123,7 @@
             if(Yii::app()->user->isGuest){
                 $this->redirect(array('/login'));
             }
-            else if (Yii::app()->user->priv >=50){
+            else if (Yii::app()->user->model()->priv >=50){
             
                 $image = ProductImages::model()->findByPk($id);
                 
@@ -138,7 +138,7 @@
         {
             if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
-            else if (Yii::app()->user->priv >=50)
+            else if (Yii::app()->user->model()->priv >=50)
                 $form = new Form('application.forms.fileUplForm', New FileUplForm);
             else
                 $this->redirect(array('/home'));   
@@ -159,7 +159,7 @@
         {
             if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
-            else if (Yii::app()->user->priv >=50)
+            else if (Yii::app()->user->model()->priv >=50)
                 $form = new Form('application.forms.addProductCategorie', new AddProductCategorie);
             else
                 $this->redirect(array('/home'));
@@ -193,7 +193,7 @@
 
             if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
-            else if (Yii::app()->user->priv >=50)
+            else if (Yii::app()->user->model()->priv >=50)
                 $form = New Form('application.forms.search', New Search);
             else
                 $this->redirect(array('/home'));
@@ -222,7 +222,7 @@
         public function actioneditProduct($param){
             if(Yii::app()->user->isGuest)
                 $this->render('/login');
-            else if (Yii::app()->user->priv >=50)
+            else if (Yii::app()->user->model()->priv >=50)
                 $form = New Form('application.forms.editProduct', New EditProduct);
             else 
                 $this->redirect('/home');
@@ -252,7 +252,7 @@
 
             if(Yii::app()->user->isGuest)
                 $this->render('/login');
-            if (Yii::app()->user->priv >=50){
+            if (Yii::app()->user->model()->priv >=50){
 
                 if (isset($_POST['id']) && !empty($_POST['id'])) {
 

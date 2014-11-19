@@ -144,8 +144,8 @@
          */
         public function getPrivilege()
         {
-            return is_object($this->user) && isset($this->user->privilege)
-                ? (int) $this->user->privilege
+            return is_object($this->user) && isset($this->user->priv)
+                ? (int) $this->user->priv
                 : 1;
         }
 

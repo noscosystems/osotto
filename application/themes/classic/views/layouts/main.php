@@ -90,14 +90,14 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <?php if(Yii::app()->user->isGuest): ?>
-                                <li><?php echo CHtml::link('Register Device', array('/device/register')); ?></li>
+                                <li><?php echo CHtml::link('Register Device', array('/account/register')); ?></li>
                                 <li><?php echo CHtml::link('Login', array('/login')); ?></li>
-                            <?php elseif(Yii::app()->user->priv >= 10): ?>
+                            <?php elseif(Yii::app()->user->model()->priv >= 10): ?>
                                 <li><?php echo CHtml::link('Register Device', array('/device/regdevice')); ?></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo CHtml::encode(Yii::app()->user->model()->username); ?> <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <?php if(Yii::app()->user->priv >= 50): ?>
+                                        <?php if(Yii::app()->user->model()->priv >= 50): ?>
                                             <li><?php echo CHtml::link('Admin', array('/admin/default/index')); ?></li>
                                         <?php endif; ?>
                                         <li><?php echo CHtml::link('Change password', array('/account/changepass')); ?></li>

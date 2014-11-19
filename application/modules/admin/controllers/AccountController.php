@@ -16,7 +16,7 @@
 
             if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
-            else if (Yii::app()->user->priv >=50)
+            else if (Yii::app()->user->model()->priv >=50)
                 $form = New Form('application.forms.editUser', New EditUser);
             else
                 $this->redirect(array('/home'));
@@ -77,7 +77,7 @@
 
             if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
-            else if (Yii::app()->user->priv >=50)
+            else if (Yii::app()->user->model()->priv >=50)
                 $form = New Form('application.forms.search', New Search);
             else
                 $this->redirect(array('/home'));
@@ -104,11 +104,11 @@
             if(Yii::app()->user->isGuest){
                 $this->redirect(array('/login'));
             }
-            else if (Yii::app()->user->priv >=50){
+            else if (Yii::app()->user->model()->priv >= 50){
 
                 if (isset($_POST['id']) && !empty($_POST['id'])) {
                     $user = Users::model()->findByPk($_POST['id']);
-                    if (Yii::app()->user->priv > $user->priv){
+                    if (Yii::app()->user->model()->priv > $user->priv){
                         if ($_POST['butt_value'] == 'Inactive'){
                             $user->active =0;
                             echo 'Active';

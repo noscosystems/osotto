@@ -15,9 +15,9 @@
 		{
 			if(Yii::app()->user->isGuest)
                 $this->redirect(array('/login'));
-            else if (Yii::app()->user->priv <= 50)
+            else if (Yii::app()->user->model()->priv <= 50)
                 $this->redirect(array('/home'));
-            else if (Yii::app()->user->priv >=50)
+            else if (Yii::app()->user->model()->priv >= 50)
                 $this->render('index');
 		}
 	}

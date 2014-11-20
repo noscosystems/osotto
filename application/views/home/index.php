@@ -13,11 +13,15 @@
         <li data-target="#image-cycle" data-slide-to="0" class="active"></li>
         <li data-target="#image-cycle" data-slide-to="1"></li>
         <li data-target="#image-cycle" data-slide-to="2"></li>
+        <li data-target="#image-cycle" data-slide-to="3"></li>
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
+            <img src="<?php echo $assetUrl; ?>/images/mh51-front.png" style="height:auto; width:100%" class="img-responsive">
+        </div>
+        <div class="item">
             <img src="<?php echo $assetUrl; ?>/images/carousel-bg-red-black-white.png" style="height:auto; width:100%" class="img-responsive">
             <div class="carousel-caption text-center">
                 <center>

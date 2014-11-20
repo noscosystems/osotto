@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-body">
-                    <iframe noborder src="<?php echo Yii::app()->assetManager->publish($product->PDF->url); ?>"></iframe>
+                    <iframe width="100%" height="100%" style="width:100%; height:100%" noborder src="<?php echo Yii::app()->assetManager->publish($product->PDF->url); ?>"></iframe>
                 </div>
             </div>
         </div>

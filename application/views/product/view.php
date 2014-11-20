@@ -1,6 +1,6 @@
 <?php if($product->active): ?>
     <div class="modal fade" id="pdf" tabindex="-1" role="dialog" aria-labelledby="pdfLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg" style="height:100%">
             <div class="modal-content">
                 <div class="modal-body">
                     <iframe width="100%" height="100%" style="width:100%; height:100%" noborder src="<?php echo Yii::app()->assetManager->publish($product->PDF->url); ?>"></iframe>

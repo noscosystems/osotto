@@ -56,16 +56,17 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <?php foreach($product->Images as $image): ?>
-                                <?php 
-                                echo CHtml::image(
-                                Yii::app()->assetManager->publish($image->url), 
-                                'Product Image', 
-                                array(
-                                    'class' => 'product-image img-responsive',
-                                    'style' => 'width:70px; height:70px; float:left; cursor:pointer;'
-                                    )
-                                ); ?>
-                                &nbsp;
+                                <div class="well well-sm">
+                                    <?php 
+                                    echo CHtml::image(
+                                    Yii::app()->assetManager->publish($image->url), 
+                                    'Product Image', 
+                                    array(
+                                        'class' => 'product-image img-responsive',
+                                        'style' => 'width:70px; height:70px; float:left; cursor:pointer;'
+                                        )
+                                    ); ?>
+                                </div>
                             <?php endforeach; ?>
                         </div>
                     </div>

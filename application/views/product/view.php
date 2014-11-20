@@ -1,4 +1,14 @@
 <?php if($product->active): ?>
+    <div class="modal fade" id="pdf" tabindex="-1" role="dialog" aria-labelledby="pdfLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <iframe noborder src="<?php echo Yii::app()->assetManager->publish($product->PDF->url); ?>"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xs-12 col-sm-6">
             <div class="page-header">
@@ -18,7 +28,7 @@
                 <li class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
                 <li>
                     <?php if($product->PDF): ?>
-                        <?php echo CHtml::link('Specifications', Yii::app()->assetManager->publish($product->PDF->url), array('target' => '_blank')); ?>
+                        <?php echo CHtml::link('Specifications', '#pdf', array('data-toggle' => 'modal')); ?>
                     <?php else: ?>
                         <a href="#specs" role="tab" data-toggle="tab">Specifications</a>
                     <?php endif; ?>

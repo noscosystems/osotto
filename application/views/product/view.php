@@ -18,7 +18,7 @@
                 <li class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
                 <li>
                     <?php if($product->PDF): ?>
-                        <?php echo CHtml::link('Specifications', Yii::app()->assetManager->publish($product->PDF->url), array()); ?>
+                        <?php echo CHtml::link('Specifications', Yii::app()->assetManager->publish($product->PDF->url), array('target' => '_blank')); ?>
                     <?php else: ?>
                         <a href="#specs" role="tab" data-toggle="tab">Specifications</a>
                     <?php endif; ?>

@@ -113,7 +113,7 @@ class Pdf extends ActiveRecord
 
                 $ext = strstr($_FILES['pdf']['name'], '.');
                 $_FILES['pdf']['name'] = substr(md5(time()), 0, 7).$ext;
-                $pdf->url = $dest = Yii::getPathOfAlias('application.views.Uploads.pdfs').'\\'.$_FILES['pdf']['name'];
+                $pdf->url = $dest = Yii::getPathOfAlias('application.views.Uploads.pdfs').'/'.$_FILES['pdf']['name'];
                 if (move_uploaded_file($_FILES['pdf']['tmp_name'], $dest))
                 	return true;
             }

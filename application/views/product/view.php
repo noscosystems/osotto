@@ -16,7 +16,13 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" id="properties">
                 <li class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
-                <li><a href="#specs" role="tab" data-toggle="tab">Specifications</a></li>
+                <li>
+                    <?php if($product->PDF): ?>
+                        <?php echo CHtml::link('Specifications', Yii::app()->assetManager->publish($product->PDF->url), array()); ?>
+                    <?php else: ?>
+                        <a href="#specs" role="tab" data-toggle="tab">Specifications</a>
+                    <?php endif; ?>
+                </li>
             </ul>
 
             <div class="tab-content">
@@ -25,7 +31,7 @@
                     <br />
                     <strong><?php echo CHtml::encode($product->spec_brief); ?></strong>
                     <br /><br />
-                    <?php echo $product->spec_full; ?>
+                    <?php echo CHtml::encode($product->spec_full); ?>
                 </div>
             </div>
 

@@ -55,6 +55,13 @@
                     <br />
                     <div class="row">
                         <div class="col-xs-12">
+                            <div class="well well-sm text-center">
+                                Click on any image below to enlarge and view
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
                             <?php foreach($product->Images as $image): ?>
                                 <?php 
                                 echo CHtml::image(

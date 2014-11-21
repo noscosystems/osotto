@@ -1,5 +1,7 @@
 $(document).ready( function(){
 
+    $.material.init();
+
     $("#image-cycle").carousel();
 
     $(".dropdown-hover, .dropdown-menu").hover( function(){      

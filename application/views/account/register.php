@@ -127,10 +127,14 @@ $widget = $form->activeFormWidget;
         </div>
         <br>
         <div class="row">
-            <div class="col-sm-3 control-label">News and Updates</div>
+            <div class="col-sm-3"></div>
             <div class="col-sm-7">
-                <?php echo $widget->input($form, 'optIn', array('class' => '', 'checked' => true) ); ?>
-                Please send me information about updates and new products
+                <div class="checkbox radio-primary">
+                    <label>
+                        <input type="checkbox" checked>
+                        I would like to recieve news and updates.
+                    </label>
+                </div>
             </div>
         </div>
         <br>

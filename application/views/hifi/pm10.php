@@ -10,7 +10,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
 <div class="row">
     <div class="col-xs-12 text-center">
         <span class="font-opensans text-large text-very-dark text-shadow-light">
-            With Great Power, Comes Great Sound Quality
+            Experience First Class, For Half The Price
         </span>
         <br />
     </div>
@@ -52,7 +52,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="well">
-                                About
+                                Coming Soon
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="well">
-                                Tech Specs
+                                Coming Soon
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="well">
-                                Gallery
+                                Coming Soon
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="well">
-                                Review
+                                Coming Soon
                             </div>
                         </div>
                     </div>

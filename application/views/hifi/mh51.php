@@ -15,7 +15,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
         <br />
     </div>
 </div>
-<?php /*
+
 <br /><br /><br /><br /><br />
 <div class="row">
     <div class="col-sm-4">
@@ -24,18 +24,17 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
     <div class="col-sm-8">
         <div class="well">
             <span class="font-opensans text-medium-large text-very-dark text-shadow-light">
-                Find Quality in Quantity
+                Not Just a Sound System
             </span>
             <br />
             <p class="text-small">
-                The PM10 is jam packed with power, two 15 watt speakers blast out high quality 5.1 digital surround sound. <br />
-                You can connect to the speakers with Bluetooth, AUX, USB, CD and SD cards.<br />
-                It is also equipped with an FM radio and a CD Ripping function!
+                The MH51 comes with two microphone in jacks, allowing you to convert this HiFi to a Karaoke machine!<br />
+                The CD drive, USB slots, SD card slot and Bluetooth allows you to never be short of connectivity options.
             </p>
         </div>
     </div>
 </div>
-*/ ?>
+
 <br /><br /><br /><br /><br />
 <div class="row">
     <div class="col-xs-12">

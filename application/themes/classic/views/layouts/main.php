@@ -74,6 +74,12 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
                                     <li><?php echo CHtml::link('MH51', array('/hifi/mh51')); ?></li>
                                 </ul>
                             </li>
+                            <li class="dropdown">
+                                <?php echo CHtml::link('Tablets', 'javascript:void(0)', array('class' => 'dropdown-toggle dropdown-hover', 'data-toggle' => 'dropdown')); ?>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><?php echo CHtml::link('T42', array('/tablet/t42')); ?></li>
+                                </ul>
+                            </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <?php if(Yii::app()->user->isGuest): ?>

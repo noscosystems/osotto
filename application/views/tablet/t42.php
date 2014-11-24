@@ -1,25 +1,28 @@
 <?php
 $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/assets');
 ?>
+<br />
 <div class="row">
     <div class="col-xs-12">
-        <?php echo CHtml::image($assetUrl . '/images/mh51-banner.png', 'MH51 Banner', array('class' => 'img-responsive')); ?>
+        <?php echo CHtml::image($assetUrl . '/images/t42-banner.png', 'T42 Banner', array('class' => 'img-responsive')); ?>
     </div>
 </div>
-<br /><br /><br /><br /><br />
+<br /><br />
 <div class="row">
     <div class="col-xs-12 text-center">
         <span class="font-opensans text-large text-very-dark text-shadow-light">
-            With Great Power, Comes Great Sound Quality
+            Small and Mighty, Excessive Power For Price
         </span>
         <br />
     </div>
 </div>
 
 <br /><br /><br /><br /><br />
+
+<?php /*
 <div class="row">
     <div class="col-sm-4">
-        <?php echo CHtml::image($assetUrl . '/images/mh51-side-right.png', 'Right side of MH51', array('class' => 'img-responsive')); ?>
+        <?php echo CHtml::image($assetUrl . '/images/mh51-side-right.png', 'Right side of PM10', array('class' => 'img-responsive')); ?>
     </div>
     <div class="col-sm-8">
         <div class="well">
@@ -36,12 +39,13 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
 </div>
 
 <br /><br /><br /><br /><br />
+*/ ?>
 <div class="row">
     <div class="col-xs-12">
         <div role="tabpanel">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" style="background: #333; width:100%;" role="tablist">
-                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab" style="color: #000">About The MH51</a></li>
+                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab" style="color: #000">About The PM10</a></li>
                 <li role="presentation"><a href="#tech" aria-controls="tech" role="tab" data-toggle="tab" style="color: #000">Technical Specification</a></li>
                 <li role="presentation"><a href="#gallery" aria-controls="gallery" role="tab" data-toggle="tab" style="color: #000">Image Gallery</a></li>
                 <li role="presentation"><a href="#review" aria-controls="review" role="tab" data-toggle="tab" style="color: #000">Customer Reviews</a></li>

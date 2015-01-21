@@ -45,7 +45,7 @@ $assetUrl = Yii::app()->assetManager->publish(Yii::app()->theme->basePath . '/as
         <div role="tabpanel">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" style="background: #333; width:100%;" role="tablist">
-                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab" style="color: #000">About The PM10</a></li>
+                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab" style="color: #000">About The T42</a></li>
                 <li role="presentation"><a href="#tech" aria-controls="tech" role="tab" data-toggle="tab" style="color: #000">Technical Specification</a></li>
                 <li role="presentation"><a href="#gallery" aria-controls="gallery" role="tab" data-toggle="tab" style="color: #000">Image Gallery</a></li>
                 <li role="presentation"><a href="#review" aria-controls="review" role="tab" data-toggle="tab" style="color: #000">Customer Reviews</a></li>

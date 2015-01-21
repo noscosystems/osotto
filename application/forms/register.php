@@ -21,6 +21,11 @@
                 'maxlength' => 64,
                 'hint' => Yii::t('application', 'Please enter your password; it is case-sensitive.'),
             ),
+            'confirmpassword' => array(
+                'type' => 'password',
+                'maxlength' => 64,
+                'hint' => Yii::t('application', 'Please enter your password; it is case-sensitive.'),
+            ),
             'firstname' => array(
                 'type' => 'text',
                 'maxlength' => 36,
@@ -43,7 +48,7 @@
                 // 'hint' => Yii::t('application', 'Please enter your password; it is case-sensitive.'),
             ),
             'email' => array(
-                'type' => 'text',
+                'type' => 'email',
                 'maxlength' => 128,
                 'hint' => Yii::t('application', 'Please enter your date of birth; it is case-sensitive.'),
             ),

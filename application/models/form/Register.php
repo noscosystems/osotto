@@ -9,13 +9,13 @@
     class Register extends FormModel
     {
 
-        public $username,$password,$firstname,$middlename,$lastname,$ageGroup,$email,$mobile,$other_number,$country,$county,$town,$postcode,$address1,$address2,$optIn;
+        public $username,$password,$confirmpassword,$firstname,$middlename,$lastname,$ageGroup,$email,$mobile,$other_number,$country,$county,$town,$postcode,$address1,$address2,$optIn;
 
         public function rules()
         {
             return array(
                 // Username and password are required.
-                array('username, password, firstname, lastname, email, ageGroup, county, country, postcode, address1,', 'required'),
+                array('email, password, confirmpassword', 'required'),
                 // The database has a maximum username length of 64 characters.
                 array('username', 'length','min' => 5, 'max' => 64),
                 array('password', 'length','min' => 5, 'max' => 64),

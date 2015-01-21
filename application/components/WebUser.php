@@ -44,34 +44,10 @@
             // Raise an "onEndUser" event.
             $this->onStartUser(new Event($this));
             // Is the user logged in or not?
-            if(!$this->getState('isGuest') || !$this->getIsGuest()) {
+            if(!$this->getState('isGuest')) {
                 // Load the database model for the currently logged in user so we can use their information throughout
                 // the request.
-                $this->user = User::model()->findByPk($this->getId());
-
-                // Check a couple of things for security, like if the user is on the same IP address and browser that
-                // they used to log in with. Also check that the user exists in the database, and has not somehow been
-                // banned from the system.
-                if(
-                    $this->getState('userAgent') != $_SERVER['HTTP_USER_AGENT']
-                 || $this->getState('loginIP') != $_SERVER['REMOTE_ADDR']
-                 || !is_object($this->model())
-                 || !$this->model()->active
-                ) {
-                    // If any of these simple checks fail, then log the user out immediately. Refer to the lengthy
-                    // explaination in the Logout controller as to why we pass bool(false).
-                    $this->logout(false);
-                    // Set a flash message explaining that the user has been logged out (nothing worse than being kicked
-                    // out without an explaination - people may complain about the system being faulty otherwise).
-                    $this->setFlash(
-                        'logout',
-                        Yii::t(
-                            'system60',
-                            'You have been logged out because an attempted security breach has been detected. If this happens again please contact an administrator, as someone may be trying to access your account.'
-                        )
-                    );
-                }
-
+                $this->user = User::model()->findByPk($this->getState('id'));
                 // Raise an "onAuthenticated" event; specifying that the end-user is logged in.
                 $this->onAuthenticated(new Event($this));
             }
@@ -124,29 +100,16 @@
         }
 
         /**
-         * Get: Priv
-         *
-         * @shortcut
-         * @access public
-         * @return integer
-         */
-        public function getPriv()
-        {
-            return $this->getPrivilege();
-        }
-
-
-        /**
-         * Get: Privilege
+         * Get: Branch
          *
          * @access public
-         * @return integer
+         * @return string|null
          */
-        public function getPrivilege()
+        public function getBranch()
         {
-            return is_object($this->user) && isset($this->user->priv)
-                ? (int) $this->user->priv
-                : 1;
+            return is_object($this->user)
+                ? $this->user->branch
+                : null;
         }
 
         /* ================= *\
@@ -196,6 +159,32 @@
             if($this->hasEventHandler($name = __FUNCTION__)) {
                 $this->raiseEvent($name, $event);
             }
+        }
+
+        /**
+         * Get: Priv
+         *
+         * @shortcut
+         * @access public
+         * @return integer
+         */
+        public function getPriv()
+        {
+            return $this->getPrivilege();
+        }
+
+
+        /**
+         * Get: Privilege
+         *
+         * @access public
+         * @return integer
+         */
+        public function getPrivilege()
+        {
+            return is_object($this->user) && isset($this->user->priv)
+                ? (int) $this->user->priv
+                : 1;
         }
 
     }

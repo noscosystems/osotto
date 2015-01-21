@@ -6,6 +6,7 @@
     use \CException;
     use \CEvent as Event;
     use \application\models\db\Users as User;
+    USE \CDbCriteria as Criteria;
 
     /**
      * User Identity
@@ -70,9 +71,9 @@
         public function load($id)
         {
             // Attempt to load the user specified by the ID passed from the database.
-            $user = is_int($id)
-                ? User::model()->findByPk($id)
-                : User::model()->findByAttributes(array('username' => $id));
+            $user = User::model()->findByPk($id);
+            if(!$user) 
+                User::model()->findByAttributes(array('email' => $id));
             // If a user with that ID does not exist, set the error code to ERROR_ID_INVALID, and return false.
             if(!is_object($user)) {
                 $this->errorCode = self::ERROR_ID_INVALID;
@@ -85,8 +86,7 @@
             $this->setPersistentStates(array(
                 // The ID of the user that is logged in. This is required at the very least (if you don't specify a
                 // user, who's logged in?)
-                'id' => $this->id,
-                '__id' => $this->id,
+                'id' => (int) $id,
                 // Set this to false to quickly identify that the user is not a guest and is, in fact, an authenticated
                 // user. Yii doesn't seem to set this automatically, which is disappointing.
                 'isGuest' => false,
@@ -125,11 +125,16 @@
             // Raise the "startAuthenticate" event.
             $this->onAuthenticateStart(new Event($this));
 
-            // Load the model of the user defined by the username provided by the end-user.
-            $user = User::model()->findByAttributes(array('username' => $this->username));
+            $criteria = new Criteria;
+            $criteria->addColumnCondition(array(
+                'username'  => $this->username,
+                'email'     => $this->username,
+            ), 'OR');
+            $user = User::model()->find($criteria);
+
             // If the user does not exist in the database, or the user has been disabled (inactive), set the error code
             // to ERROR_USERNAME_INVALID, return false.
-            if(!is_object($user)) {
+            if(!is_object($user) || !$user->active) {
                 $this->errorCode = self::ERROR_USERNAME_INVALID;
                 // Raise "onPasswordIncorrect" event; specifying that the password that the end-user entered was
                 // incorrect.
@@ -139,19 +144,10 @@
             // Store the user ID in a local scope variable so that we don't have to query the User model object each
             // time we reference it.
             $this->id = (int) $user->id;
+
             // Raise the "onUsernameValid" event; specifying that the username that the end-user entered has been found
             // in the database.
             $this->onUsernameValid(new Event($this));
-            // Check that the user is allowed to login at the inbound IP address. If not, set the error code to
-            // ERROR_IP_INVALID, return false.
-            // You could also use "!in_array($_SERVER['REMOTE_ADDR'])" but this won't take into account wildcards.
-
-            /* REMOVE IP FILTERING FOR NOW.
-            if(!$user->ipAllowed($_SERVER['REMOTE_ADDR'])) {
-                $this->errorCode = self::ERROR_IP_INVALID;
-                return false;
-            }
-            /**/
 
             // Check that the password supplied matched the hash stored in the database. If it doesn't add a FailedLogin
             // entry, set the error code to ERROR_PASSWORD_INVALID, return false.
@@ -171,17 +167,11 @@
             // state.
             $this->setPersistentStates(array(
                 // The ID of the user that is logged in. This is required at the very least (if you don't specify a
-                // user, who's logged in?).
-                // Firstly, the session state the application uses.
+                // user, who's logged in?)
                 'id' => $this->id,
-                // And secondly, the session state that the Yii framework uses.
-                '__id' => $this->id,
-                // Keep track of the IP and User Agent that the user logged in with, if any of these change it it likely
-                // that someone has stolen the session cookie and is trying to use it to masquerade themselves as the
-                // original user.
-                'loginIP' => $_SERVER['REMOTE_ADDR'],
-                'userAgent' => $_SERVER['HTTP_USER_AGENT'],
-				'priv' => (int)$user->priv
+                // Set this to false to quickly identify that the user is not a guest and is, in fact, an authenticated
+                // user. Yii doesn't seem to set this automatically, which is disappointing.
+                'isGuest' => false,
             ));
 
             // Raise the "onStatesPersisted" event; specifying that the variables to be saved in the user-specific

@@ -88,7 +88,7 @@ $bootstrap = Yii::app()->assetManager->publish(Yii::getPathOfAlias('composer.twb
                             <?php elseif(Yii::app()->user->model()->priv >= 10): ?>
                                 <li><?php echo CHtml::link('Register Device', array('/device/regdevice')); ?></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo CHtml::encode(Yii::app()->user->model()->username); ?> <span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo CHtml::encode(Yii::app()->user->model()->email); ?> <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <?php if(Yii::app()->user->model()->priv >= 50): ?>
                                             <li><?php echo CHtml::link('Admin', array('/admin/default/index')); ?></li>

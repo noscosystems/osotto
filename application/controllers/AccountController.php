@@ -105,33 +105,27 @@
                         $user->middlename=($frm->middlename=='')?(null):($frm->middlename);
                         $user->title = 1;
                         $userDetails->attributes = $frm->attributes;
+                        $user->firstname = "n/a";
+                        $user->lastname = "n/a";
+                        $user->ageGroup = 1;
+                        $user->username = "n/a";
+                        $user->email = $frm->email;
 
-                        $emailExists = CustomerContactDetails::model()->findAllByAttributes(array('email' => $frm->email));
+                        $emailExists = Users::model()->findAllByAttributes(array('email' => $frm->email));
 
                         if ($emailExists)
                             $frm->addError('email','Email already taken by another user');
 
-                        $mobileExists = CustomerContactDetails::model()->findAllByAttributes(array('mobile' => $userDetails->mobile));
-
-                        if ($mobileExists)
-                            $frm->addError('mobile','Mobile number already taken by another user');
-
                         $userAddress->attributes = $form->model->attributes;
                         
                         if (empty($frm->errors)){
-                        	if ($user->save()){
-                        		$userDetails->customerId = $userAddress->customerId=$user->id;
-                        		$userDetails->save();
-                        		$userAddress->save();
-
-                                $this->identity = new UserIdentity($form->model->username, $form->model->password);
-
-                                if($this->identity->authenticate()){
-                                    Yii::app()->user->login($this->identity);
-                                    Yii::app()->user->setFlash('registerSuccess','Registered successfully.');
-                                    $this->redirect(array('device/regDevice'));
-                                }
-                        	}
+                            if (!$user->save()) {
+                                var_dump($user->errors); 
+                                exit; 
+                            }
+                            Yii::app()->user->setFlash('success', 'You have registered successfully.');
+                            $form = null;
+                            $form = new Form('application.forms.register', new Register);
                         }
                     }
                 }

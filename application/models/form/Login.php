@@ -23,5 +23,10 @@
             );
         }
 
-
+        public function attributeLabels()
+        {
+            return array(
+                'username' => Yii::t('application', 'Email Address'),
+            );
+        }
     }

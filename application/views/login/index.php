@@ -19,7 +19,7 @@
     <div class="well">
         <fieldset>
             <div class="form-group <?php echo $widget->error($form, 'username') ? 'has-error' : ''; ?>">
-                <?php echo $widget->labelEx($form, 'username', array('class' => 'col-sm-3 text-right control-label')); ?>
+                <?php echo $widget->labelEx($form, 'username', array('class' => 'col-sm-3 text-right control-label', 'value' => 'Email Address')); ?>
                 <div class="col-sm-9">
                     <?php echo $widget->input($form, 'username', array('class' => 'form-control', 'autofocus' => 'true')); ?>
                     <?php

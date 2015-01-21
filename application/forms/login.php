@@ -7,7 +7,7 @@
             'username' => array(
                 'type' => 'text',
                 'maxlength' => 64,
-                'hint' => Yii::t('application', 'Please enter your username; it is case-insensitive.'),
+                'hint' => Yii::t('application', 'Please enter your emaul address; it is case-insensitive.'),
             ),
             'password' => array(
                 'type' => 'password',
